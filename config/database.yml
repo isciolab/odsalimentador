@@ -15,7 +15,7 @@ development:
   password: tgwKTcMf3/ge
   host: 127.0.0.1
   port: 3306
-  database: db/odsdevelopment
+  database: odsdevelopment
   timeout: 5000
   pool: 5
 # Warning: The database defined as "test" will be erased and
@@ -23,8 +23,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/odstest
+  database: odstest
 
 production:
   <<: *default
-  database: db/odsproduction
+  database: odsproduction

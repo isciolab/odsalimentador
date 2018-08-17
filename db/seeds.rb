@@ -38,7 +38,7 @@ personas que subsisten con menos
 de 1,25 $ al día", available:1, goal_id:1)
 
 ##save indicator
-Indicator.create(number:"1.1.1", description:"Incidencia de pobreza monetaria extrema", available:1, data_type:"PORCENTAJE",
+Indicator.create(number:"1.1.1", name:"Incidencia de pobreza monetaria extrema", available:1, data_type:"PORCENTAJE",
                  national_base_line:"7.9",national_goal:"4.8",reference_value_low:"<4",reference_value_mid:"4-8",
                  reference_value_high:">8", target_id:1,institutional_inf:"", comment:"Propuesta RCCV",
                  methodological_proposal:"Proy. datos historicos")
@@ -53,7 +53,7 @@ DIMENSIONES con arreglo a las
 definiciones nacionales", available:1, goal_id:1)
 
 #save indicator
-Indicator.create(number:"1.2.1", description:"Incidencia de la Pobreza Monetaria", available:1, data_type:"PORCENTAJE",
+Indicator.create(number:"1.2.1", name:"Incidencia de la Pobreza Monetaria", available:1, data_type:"PORCENTAJE",
                  national_base_line:"27.8",national_goal:"18.7",reference_value_low:"<12",reference_value_mid:"12-25",
                  reference_value_high:">25", target_id:2,institutional_inf:"", comment:"BID",
                  methodological_proposal:"Proy. datos historicos")
@@ -107,7 +107,7 @@ todo el año", available:1, goal_id:2)
 ########end target 2.1########
 
 #save indicator
-Indicator.create(number:"2.1.1", description:"Prevalencia de inseguridad alimentaria en el hogar (moderada o severa)",
+Indicator.create(number:"2.1.1", name:"Prevalencia de inseguridad alimentaria en el hogar (moderada o severa)",
                  available:1, data_type:"",
                  national_base_line:"",national_goal:"",reference_value_low:"",reference_value_mid:"",
                  reference_value_high:"", target_id:5,institutional_inf:"", comment:"",
@@ -126,7 +126,7 @@ todo el año", available:1, goal_id:2)
 ########end target 2.2########
 
 #save indicator
-Indicator.create(number:"2.2.1", description:"Tasa de mortalidad por desnutrición en menores de 5 años (por cada 100.000 menores)",
+Indicator.create(number:"2.2.1", name:"Tasa de mortalidad por desnutrición en menores de 5 años (por cada 100.000 menores)",
                  available:1, data_type:"NUMERO",
                  national_base_line:"6.8",national_goal:"5.0",reference_value_low:"<4",reference_value_mid:"4-7",
                  reference_value_high:">7", target_id:6,institutional_inf:"", comment:"Propuesta RCCV",
@@ -149,7 +149,7 @@ MATERNA a menos de 70 por cada
 ########end target 3.1#######
 
 #save indicator
-Indicator.create(number:"3.1.1", description:"Razón de mortalidad materna a 42 días (Tasa por cada 100K niños nacidos vivos)",
+Indicator.create(number:"3.1.1", name:"Razón de mortalidad materna a 42 días (Tasa por cada 100K niños nacidos vivos)",
                  available:1, data_type:"NUMERO",
                  national_base_line:"53.7",national_goal:"32.0",reference_value_low:"<30",reference_value_mid:"30-55",
                  reference_value_high:">55", target_id:7,institutional_inf:"", comment:"Propuesta RCCV",
@@ -164,7 +164,7 @@ de 5 años", available:1, goal_id:3)
 ########end target 3.2########
 
 #save indicator
-Indicator.create(number:"3.2.1", description:"Tasa de mortalidad infantil en menores de 1 año (ajustada)",
+Indicator.create(number:"3.2.1", name:"Tasa de mortalidad infantil en menores de 1 año (ajustada)",
                  available:1, data_type:"NUMERO",
                  national_base_line:"17.1",national_goal:"14.0",reference_value_low:"<14",reference_value_mid:"14-17",
                  reference_value_high:">17", target_id:8,institutional_inf:"", comment:"Propuesta RCCV",
@@ -190,7 +190,7 @@ eficaces", available:1, goal_id:4)
 ########end target 4.1#######
 
 #save indicator
-Indicator.create(number:"4.1.1", description:"Tasa de cobertura bruta en educación media",
+Indicator.create(number:"4.1.1", name:"Tasa de cobertura bruta en educación media",
                  available:1, data_type:"PORCENTAJE",
                  national_base_line:"77.8",national_goal:"",reference_value_low:">70",reference_value_mid:"51-70",
                  reference_value_high:"<51", target_id:9,institutional_inf:"", comment:"BID (Ojo, meta cobertura neta)",
@@ -198,7 +198,7 @@ Indicator.create(number:"4.1.1", description:"Tasa de cobertura bruta en educaci
 ###end indicator###
 
 #save indicator
-Indicator.create(number:"4.1.2", description:"Índice sintético de calidad en media",
+Indicator.create(number:"4.1.2", name:"Índice sintético de calidad en media",
                  available:1, data_type:"",
                  national_base_line:"",national_goal:"",reference_value_low:"",reference_value_mid:"",
                  reference_value_high:"", target_id:9,institutional_inf:"", comment:"",
@@ -232,7 +232,7 @@ explotación", available:1, goal_id:5)
 ########end target 5.2#######
 
 #save indicator
-Indicator.create(number:"5.2.1", description:"Mujeres afectadas por violencia de parejas",
+Indicator.create(number:"5.2.1", name:"Mujeres afectadas por violencia de parejas",
                  available:1, data_type:"PORCENTAJE",
                  national_base_line:"",national_goal:"",reference_value_low:"<14",reference_value_mid:"14-25",
                  reference_value_high:">25", target_id:11,institutional_inf:"",

@@ -2,6 +2,7 @@ class CreateIndicators < ActiveRecord::Migration[5.1]
   def change
     create_table :indicators do |t|
       t.string :number
+      t.string :name
       t.text :description
       t.string :data_type
       t.string :national_base_line

@@ -23,4 +23,4 @@
 .byebug_history
 
 .idea/
-.lock
+Gemfile.lock

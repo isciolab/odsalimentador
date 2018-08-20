@@ -12,7 +12,7 @@ default: &default
 development:
   adapter: mysql2
   username: root
-  password: tgwKTcMf3/ge
+  password: Vertrigo123.
   host: 127.0.0.1
   port: 3306
   database: odsdevelopment

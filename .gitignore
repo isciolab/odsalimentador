@@ -20,7 +20,7 @@
 /node_modules
 /yarn-error.log
 
-.byebug_history
+.byebug_historyconfig/puma.rb
 
-.idea/
-Gemfile.lock
+.idea
+.lock

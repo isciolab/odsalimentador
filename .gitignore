@@ -25,4 +25,4 @@
 .idea
 .lock
 
-/app/config/database.yml
+/config/database.yml

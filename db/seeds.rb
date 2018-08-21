@@ -193,7 +193,7 @@ de 5 años", available:1, goal_id:3)
 Indicator.create(number:"3.2.1", name:"Tasa de mortalidad infantil en menores de 1 año (ajustada)",
                  available:1, data_type:"NUMERO",
                  national_base_line:"17.1",national_goal:"14.0",reference_value_low:"<14",reference_value_mid:"14-17",
-                 reference_value_high:">17", target_id:8,institutional_inf:"", comment:"Propuesta RCCV",
+                 reference_value_high:">17", target_id:8,instiutional_inf:"", comment:"Propuesta RCCV",
                  methodological_proposal:"Referente internacional")
 Indicator.create(number:"3.2.2", name:"Tasa de mortalidad en menores de 5 años (ajustada)",
                  available:1, data_type:"NUMERO",

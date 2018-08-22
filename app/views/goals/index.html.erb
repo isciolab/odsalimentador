@@ -1,26 +1,29 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <%= link_to "Nuevo", new_measure_path, remote: true, class: "btn btn-info" %>
-    <p>Unidades de Medida #index</p>
+    <%= link_to "Nuevo", new_goal_path, remote: true, class: "btn btn-info" %>
+
+    <p>ODS#index</p>
   </div>
 </nav>
 
-<nav class="navbar navbar-default">
+<nav class="shadow-lg p-3 mb-5 bg-white rounded">
   <div class="container-fluid">
     <table class="table">
       <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Descripci&oacute;n</th>
         <th scope="col">Acci&oacute;n</th>
       </tr>
       </thead>
       <tbody>
-      <% @measures.each do |row| %>
+      <% @goals.each do |row| %>
         <tr>
-          <th scope="row"><%= row.id %></th>
+          <th scope="row"><%= row.number %></th>
           <td><%= row.name %></td>
-          <td><%= link_to "Editar", edit_measure_path(row), remote: true, class:"btn btn-danger" %></td>
+          <td><%= row.description %></td>
+          <td><%= link_to "Editar", edit_goal_path(product), remote: true, class:"btn btn-danger" %></td>
         </tr>
       <% end %>
       </tbody>

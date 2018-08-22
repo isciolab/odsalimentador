@@ -54,4 +54,7 @@ gem "devise"
 
 ##boostrap
 gem 'bootstrap', '~> 4.0.0'
+##iconos de boostrap 4
+gem "font_awesome5_rails"
+
 gem 'jquery-rails'

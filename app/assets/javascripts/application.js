@@ -16,6 +16,7 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+//= require font_awesome5
 
 var App = {
 

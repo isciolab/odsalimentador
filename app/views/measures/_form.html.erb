@@ -1,0 +1,22 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+id="modalmeasure">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%= title %></h4>
+      </div>
+      <%= form_for @measure, remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit title_button, class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

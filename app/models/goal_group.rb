@@ -1,0 +1,2 @@
+class GoalGroup < ApplicationRecord
+end

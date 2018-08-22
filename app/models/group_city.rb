@@ -1,0 +1,2 @@
+class GroupCity < ApplicationRecord
+end

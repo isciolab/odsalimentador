@@ -1,0 +1,2 @@
+class GroupCitiesController < ApplicationController
+end

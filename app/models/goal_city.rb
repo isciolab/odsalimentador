@@ -1,0 +1,2 @@
+class GoalCity < ApplicationRecord
+end

@@ -1,0 +1,23 @@
+<!-- parcial del menu -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+
+    <%= link_to root_path, class:"nav-link" do  %>
+      <h3>ODS Ciudatos</h3>
+    <% end %>
+  </div>
+
+  <ul class="list-unstyled components">
+    <p>Mi perfil</p>
+    <li class="">
+      <%= link_to "ODS", controller: 'goals' %>
+    </li>
+    <li class="">
+      <%= link_to "Objetivos", controller: 'targets' %>
+    </li>
+    <li>
+      <%= link_to "Unidad de Medida", controller: 'measures' %>
+    </li>
+
+  </ul>
+</nav>

@@ -1,0 +1,9 @@
+<% if @role.errors.empty? %>
+// add the row to the table, show alert and hide modal
+$('table tbody').append(' <%= j render "row", role: @role %>');
+$('.alert-success').html("La unidad de Medida ha sido creada con éxito").show();
+$('#modalrole').modal('hide');
+<% else %>
+// show first error
+alert('<%= @role.errors.full_messages[0] %>');
+<% end %>

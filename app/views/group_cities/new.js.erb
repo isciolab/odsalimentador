@@ -1,0 +1,5 @@
+/*llamo el mismo form, pero le paso las variables como los titulos, ya que se sua la misma vista para el editar*/
+$('<%= j render "form", {title: "Nuevo Grupo Ciudad",title_button: "Crear"} %>').modal();
+setTimeout( function (){
+    $('*[autofocus]').focus()
+},500)

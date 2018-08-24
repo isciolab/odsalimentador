@@ -1,4 +1,4 @@
-<% if @product.errors.empty? %>
+<% if @goal.errors.empty? %>
 // add the row to the table, show alert and hide modal
 $('table tbody').append(' <%= j render "row", goal: @goal %>');
 $('.alert-success').html("EL ODS ha sido creado con éxito").show();

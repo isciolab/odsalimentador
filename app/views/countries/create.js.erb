@@ -1,0 +1,9 @@
+<% if @country.errors.empty? %>
+// add the row to the table, show alert and hide modal
+$('table tbody').append(' <%= j render "row", country: @country %>');
+$('.alert-success').html("El Pais ha sido agregado con éxito").show();
+$('#modalcountry').modal('hide');
+<% else %>
+// show first error
+alert('<%= @country.errors.full_messages[0] %>');
+<% end %>

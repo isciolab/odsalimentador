@@ -16,15 +16,34 @@
       </tr>
       </thead>
       <tbody>
-      <% @departments.each do |row| %>
-        <tr>
-          <th scope="row"><%= row.id %></th>
-          <td><%= row.name %></td>
-          <td><%= link_to "Editar", edit_department_path(row), remote: true, class:"btn btn-primary" %>
-            <button type="button" class="btn btn-danger">Eliminar</button></td>
-
-        </tr>
-      <% end %>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acci&oacute;n</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Antioquia</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Valle del Cauca</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Arauca</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
       </tbody>
     </table>
   </div>

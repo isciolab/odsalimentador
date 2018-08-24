@@ -16,14 +16,27 @@
       </tr>
       </thead>
       <tbody>
-      <% @groupcities.each do |row| %>
-        <tr>
-          <th scope="row"><%= row.id %></th>
-          <td><%= row.name %></td>
-          <td><%= link_to "Editar", edit_group_city_path(row), remote: true, class:"btn btn-primary" %>
-            <button type="button" class="btn btn-danger">Eliminar</button></td>
-        </tr>
-      <% end %>
+      <tr>
+        <th scope="row">1</th>
+        <td>A1</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>B1</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>B2</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
       </tbody>
     </table>
   </div>

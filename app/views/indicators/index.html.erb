@@ -12,6 +12,9 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Descripci&oacute;n</th>
+        <th scope="col">Meta</th>
+        <th scope="col">Disponible</th>
         <th scope="col">Acci&oacute;n</th>
       </tr>
       </thead>
@@ -20,6 +23,9 @@
         <tr>
           <th scope="row"><%= row.id %></th>
           <td><%= row.name %></td>
+          <td></td>
+          <td>2.1</td>
+          <td>Si</td>
           <td><%= link_to "Editar", edit_indicator_path(row), remote: true, class:"btn btn-primary" %>
             <button type="button" class="btn btn-danger">Eliminar</button></td>
         </tr>

@@ -16,14 +16,22 @@
       </tr>
       </thead>
       <tbody>
-      <% @goalgroups.each do |row| %>
-        <tr>
-          <th scope="row"><%= row.id %></th>
-          <td><%= row.name %></td>
-          <td><%= link_to "Editar", edit_goal_group_path(row), remote: true, class:"btn btn-primary" %>
-            <button type="button" class="btn btn-danger">Eliminar</button></td>
-        </tr>
-      <% end %>
+
+      <tr>
+        <th scope="row">1</th>
+        <td>Grupo1</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Grupo2</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+
       </tbody>
     </table>
   </div>

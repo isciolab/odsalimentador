@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <%= link_to "Nuevo", new_indicator_path, remote: true, class: "btn btn-info" %>
+    <p>Indicadores #index</p>
+  </div>
+</nav>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acci&oacute;n</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @indicators.each do |row| %>
+        <tr>
+          <th scope="row"><%= row.id %></th>
+          <td><%= row.name %></td>
+          <td><%= link_to "Editar", edit_indicator_path(row), remote: true, class:"btn btn-primary" %>
+            <button type="button" class="btn btn-danger">Eliminar</button></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</nav>

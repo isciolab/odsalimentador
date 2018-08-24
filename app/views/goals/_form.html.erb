@@ -11,7 +11,7 @@ id="modalgoals">
       <%= form_for @goal, remote: true do |f| %>
         <div class="modal-body">
           <div class="form-group">
-            <%= f.text_field :number, class: "form-control input-lg", placeholder: "Número de ODS" %>
+            <%= f.text_field :number, class: "form-control input-lg", placeholder: "Número de ODS",autofocus:true %>
           </div>
           <div class="form-group">
             <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre" %>

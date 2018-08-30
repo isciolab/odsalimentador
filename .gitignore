@@ -23,4 +23,7 @@
 .byebug_historyconfig/puma.rb
 
 .idea
-.lock
+Gemfile.lock
+
+
+/config/database.yml

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <%= link_to "Nuevo", new_department_path, remote: true, class: "btn btn-info" %>
+    <p>Departamentos #index</p>
+  </div>
+</nav>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acci&oacute;n</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Acci&oacute;n</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Antioquia</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Valle del Cauca</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Arauca</td>
+        <td>
+          <button type="button" class="btn btn-primary">Editar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</nav>

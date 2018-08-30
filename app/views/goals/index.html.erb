@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <%= link_to "Nuevo", new_goal_path, remote: true, class: "btn btn-info" %>
+
+    <p>ODS#index</p>
+  </div>
+</nav>
+
+<nav class="shadow-lg p-3 mb-5 bg-white rounded">
+  <div class="container-fluid">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripci&oacute;n</th>
+        <th scope="col">Acci&oacute;n</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @goals.each do |row| %>
+        <tr>
+          <th scope="row"><%= row.number %></th>
+          <td><%= row.name %></td>
+          <td><%= row.description %></td>
+          <td><%= link_to "Editar", edit_goal_path(row), remote: true, class:"btn btn-primary" %>
+            <button type="button" class="btn btn-danger">Eliminar</button></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</nav>

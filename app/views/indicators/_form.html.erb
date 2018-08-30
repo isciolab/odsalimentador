@@ -1,0 +1,96 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+id="modalindicator">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title"><%= title %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <%= form_for @indicator, remote: true do |f| %>
+        <div class="modal-body">
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label class="form-check-label" for="gridCheck">
+                Disponible
+              </label>
+            </div>
+            <div class="col-sm-9">
+              <%= f.check_box :available, class: "form-check-input", checked_value:"1",uncheked_value:"0" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Nombre</label>
+            <%= f.text_field :name, class: "form-control input-lg", placeholder: "Ingrese un nombre",autofocus:true %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Número</label>
+            <%= f.text_field :number, class: "form-control input-lg", placeholder: "Ingrese un número"%>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Tipo</label>
+            <%= f.text_field :data_type, class: "form-control input-lg", placeholder: "Ingrese un Tipo"%>
+          </div>
+
+          <div class="form-group ">
+            <label for="formGroupExampleInput">Meta</label>
+            <%= f.collection_select :target_id, Target.all, :id, :name, {prompt: "Seleccione la Meta a la que pertenece"},
+                                    {class: "custom-select"} %>
+          </div>
+
+          <div class="form-group ">
+            <label for="formGroupExampleInput">Unidad de Medida</label>
+            <%= f.collection_select :measure_id, Measure.all, :id, :name, {prompt: "Seleccione la unidad de Medida"},
+                                    {class: "custom-select"} %>
+          </div>
+
+          <div class="form-group">
+            <label for="formGroupExampleInput">Línea base nacional</label>
+            <%= f.text_field :national_base_line, class: "form-control input-lg", placeholder: "Ingrese una línea base nacional" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Línea base nacional</label>
+            <%= f.text_field :national_goal, class: "form-control input-lg", placeholder: "Ingrese línea base nacional" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Valores de ref (Verde)</label>
+            <%= f.text_field :reference_value_low, class: "form-control input-lg", placeholder: "Ingrese un valor de ref. (Verde)" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Valores de ref. 2 (Amarillo)</label>
+            <%= f.text_field :reference_value_mid, class: "form-control input-lg", placeholder: "Ingrese un valor de ref. 2 (Amarillo)" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Ingrese un valor ref. 3 (Rojo)</label>
+            <%= f.text_field :reference_value_high, class: "form-control input-lg",
+                             placeholder: "Ingrese un valor ref. 3 (Rojo)" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Trazador CONPES</label>
+            <%= f.text_field :trazador_conpes, class: "form-control input-lg", placeholder: "Ingrese Trazador CONPES" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Información Institucional</label>
+            <%= f.text_field :institutional_inf, class: "form-control input-lg", placeholder: "Ingrese información Institucional" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Propuesta Metodológica</label>
+            <%= f.text_field :methodological_proposal, class: "form-control input-lg", placeholder: "Ingrese propuesta metodológica" %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Descripción</label>
+            <%= f.text_area  :description, class: "form-control input-lg", placeholder: "Ingrese una descripción", rows:4 %>
+          </div>
+          <div class="form-group">
+            <label for="formGroupExampleInput">Comentario</label>
+            <%= f.text_area  :description, class: "form-control input-lg", placeholder: "Ingrese un omentario", rows:4 %>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <%= f.submit title_button, class: "btn btn-primary btn-lg btn-block", disabled:true %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

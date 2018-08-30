@@ -1,0 +1,9 @@
+<% if @goalgroup.errors.empty? %>
+// add the row to the table, show alert and hide modal
+$('table tbody').append(' <%= j render "row", goal_group: @goalgroup %>');
+$('.alert-success').html("EL Grupo ODS ha sido con éxito").show();
+$('#modalgoalgroup').modal('hide');
+<% else %>
+// show first error
+alert('<%= @goalgroup.errors.full_messages[0] %>');
+<% end %>

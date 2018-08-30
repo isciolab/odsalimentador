@@ -229,7 +229,8 @@ Indicator.create(number:"4.1.1", name:"Tasa de cobertura bruta en educación med
 ###end indicator###
 
 #save indicator
-Indicator.create(number:"4.1.2", name:"Índice sintético de calidad en media",
+Indicator.create(number:"4.1.1", name:"Tasa de cobertura bruta en educación media
+",
                  available:1, data_type:"",
                  national_base_line:"",national_goal:"",reference_value_low:"",reference_value_mid:"",
                  reference_value_high:"", target_id:9,institutional_inf:"", comment:"",
@@ -240,7 +241,6 @@ Indicator.create(number:"4.1.2", name:"Índice sintético de calidad en media",
                  national_base_line:"",national_goal:"",reference_value_low:"",reference_value_mid:"",
                  reference_value_high:"", target_id:9,institutional_inf:"", comment:"",
                  methodological_proposal:"Pendiente")
-###end indicator###
 
 ###end goal 4 ###
 
@@ -258,6 +258,15 @@ DE DISCRIMINACIÓN contra
 todas las mujeres y niñas en todo el
 mundo", available:1, goal_id:5)
 ########end target 5.1#######
+
+
+Indicator.create(number:"4.5.1", name:"Brecha entre zona rural y urbana de la cobertura bruta en educación preescolar, básica y media",
+                 available:1, data_type:"",
+                 national_base_line:"",national_goal:"",reference_value_low:"",reference_value_mid:"",
+                 reference_value_high:"", target_id:9,institutional_inf:"", comment:"",
+                 methodological_proposal:"Pendiente")
+###end indicator###
+
 
 ########start target 5.2########
 Target.create(number:"5.2", name:"Eliminar todas las formas de
@@ -347,20 +356,16 @@ LAS TIERRAS Y FRENAR LA PÉRDIDA
 DE LA DIVERSIDAD BIOLÓGICA.", description:"Este objetivo consiste en proteger la fauna
 y los recursos naturales")
 
-Goal.create(number:"16", name:"LOGRAR LA IGUALDAD
-ENTRE LOS GÉNEROS
-Y EMPODERAR A TODAS
-LAS MUJERES Y NIÑAS.", description:"Este objetivo consiste en acabar con la violencia y la discriminación
-contra las mujeres y las chicas y asegurar que tengan las mismas
-oportunidades en todos los ámbitos de la vida")
-
-Goal.create(number:"05", name:"PROMOVER SOCIEDADES
-PACÍFICAS E INCLUSIVAS
+Goal.create(number:"16", name:"PROMOVER SOCIEDADES
+ PACÍFICAS E INCLUSIVAS
 PARA EL DESARROLLO SOSTENIBLE,
 FACILITAR EL ACCESO A LA JUSTICIA
 PARA TODOS Y CREAR INSTITUCIONES
-INSTITUCIONESEFICACES, RESPONSAB", description:"Este objetivo consiste en mantener la seguridad de las personas
-y garantizar que el gobierno trabaja de forma efectiva y justa")
+INSTITUCIONESEFICACES, RESPONSABLES E
+INCLUSIVAS A TODOS LOS NIVELES.", description:"Este objetivo consiste en acabar con la violencia y la discriminación
+contra las mujeres y las chicas y asegurar que tengan las mismas
+oportunidades en todos los ámbitos de la vida")
+
 
 Goal.create(number:"17", name:"FORTALECER LOS MEDIOS DE
 EJECUCIÓN Y REVITALIZAR LA
@@ -369,55 +374,250 @@ PARA EL DESARROLLO SOSTENIBLE.", description:"Este objetivo consiste en colabora
 Objetivos de Desarrollo Sostenible y hacer realidad la Agenda Post-2015")
 
 ####START WITH INDICATOR_VALUE ########
-IndicatorValue.create(indicator_id:1, city_id:1, value:"5.2", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:1, city_id:2, value:"50.2", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:1, city_id:3, value:"25", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:1, city_id:4, value:"60", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:1, value:"6.3", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:2, value:"8.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:3, value:"4", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:4, value:"5", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:5, value:"8", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:6, value:"5.4", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:7, value:"6.3", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:8, value:"8.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:9, value:"2.3", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:10, value:"3.6", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:11, value:"4.7", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:12, value:"7", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:13, value:"9", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:14, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:15, value:"11", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:16, value:"10.9", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:17, value:"12.5", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:18, value:"11", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:19, value:"6", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:1, city_id:20, value:"3", from:"2018-01-01", to:"2018-12-31")
+
+IndicatorValue.create(indicator_id:1, city_id:1, value:"7.3", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:2, value:"8.2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:3, value:"7", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:4, value:"9", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:5, value:"2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:6, value:"1.4", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:7, value:"7.3", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:8, value:"9.2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:9, value:"1.3", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:10, value:"5.6", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:11, value:"3.7", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:12, value:"8", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:13, value:"2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:14, value:"14", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:15, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:16, value:"2.9", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:17, value:"7.5", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:18, value:"3", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:19, value:"17", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:1, city_id:20, value:"12", from:"2017-01-01", to:"2017-12-31")
+
+
+
+
+IndicatorValue.create(indicator_id:2, city_id:1, value:"13", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:2, value:"23", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:3, value:"14", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:4, value:"56", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:5, value:"39", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:6, value:"23", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:7, value:"16", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:8, value:"28", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:9, value:"21", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:10, value:"23", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:11, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:12, value:"56", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:13, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:14, value:"34", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:15, value:"23", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:16, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:17, value:"56", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:18, value:"22", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:19, value:"34", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:20, value:"12", from:"2017-01-01", to:"2017-12-31")
+
 IndicatorValue.create(indicator_id:2, city_id:1, value:"10", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:2, city_id:2, value:"30", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:2, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:2, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:2, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:2, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:2, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:2, city_id:4, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:2, city_id:3, value:"23", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:4, value:"30", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:5, value:"10", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:6, value:"25", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:7, value:"14", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:8, value:"18", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:9, value:"17", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:10, value:"34", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:11, value:"24", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:12, value:"45", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:13, value:"26", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:14, value:"16", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:15, value:"18", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:16, value:"23", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:17, value:"22", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:18, value:"26", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:19, value:"45", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:2, city_id:20, value:"21", from:"2018-01-01", to:"2018-12-31")
 
-IndicatorValue.create(indicator_id:3, city_id:1, value:"5.2", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:3, city_id:2, value:"50.2", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:3, city_id:3, value:"25", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:3, city_id:4, value:"60", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:3, city_id:1, value:"10", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:3, city_id:2, value:"30", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:4, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:4, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:4, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:4, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:4, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:4, city_id:4, value:"15", from:"2017-01-01", to:"2017-12-31")
+
+
+IndicatorValue.create(indicator_id:3, city_id:1, value:"5.2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:2, value:"45.2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:3, value:"35", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:4, value:"70", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:5, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:6, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:7, value:"5.2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:8, value:"45.2", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:9, value:"35", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:10, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:11, value:"56", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:13, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:14, value:"23", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:15, value:"4", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:16, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:17, value:"34.7", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:18, value:"12", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:19, value:"34", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:3, city_id:20, value:"12", from:"2017-01-01", to:"2017-12-31")
+
+IndicatorValue.create(indicator_id:3, city_id:1, value:"21.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:2, value:"23.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:3, value:"21", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:4, value:"45", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:5, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:6, value:"34", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:7, value:"21.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:8, value:"63.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:9, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:10, value:"32", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:11, value:"52", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:13, value:"46", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:14, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:15, value:"36", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:16, value:"21", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:17, value:"34.7", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:18, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:19, value:"5", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:3, city_id:20, value:"11", from:"2018-01-01", to:"2018-12-31")
+
+
+
+
+IndicatorValue.create(indicator_id:4, city_id:1, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:2, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:3, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:4, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:5, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:6, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:7, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:8, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:9, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:10, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:11, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:12, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:13, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:14, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:15, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:16, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:17, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:18, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:19, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:4, city_id:20, value:"15", from:"2017-01-01", to:"2017-12-31")
+
+
+IndicatorValue.create(indicator_id:4, city_id:1, value:"11", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:2, value:"23", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:3, value:"54", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:4, value:"23", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:5, value:"54", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:6, value:"65", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:7, value:"32", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:8, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:9, value:"43", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:10, value:"23", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:11, value:"54", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:12, value:"65", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:13, value:"65", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:14, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:15, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:16, value:"32", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:17, value:"12", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:18, value:"15", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:19, value:"4", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:4, city_id:20, value:"54", from:"2018-01-01", to:"2018-12-31")
+
+
+
 
 
 IndicatorValue.create(indicator_id:5, city_id:1, value:"5.2", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:5, city_id:2, value:"50.2", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:5, city_id:3, value:"25", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:5, city_id:4, value:"60", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:5, city_id:1, value:"10", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:6, city_id:2, value:"30", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:5, city_id:5, value:"10", from:"2018-01-01", to:"2018-12-31")
+
+IndicatorValue.create(indicator_id:6, city_id:1, value:"30", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:6, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:6, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:6, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
 IndicatorValue.create(indicator_id:6, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
 IndicatorValue.create(indicator_id:6, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:6, city_id:4, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:6, city_id:5, value:"15", from:"2017-01-01", to:"2017-12-31")
 
 IndicatorValue.create(indicator_id:7, city_id:1, value:"5.2", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:7, city_id:2, value:"50.2", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:7, city_id:3, value:"25", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:7, city_id:4, value:"60", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:7, city_id:1, value:"10", from:"2018-01-01", to:"2018-12-31")
-IndicatorValue.create(indicator_id:7, city_id:2, value:"30", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:7, city_id:5, value:"10", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:7, city_id:6, value:"30", from:"2018-01-01", to:"2018-12-31")
+
 IndicatorValue.create(indicator_id:8, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:8, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
 IndicatorValue.create(indicator_id:8, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
+
 IndicatorValue.create(indicator_id:9, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
 IndicatorValue.create(indicator_id:9, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
-IndicatorValue.create(indicator_id:9, city_id:4, value:"15", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:9, city_id:5, value:"15", from:"2017-01-01", to:"2017-12-31")
+
+IndicatorValue.create(indicator_id:10, city_id:1, value:"5.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:10, city_id:2, value:"50.2", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:10, city_id:3, value:"25", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:10, city_id:4, value:"60", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:10, city_id:5, value:"10", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:10, city_id:6, value:"30", from:"2018-01-01", to:"2018-12-31")
+
+
+IndicatorValue.create(indicator_id:11, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:11, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:11, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:11, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:11, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:11, city_id:6, value:"15", from:"2017-01-01", to:"2017-12-31")
+
+
+
+IndicatorValue.create(indicator_id:12, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:12, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:12, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:12, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:12, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:12, city_id:6, value:"15", from:"2017-01-01", to:"2017-12-31")
+
+
+IndicatorValue.create(indicator_id:13, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:13, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:13, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:13, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:13, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:13, city_id:6, value:"15", from:"2017-01-01", to:"2017-12-31")
+
+
+IndicatorValue.create(indicator_id:14, city_id:3, value:"1", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:14, city_id:4, value:"15", from:"2018-01-01", to:"2018-12-31")
+IndicatorValue.create(indicator_id:14, city_id:1, value:"10", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:14, city_id:2, value:"30", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:14, city_id:3, value:"1", from:"2017-01-01", to:"2017-12-31")
+IndicatorValue.create(indicator_id:14, city_id:6, value:"15", from:"2017-01-01", to:"2017-12-31")

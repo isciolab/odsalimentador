@@ -29,6 +29,7 @@
 //= require 'js/lib/data-table/buttons.print.min.js'
 //= require 'js/lib/data-table/buttons.colVis.min.js'
 //= require 'js/lib/data-table/datatables-init.js'
+//= require 'js/lib/chosen/chosen.jquery.min.js'
 //= require font_awesome5
 
 //= require indicator_values

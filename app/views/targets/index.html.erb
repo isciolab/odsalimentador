@@ -28,7 +28,7 @@
       <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
                  { include_blank: false,
                    prompt: "Seleccione Un ODS"},
-                 {:class => "form-control"}) %>
+                 {:class => "form-control chosen"}) %>
 
     </div>
   </div>
@@ -96,5 +96,16 @@
         $('#tblmetas').DataTable();
         $('#modalmetas').on('hidden.bs.modal', function (e) {
         });
+
+
+        $(function() {
+            jQuery(".chosen").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+            });
+
+        });
+
     } );
 </script>

@@ -29,7 +29,7 @@
       <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
                  { include_blank: false,
                    prompt: "Seleccione Un ODS"},
-                 {:class => "form-control"}) %>
+                 {:class => "form-control chosen"}) %>
 
     </div>
   </div>
@@ -45,7 +45,7 @@
       <%= select("target", "target_id", Target.all.collect {|p| [ p.number, p.id ] },
                  { include_blank: false,
                    prompt: "Seleccione Una Meta"},
-                 {:class => "form-control"}) %>
+                 {:class => "form-control chosen"}) %>
 
     </div>
   </div>

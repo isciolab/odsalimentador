@@ -1,33 +1,81 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <%= link_to "Nuevo", new_goal_path, remote: true, class: "btn btn-info" %>
 
-    <p>ODS#index</p>
+<div class="breadcrumbs">
+  <div class="col-sm-4">
+    <div class="page-header float-left">
+      <div class="page-title">
+        <h1>ODS#index</h1>
+      </div>
+    </div>
   </div>
-</nav>
+  <div class="col-sm-8">
+    <div class="page-header float-right">
+      <div class="page-title">
+        <ol class="breadcrumb text-right">
+          <li><a href="#">ODS</a></li>
+          <li class="active">Parametrizar ODS</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="float-left">
+      <%= button_to "Nuevo", { action: "new" },data:{target:"#modalods",toggle:"modal"}, remote: true, class: "btn btn-info",
+                    :method => :get %>
+    </div>
+  </div>
 
-<nav class="shadow-lg p-3 mb-5 bg-white rounded">
-  <div class="container-fluid">
-    <table class="table">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripci&oacute;n</th>
-        <th scope="col">Acci&oacute;n</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @goals.each do |row| %>
-        <tr>
-          <th scope="row"><%= row.number %></th>
-          <td><%= row.name %></td>
-          <td><%= row.description %></td>
-          <td><%= link_to "Editar", edit_goal_path(row), remote: true, class:"btn btn-primary" %>
-            <button type="button" class="btn btn-danger">Eliminar</button></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+</div>
+
+<div class="content mt-3">
+
+<div class="animated fadeIn">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong class="card-title">Lista de ODS</strong>
+        </div>
+        <div class="card-body">
+          <table id="tablaprincipal" class="table table-striped table-bordered">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripci&oacute;n</th>
+              <th scope="col">Acci&oacute;n</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% @goals.each do |row| %>
+              <tr>
+                <th scope="row"><%= row.number %></th>
+                <td><%= row.name %></td>
+                <td><%= row.description %></td>
+                <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalods",toggle:"modal"}, remote: true, class:"btn btn-primary",
+                                  :method => :get %>
+                  <button type="button" class="btn btn-danger">Eliminar</button></td>
+              </tr>
+            <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-</nav>
+</div><!-- .animated -->
+</div>
+
+<div class="modal fade" id="modalods" tabindex="-1" role="dialog"
+     aria-labelledby="mediumModalLabel" aria-hidden="true">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tablaprincipal').DataTable();
+        $('#modalods').on('hidden.bs.modal', function (e) {
+        });
+    } );
+</script>

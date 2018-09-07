@@ -1,2 +1,6 @@
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se sua la misma vista para new*/
-$('<%= j render "form", {title: "Editar Meta", title_button: "Actualizar"} %>').modal();
+
+/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+$("#modalmetas").html('<%= j render "form", {title: "Editar Meta",title_button:"Actualizar"} %>');
+setTimeout( function (){
+    $('*[autofocus]').focus()
+},500)

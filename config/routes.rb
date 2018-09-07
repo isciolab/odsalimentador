@@ -8,13 +8,15 @@ Rails.application.routes.draw do
   resources :goals ##ODS
   resources :targets ##metas
   resources :indicators ##indicadores
-  resources :countries
-  resources :departments
-  resources :cities
-  resources :measures
-  resources :goal_groups
-  resources :group_cities
-  resources :roles
+  resources :countries ##paises
+  resources :departments ##departamentos
+  resources :cities ##ciudades
+  resources :measures ##unidades de Medida
+  resources :goal_groups ##Grupos ODS
+  resources :group_cities ##Grupos de Ciudades
+  resources :roles ##Roles
+
+  get 'filter_targets_by_goals' => 'indicators#filter_targets_by_goals'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

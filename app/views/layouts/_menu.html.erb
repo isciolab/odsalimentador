@@ -1,42 +1,118 @@
-<!-- parcial del menu -->
-<nav id="sidebar">
-  <div class="sidebar-header">
+<aside id="left-panel" class="left-panel">
+<nav class="navbar navbar-expand-sm navbar-default">
 
-    <%= link_to root_path, class:"nav-link" do  %>
-      <h3>ODS Ciudatos</h3>
-    <% end %>
+  <div class="navbar-header">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu"
+            aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars"></i>
+    </button>
+    <a class="navbar-brand" href="./"><%= image_tag('logo.png') %></a>
+    <a class="navbar-brand hidden" href="./"> <%= image_tag('logo2.png') %>  </a>
   </div>
 
-  <ul class="list-unstyled components">
-    <p>Mi perfil</p>
-    <li class="">
-      <%= link_to "ODS", controller: 'goals' %>
-    </li>
-    <li class="">
-      <%= link_to "Metas", controller: 'targets' %>
-    </li>
-    <li class="">
-      <%= link_to "Indicadores", controller: 'indicators' %>
-    </li>
-    <li>
-      <%= link_to "Departamentos", controller: 'departments' %>
-    </li>
-    <li>
-      <%= link_to "Ciudades", controller: 'cities' %>
-    </li>
-    <li>
-      <%= link_to "Grupo Ciudad", controller: 'group_cities' %>
-    </li>
-    <li>
-      <%= link_to "Grupo ODS", controller: 'goal_groups' %>
-    </li>
-    <li>
-      <%= link_to "Unidad de Medida", controller: 'measures' %>
-    </li>
+  <div id="main-menu" class="main-menu collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <%= link_to root_path do  %>
+          <i class="menu-icon fa fa-dashboard"></i>ODS CIudatos
+        <% end %>
+      </li>
 
-    <li>
-      <%= link_to "Roles", controller: 'roles' %>
-    </li>
+      <h3 class="menu-title">Men&uacute;</h3><!-- /.menu-title -->
+      <li class="menu-item-has-children dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="menu-icon fa fa-laptop"></i>ODS</a>
+        <ul class="sub-menu children dropdown-menu">
+          <li>
 
-  </ul>
+            <%= link_to goals_path do  %>
+              <i class="fa fa-id-badge"></i>Parametrizar ODS
+            <% end %>
+          </li>
+           <li>
+          <%= link_to goal_groups_path do  %>
+            <i class="fa fa-id-badge"></i>Grupos ODS
+          <% end %>
+        </li>
+        </ul>
+      </li>
+
+      <li >
+        <%= link_to targets_path do  %>
+          <i class="menu-icon fa fa-table"></i>Metas
+        <% end %>
+      </li>
+
+      <li class="menu-item-has-children dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="menu-icon fa fa-laptop"></i>Indicadores</a>
+        <ul class="sub-menu children dropdown-menu">
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Parametrizar Indicadores
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Valore Indicadores
+            <% end %>
+          </li>
+        </ul>
+      </li>
+
+      <li class="menu-item-has-children dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="menu-icon fa fa-laptop"></i>Ciudades</a>
+        <ul class="sub-menu children dropdown-menu">
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Parametrizar Ciudades
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Grupos
+            <% end %>
+          </li>
+        </ul>
+      </li>
+
+      <li  class="menu-item-has-children">
+        <%= link_to root_path do  %>
+          <i class="menu-icon fa fa-table"></i>Unidades de Medida
+        <% end %>
+      </li>
+
+      <li class="menu-item-has-children dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="menu-icon fa fa-laptop"></i>Configuraciones</a>
+        <ul class="sub-menu children dropdown-menu">
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Departamentos
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Roles
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Usuarios
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path do  %>
+              <i class="fa fa-id-badge"></i>Generales
+            <% end %>
+          </li>
+
+        </ul>
+      </li>
+
+
+    </ul>
+  </div><!-- /.navbar-collapse -->
 </nav>
+</aside><!-- /#left-panel -->

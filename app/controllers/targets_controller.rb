@@ -47,4 +47,8 @@ class TargetsController < ApplicationController
 
   end
 
+  def validate_user
+    redirect_to new_user_session_path, notice: "Necesitas iniciar sesion"
+  end
+
 end

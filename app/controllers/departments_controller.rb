@@ -24,6 +24,15 @@ class DepartmentsController < ApplicationController
 
   end
 
+  def update
+    @department = Department.find(params[:id])
+    if @department.update_attributes(department_params)
+      redirect_to departments_url
+    else
+      render 'edit'
+    end
+  end
+
   def show
     @department= Department.find(params[:id])
   end
@@ -31,7 +40,6 @@ class DepartmentsController < ApplicationController
   ##metodos privados
   private
 
-  ##nombre del modelo _params
   def department_params
     ##parametros permitidos
     params.require(:department).permit(:name)

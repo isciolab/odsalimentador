@@ -17,11 +17,19 @@ class GoalGroupsController < ApplicationController
   def create
     @goalgroup=GoalGroup.new(goalgroup_params)
     if @goalgroup.save
-      redirect_to goalgroups_url
+      redirect_to goal_groups_url
     else
       render :new
     end
+  end
 
+  def update
+    @goalgroup = GoalGroup.find(params[:id])
+    if @goalgroup.update_attributes(goalgroup_params)
+      redirect_to goal_groups_url
+    else
+      render 'edit'
+    end
   end
 
   def show
@@ -34,7 +42,7 @@ class GoalGroupsController < ApplicationController
   ##nombre del modelo _params
   def goalgroup_params
     ##parametros permitidos
-    params.require(:goalgroup).permit(:name)
+    params.require(:goal_group).permit(:name)
   end
 
 end

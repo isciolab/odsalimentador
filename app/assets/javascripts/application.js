@@ -10,24 +10,31 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require 'js/vendor/jquery-2.1.4.min.js'
 //= require rails-ujs
 //= require turbolinks
-//= require popper
 //= require bootstrap
-//= require_tree .
+//= require 'js/popper.min.js'
+//= require 'js/plugins'
+//= require 'js/main'
+//= require 'js/lib/chart-js/Chart.bundle.js'
+//= require 'js/lib/data-table/datatables.min.js'
+//= require 'js/lib/data-table/dataTables.bootstrap.min.js'
+//= require 'js/lib/data-table/dataTables.buttons.min.js'
+//= require 'js/lib/data-table/buttons.bootstrap.min.js'
+//= require 'js/lib/data-table/jszip.min.js'
+//= require 'js/lib/data-table/pdfmake.min.js'
+//= require 'js/lib/data-table/vfs_fonts.js'
+//= require 'js/lib/data-table/buttons.html5.min.js'
+//= require 'js/lib/data-table/buttons.print.min.js'
+//= require 'js/lib/data-table/buttons.colVis.min.js'
+//= require 'js/lib/data-table/datatables-init.js'
 //= require font_awesome5
+
+
 
 var App = {
 
-    sidebarCollapse: function() {
-        $('#sidebar, #content').toggleClass('active');
-        $('.collapse.in').toggleClass('in');
-        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    }
 
 }
 
-$(document).ready(function () {
-
-});

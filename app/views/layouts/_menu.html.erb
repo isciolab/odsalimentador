@@ -6,8 +6,8 @@
             aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa fa-bars"></i>
     </button>
-    <a class="navbar-brand" href="./"><%= image_tag('logo.png') %></a>
-    <a class="navbar-brand hidden" href="./"> <%= image_tag('logo2.png') %>  </a>
+    <a class="navbar-brand" href="./"><%= image_tag('ciudatos-logo.png') %></a>
+    <a class="navbar-brand hidden" href="./"> <%= image_tag('ciudatos-logo.png') %>  </a>
   </div>
 
   <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -48,13 +48,13 @@
           <i class="menu-icon fa fa-laptop"></i>Indicadores</a>
         <ul class="sub-menu children dropdown-menu">
           <li>
-            <%= link_to root_path do  %>
-              <i class="fa fa-id-badge"></i>Parametrizar Indicadores
+            <%= link_to indicators_path do  %>
+              <i class="fa fa-id-badge"></i>Agregar Indicadores
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do  %>
-              <i class="fa fa-id-badge"></i>Valore Indicadores
+            <%= link_to indicator_values_path do  %>
+              <i class="fa fa-id-badge"></i>Valores Indicadores
             <% end %>
           </li>
         </ul>
@@ -65,20 +65,20 @@
           <i class="menu-icon fa fa-laptop"></i>Ciudades</a>
         <ul class="sub-menu children dropdown-menu">
           <li>
-            <%= link_to root_path do  %>
+            <%= link_to cities_path do  %>
               <i class="fa fa-id-badge"></i>Parametrizar Ciudades
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do  %>
+            <%= link_to group_cities_path do  %>
               <i class="fa fa-id-badge"></i>Grupos
             <% end %>
           </li>
         </ul>
       </li>
 
-      <li  class="menu-item-has-children">
-        <%= link_to root_path do  %>
+      <li  >
+        <%= link_to measures_path do  %>
           <i class="menu-icon fa fa-table"></i>Unidades de Medida
         <% end %>
       </li>
@@ -88,12 +88,12 @@
           <i class="menu-icon fa fa-laptop"></i>Configuraciones</a>
         <ul class="sub-menu children dropdown-menu">
           <li>
-            <%= link_to root_path do  %>
+            <%= link_to departments_path do  %>
               <i class="fa fa-id-badge"></i>Departamentos
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do  %>
+            <%= link_to roles_path do  %>
               <i class="fa fa-id-badge"></i>Roles
             <% end %>
           </li>

@@ -1,43 +1,80 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <%= link_to "Nuevo", new_group_city_path, remote: true, class: "btn btn-info" %>
-    <p>Grupo Ciudad #index</p>
-  </div>
-</nav>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <table class="table">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Acci&oacute;n</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>A1</td>
-        <td>
-          <button type="button" class="btn btn-primary">Editar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button></td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>B1</td>
-        <td>
-          <button type="button" class="btn btn-primary">Editar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>B2</td>
-        <td>
-          <button type="button" class="btn btn-primary">Editar</button>
-          <button type="button" class="btn btn-danger">Eliminar</button></td>
-      </tr>
-      </tbody>
-    </table>
+<div class="breadcrumbs">
+  <div class="col-sm-4">
+    <div class="page-header float-left">
+      <div class="page-title">
+        <h1>Grupo Ciudad #index</h1>
+      </div>
+    </div>
   </div>
-</nav>
+  <div class="col-sm-8">
+    <div class="page-header float-right">
+      <div class="page-title">
+        <ol class="breadcrumb text-right">
+          <li><a href="#">Ciudad</a></li>
+          <li class="active">Grupos Ciudades</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="float-left">
+      <%= button_to "Nuevo Grupo", { action: "new" },data:{target:"#modalgrupocidad",toggle:"modal"}, remote: true, class: "btn btn-info",
+                    :method => :get %>
+    </div>
+  </div>
+
+</div>
+
+<div class="content mt-3">
+
+  <div class="animated fadeIn">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <strong class="card-title">Lista de Grupos</strong>
+          </div>
+          <div class="card-body">
+            <table id="tablagrupociudad" class="table table-striped table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripci&oacute;n</th>
+                <th scope="col">Acci&oacute;n</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @groupcities.each do |row| %>
+                <tr>
+                  <th scope="row"><%= row.id %></th>
+                  <td><%= row.name %></td>
+                  <td><%= row.description %></td>
+                  <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalgrupocidad",toggle:"modal"}, remote: true, class:"btn btn-primary",
+                                    :method => :get %>
+                    <button type="button" class="btn btn-danger">Eliminar</button></td>
+                </tr>
+              <% end %>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- .animated -->
+</div>
+
+<div class="modal fade" id="modalgrupocidad" tabindex="-1" role="dialog"
+     aria-labelledby="mediumModalLabel" aria-hidden="true">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tablagrupociudad').DataTable();
+        $('#modalgrupocidad').on('hidden.bs.modal', function (e) {
+        });
+    } );
+</script>

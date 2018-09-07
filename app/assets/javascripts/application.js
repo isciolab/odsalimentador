@@ -31,6 +31,8 @@
 //= require 'js/lib/data-table/datatables-init.js'
 //= require font_awesome5
 
+//= require indicator_values
+
 
 
 var App = {

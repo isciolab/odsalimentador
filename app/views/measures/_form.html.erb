@@ -1,6 +1,4 @@
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-id="modalmeasure">
-  <div class="modal-dialog modal-lg">
+<div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -9,14 +7,18 @@ id="modalmeasure">
       </div>
       <%= form_for @measure, remote: true do |f| %>
         <div class="modal-body">
+          <div class="card-body card-block">
+            <%= render 'layouts/viewerror', object: @measure %>
           <div class="form-group">
+            <label for="company" class=" form-control-label">Nombre</label>
             <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre",autofocus:true %>
           </div>
         </div>
+        </div>
         <div class="modal-footer">
-          <%= f.submit title_button, class: "btn btn-primary btn-lg btn-block", disabled:true %>
+          <%= f.submit title_button, class: "btn btn-primary"%>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       <% end %>
     </div>
   </div>
-</div>

@@ -24,6 +24,15 @@ class GroupCitiesController < ApplicationController
 
   end
 
+  def update
+    @groupcity = GroupCity.find(params[:id])
+    if @groupcity.update_attributes(group_city_params)
+      redirect_to group_cities_url
+    else
+      render 'edit'
+    end
+  end
+
   def show
     @groupcity= GroupCity.find(params[:id])
   end
@@ -34,7 +43,7 @@ class GroupCitiesController < ApplicationController
   ##nombre del modelo _params
   def group_city_params
     ##parametros permitidos
-    params.require(:groupcity).permit(:name)
+    params.require(:group_city).permit(:name,:description)
   end
 
 end

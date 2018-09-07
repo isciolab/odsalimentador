@@ -1,2 +1,14 @@
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se sua la misma vista para new*/
-$('<%= j render "form", {title: "Editar Indicador", title_button: "Actualizar"} %>').modal();
+
+/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+$("#modalindicador").html('<%= j render "form", {title: "Editar Indicador",title_button:"Actualizar"} %>');
+setTimeout( function (){
+    $('*[autofocus]').focus()
+},500)
+
+$("select#goal_goal_id").on("change", function() {
+    $.ajax({
+        url:  "/filter_targets_by_goals",
+        type: "GET",
+        data: { selected_goal: $(this).val() }
+    });
+});

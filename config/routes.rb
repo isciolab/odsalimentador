@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :goals ##ODS
   resources :targets ##metas
   resources :indicators ##indicadores
+  resources :indicator_values ##indicadore_value
   resources :countries ##paises
   resources :departments ##departamentos
   resources :cities ##ciudades
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resources :roles ##Roles
 
   get 'filter_targets_by_goals' => 'indicators#filter_targets_by_goals'
+  get 'newindicadorvalue'=>'indicator_values#newindicadorvalue'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

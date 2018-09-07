@@ -18,19 +18,19 @@
           <div class="form-group ">
             <label for="company" class=" form-control-label">Departamento</label>
             <%= f.collection_select :department_id, Department.all, :id, :name, {prompt: "Seleccione un Departamento"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group ">
             <label for="company" class=" form-control-label">Grupo Ciudad</label>
             <%= f.collection_select :group_cities_id, GroupCity.all, :id, :name, {prompt: "Seleccione un Grupo de Ciudad"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group ">
             <label for="company" class=" form-control-label">Grupo ODS</label>
             <%= f.collection_select :goal_group_id, GoalGroup.all, :id, :name, {prompt: "Seleccione un Grupo ODS"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group row">

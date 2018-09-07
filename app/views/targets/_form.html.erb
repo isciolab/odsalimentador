@@ -21,7 +21,7 @@
             <%= f.collection_select :goal_id,Goal.all.collect { |t| [ t.id, "#{t.number}- #{t.name}" ] },
                                     :first,
                                     :last,  {prompt: "Seleccione un ODS"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
             <div class="form-group ">
               <label for="company" class=" form-control-label">N&uacute;mero</label>

@@ -1,6 +1,14 @@
 
 /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
 $("#modalmetas").html('<%= j render "form", {title: "Nueva Meta",title_button:"Crear"} %>');
-setTimeout( function (){
-    $('*[autofocus]').focus()
-},500)
+
+$(function() {
+    jQuery(".chosen").chosen({
+        disable_search_threshold: 10,
+        no_results_text: "Oops, nothing found!",
+        width: "100%"
+    });
+    setTimeout( function (){
+        $('*[autofocus]').focus()
+    },500)
+});

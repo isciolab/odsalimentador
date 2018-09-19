@@ -1,6 +1,5 @@
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-id="modalcity">
-  <div class="modal-dialog modal-lg">
+
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -9,22 +8,29 @@ id="modalcity">
       </div>
       <%= form_for @city, remote: true do |f| %>
         <div class="modal-body">
+          <div class="card-body card-block">
+            <%= render 'layouts/viewerror', object: @city %>
+
           <div class="form-group">
+            <label for="company" class=" form-control-label">Nombre</label>
             <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre",autofocus:true %>
           </div>
           <div class="form-group ">
+            <label for="company" class=" form-control-label">Departamento</label>
             <%= f.collection_select :department_id, Department.all, :id, :name, {prompt: "Seleccione un Departamento"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group ">
+            <label for="company" class=" form-control-label">Grupo Ciudad</label>
             <%= f.collection_select :group_cities_id, GroupCity.all, :id, :name, {prompt: "Seleccione un Grupo de Ciudad"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group ">
+            <label for="company" class=" form-control-label">Grupo ODS</label>
             <%= f.collection_select :goal_group_id, GoalGroup.all, :id, :name, {prompt: "Seleccione un Grupo ODS"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group row">
@@ -34,34 +40,43 @@ id="modalcity">
               </label>
             </div>
             <div class="col-sm-9">
-              <%= f.check_box :is_capital, class: "form-check-input", checked_value:"1",uncheked_value:"0" %>
+              <%= f.label :is_capital, "Si", :value => "1"  %>
+              <%= f.radio_button :is_capital, true, :checked =>true %>
+              <%= f.label :is_capital, "No", :value => "0" %>
+              <%= f.radio_button :is_capital, false %>
             </div>
           </div>
 
           <div class="form-group">
+            <label for="company" class=" form-control-label">Programa RCCV</label>
             <%= f.text_field :rccv_program, class: "form-control input-lg", placeholder: "Programa RCCV" %>
           </div>
           <div class="form-group">
+            <label for="company" class=" form-control-label">Población total</label>
             <%= f.text_field :total_population, class: "form-control input-lg", placeholder: "Población total" %>
           </div>
           <div class="form-group">
+            <label for="company" class=" form-control-label">Área metropolitana</label>
             <%= f.text_field :metropolitan_area, class: "form-control input-lg", placeholder: "Área metropolitana" %>
           </div>
           <div class="form-group">
+            <label for="company" class=" form-control-label">Sistema de ciudades DNP</label>
             <%= f.text_field :city_system_dnp, class: "form-control input-lg", placeholder: "Sistema de ciudades DNP" %>
           </div>
           <div class="form-group">
+            <label for="company" class=" form-control-label">Categorías DNP</label>
             <%= f.text_field :dnp_category, class: "form-control input-lg", placeholder: "Categorías DNP" %>
           </div>
           <div class="form-group">
+            <label for="company" class=" form-control-label">Tipología DDT (DNP)</label>
             <%= f.text_field :ddt_typology, class: "form-control input-lg", placeholder: "Tipología DDT (DNP)" %>
           </div>
-
+          </div>
         </div>
         <div class="modal-footer">
-          <%= f.submit title_button, class: "btn btn-primary btn-lg btn-block", disabled:true %>
+          <%= f.submit title_button, class: "btn btn-primary"%>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       <% end %>
     </div>
-  </div>
 </div>

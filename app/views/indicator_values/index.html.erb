@@ -1,0 +1,194 @@
+
+<div class="breadcrumbs">
+  <div class="col-sm-4">
+    <div class="page-header float-left">
+      <div class="page-title">
+        <h1>Valores de Indicadores#index</h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="page-header float-right">
+      <div class="page-title">
+        <ol class="breadcrumb text-right">
+          <li><a href="#">Indicadores</a></li>
+          <li class="active">Valores Indicadores</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="">Filtrar por ODS</label>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+
+      <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
+                 { include_blank: false,
+                   prompt: "Seleccione Un ODS"},
+                 {:class => "form-control chosen"}) %>
+
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="">Filtrar por Meta</label>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+
+      <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
+                 { include_blank: false,
+                   prompt: "Seleccione Una Meta"},
+                 {:class => "form-control chosen",id:"target_id"}) %>
+
+    </div>
+  </div>
+
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="">Filtrar por año</label>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+
+      <select  class="form-control chosen">
+        <% for i in 2000..2018 %>
+          <option value="<%= i %>"><%= i %></option>
+        <% end %>
+      </select>
+
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="float-left">
+
+      <%= button_to "Nuevo Valor Indicador", { action: "newindicadorvalue" }, remote: false, class: "btn btn-info",
+                    :method => :get %>
+    </div>
+  </div>
+
+</div>
+
+<div class="content mt-3">
+
+  <div class="animated fadeIn">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <strong class="card-title">Lista de Indicadores</strong>
+          </div>
+          <div class="card-body">
+            <table id="tablaindicvalue" class="table table-striped table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">ODS</th>
+                <th scope="col">Meta</th>
+                <th scope="col"># Indicador</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Año</th>
+                <th scope="col">% Actual</th>
+                <th scope="col">Acci&oacute;n</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <tr>
+                <td>01</td>
+                <td>1.1</td>
+                <td>1.1.1</td>
+                <td>Cartagena</td>
+                <td>2018</td>
+                <td>20%</td>
+                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
+                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
+              </tr>
+              <tr>
+                <td>01</td>
+                <td>1.2</td>
+                <td>1.2.1</td>
+                <td>Bogota</td>
+                <td>2018</td>
+                <td>25%</td>
+                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
+                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>2.1</td>
+                <td>2.1.1</td>
+                <td>Cartagena</td>
+                <td>2018</td>
+                <td>60%</td>
+                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
+                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>2.2</td>
+                <td>2.2.1</td>
+                <td>Medellin</td>
+                <td>2018</td>
+                <td>60%</td>
+                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
+                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>3.1</td>
+                <td>3.1.1</td>
+                <td>Ibague</td>
+                <td>2018</td>
+                <td>55.50%</td>
+                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
+                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
+              </tr>
+
+              <tr>
+                <td>03</td>
+                <td>3.2</td>
+                <td>3.2.1</td>
+                <td>Bogota</td>
+                <td>2017</td>
+                <td>23.18%</td>
+                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
+                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
+              </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- .animated -->
+</div>
+
+<div class="modal fade" id="modalindicador" tabindex="-1" role="dialog"
+     aria-labelledby="mediumModalLabel" aria-hidden="true">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tablaindicvalue').DataTable();
+        $('#modalindicador').on('hidden.bs.modal', function (e) {
+        });
+
+        jQuery(".chosen").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+    } );
+</script>
+

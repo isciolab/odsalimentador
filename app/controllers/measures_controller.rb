@@ -21,7 +21,15 @@ class MeasuresController < ApplicationController
   else
     render :new
   end
+  end
 
+  def update
+    @measure = Measure.find(params[:id])
+    if @measure.update_attributes(measure_params)
+      redirect_to measures_url
+    else
+      render 'edit'
+    end
   end
 
   def show

@@ -1,35 +1,111 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <%= link_to "Nueva", new_target_path, remote: true, class: "btn btn-info" %>
-    <p>Metas #index</p>
-  </div>
-</nav>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <table class="table">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">ODS</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Disponible</th>
-        <th scope="col">Acci&oacute;n</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @targets.each do |row| %>
-        <tr>
-          <th scope="row"><%= row.number %></th>
-          <th scope="row">ODS 01</th>
-          <td><%= row.name %></td>
-          <td><%= row.available %></td>
-          <td><%= link_to "Editar", edit_target_path(row), remote: true, class:"btn btn-primary" %>
-            <button type="button" class="btn btn-danger">Eliminar</button></td>
-
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+<div class="breadcrumbs">
+  <div class="col-sm-4">
+    <div class="page-header float-left">
+      <div class="page-title">
+        <h1>Metas#index</h1>
+      </div>
+    </div>
   </div>
-</nav>
+  <div class="col-sm-8">
+    <div class="page-header float-right">
+      <div class="page-title">
+        <ol class="breadcrumb text-right">
+          <li class="active">Metas de ODS</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="">Filtrar por ODS</label>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+
+      <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
+                 { include_blank: false,
+                   prompt: "Seleccione Un ODS"},
+                 {:class => "form-control chosen"}) %>
+
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <div class="float-left">
+      <%= button_to "Nueva Meta", { action: "new" },data:{target:"#modalmetas",toggle:"modal"}, remote: true, class: "btn btn-info",
+                    :method => :get %>
+    </div>
+  </div>
+
+</div>
+
+<div class="content mt-3">
+
+  <div class="animated fadeIn">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <strong class="card-title">Lista de Metas</strong>
+          </div>
+          <div class="card-body">
+            <table id="tblmetas" class="table table-striped table-bordered">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Disponible</th>
+                <th scope="col">Acci&oacute;n</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @targets.each do |row| %>
+                <tr>
+                  <th scope="row"><%= row.number %></th>
+                  <td><%= row.name %></td>
+                  <td><% if row.available==true
+                           concat "SI";
+                         else
+                           concat  "NO";
+                         end %></td>
+                  <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalmetas",toggle:"modal"}, remote: true, class:"btn btn-primary",
+                                    :method => :get %>
+                    <button type="button" class="btn btn-danger">Eliminar</button></td>
+                </tr>
+              <% end %>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- .animated -->
+</div>
+
+<div class="modal fade" id="modalmetas" tabindex="-1" role="dialog"
+     aria-labelledby="mediumModalLabel" aria-hidden="true">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tblmetas').DataTable();
+        $('#modalmetas').on('hidden.bs.modal', function (e) {
+        });
+
+
+        $(function() {
+            jQuery(".chosen").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+            });
+
+        });
+
+    } );
+</script>

@@ -21,11 +21,20 @@ class TargetsController < ApplicationController
     else
       render :new
     end
-
   end
 
+  def update
+    @target = Target.find(params[:id])
+    if @target.update_attributes(target_params)
+      redirect_to targets_url
+    else
+      render 'edit'
+    end
+  end
+
+
   def show
-    @target= Measure.find(params[:id])
+    @target= Target.find(params[:id])
   end
 
   ##metodos privados
@@ -34,7 +43,12 @@ class TargetsController < ApplicationController
   ##nombre del modelo _params
   def target_params
     ##parametros permitidos
-    params.require(:target).permit(:name)
+    params.require(:target).permit(:name,:available,:goal_id,:number)
+
+  end
+
+  def validate_user
+    redirect_to new_user_session_path, notice: "Necesitas iniciar sesion"
   end
 
 end

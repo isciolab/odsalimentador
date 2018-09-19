@@ -25,6 +25,15 @@ class RolesController < ApplicationController
 
   end
 
+  def update
+    @role = Role.find(params[:id])
+    if @role.update_attributes(role_params)
+      redirect_to roles_url
+    else
+      render 'edit'
+    end
+  end
+
   def show
     @role= Role.find(params[:id])
   end
@@ -35,7 +44,7 @@ class RolesController < ApplicationController
   ##nombre del modelo _params
   def role_params
     ##parametros permitidos
-    params.require(:rol).permit(:name)
+    params.require(:role).permit(:name)
   end
 
 end

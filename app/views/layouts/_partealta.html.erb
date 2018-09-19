@@ -1,27 +1,25 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<!-- Header-->
+<header id="header" class="header">
 
-    <div class="navbar-header">
-      <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" onclick="App.sidebarCollapse()">
-        <i class="fas fa-align-justify"></i>
-      </button>
+  <div class="header-menu">
+
+    <div class="col-sm-7">
+      <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+      <div class="header-left"></div>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li >
-            <%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete%>
-          </li>
-        <% else %>
-          <li >
-            <%= link_to "Iniciar Sesion", new_user_session_path  %>
-          </li>
-          <li >
-            <%= link_to "Crear cuenta", new_user_registration_path  %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="col-sm-5">
+      <div class="user-area dropdown float-right">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag('notuser.png',class: "user-avatar rounded-circle") %>
+        </a>
+
+        <div class="user-menu dropdown-menu"></div>
+      </div>
+
+      <div class="language-select dropdown" id="language-select"></div>
+
     </div>
   </div>
-</nav>
+
+</header><!-- /header -->

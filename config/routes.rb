@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   get 'measures/index'
 
-  resources :goals ##ODS
+  resources :goals do ##ODS
+    member do
+      get "deletegoal" #Esto reconocerá /goals/1/deletegoal con GET
+    end
+  end
   resources :targets ##metas
   resources :indicators ##indicadores
   resources :indicator_values ##indicadore_value

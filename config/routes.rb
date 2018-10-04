@@ -10,21 +10,78 @@ Rails.application.routes.draw do
       get "deletegoal" #Esto reconocerá /goals/1/deletegoal con GET
     end
   end
-  resources :targets ##metas
-  resources :indicators ##indicadores
-  resources :indicator_values ##indicadore_value
+
+  resources :goal_groups do ##Grupos ODS
+    member do
+      get 'deletegoalgroup'
+    end
+  end
+
+  resources :targets do ##metas
+    member do
+      get 'deletetarget'
+    end
+  end
+
+  resources :indicators do ##indicadores
+    member do
+      get 'deleteindicator'
+    end
+  end
+
+  resources :indicator_values do ##indicadore_value
+    get 'newindicadorvalue', on: :collection
+    get 'getvalueindicators', on: :collection
+  end
+
   resources :countries ##paises
-  resources :departments ##departamentos
-  resources :cities ##ciudades
-  resources :measures ##unidades de Medida
-  resources :goal_groups ##Grupos ODS
-  resources :group_cities ##Grupos de Ciudades
-  resources :roles ##Roles
+
+  resources :departments do ##departamentos
+    member do
+      get 'deletedepartment'
+    end
+  end
+
+  resources :cities do ##ciudades
+    member do
+      get 'deletecity'
+    end
+  end
+
+  resources :measures do ##unidades de Medida
+    member do
+      get 'deletemeasure'
+    end
+  end
+  resources :group_cities do ##Grupos de Ciudades
+    member do
+      get 'deletegroupcity'
+    end
+  end
+
+  resources :roles do ##Roles
+    member do
+      get "deleterole"
+    end
+  end
 
   get 'filter_targets_by_goals' => 'indicators#filter_targets_by_goals'
-  get 'newindicadorvalue'=>'indicator_values#newindicadorvalue'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
+
+
+
+  #####APIS
+
+  namespace :api do
+
+    resources :cities do
+      get "getCities", on: :collection
+    end
+
+
+  end
+
 end

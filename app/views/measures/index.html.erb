@@ -51,7 +51,9 @@
                   <td><%= row.name %></td>
                   <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalmeasure",toggle:"modal"}, remote: true, class:"btn btn-primary",
                                     :method => :get %>
-                    <button type="button" class="btn btn-danger">Eliminar</button></td>
+                    <%= button_to "Eliminar", {action: "deletemeasure", id: row.id},data:{target:"#modalDelGlobal",toggle:"modal"}, remote: true,
+                                  class:"btn btn-danger",
+                                  :method => :get %>
                 </tr>
               <% end %>
 
@@ -66,12 +68,17 @@
 
 <div class="modal fade" id="modalmeasure" tabindex="-1" role="dialog"
      aria-labelledby="mediumModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" id="modalmeasuredialog">
+
+
+  </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tablameasure').DataTable();
         $('#modalmeasure').on('hidden.bs.modal', function (e) {
+            $("#modalmeasuredialog").html("");
         });
     } );
 </script>

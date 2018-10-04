@@ -1,0 +1,25 @@
+
+
+<table id="tablanewindicvalue" class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th scope="col"></th>
+
+    <% @indicators.each do |row| %>
+      <th scope="col"><%= row.number %></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @cities.each do |row| %>
+    <tr>
+      <th scope="row"><%= row.name %></th>
+
+      <% @indicators.each do |rowindicator| %>
+        <td > <%= text_field("indicador_value[#{row.id}]",rowindicator.id, class:"form-control") %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

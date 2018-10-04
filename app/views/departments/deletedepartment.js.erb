@@ -1,7 +1,7 @@
 /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
 $("#modalDelGlobalContent").html('<%= j render "layouts/modaldelete", {
-title: "Eliminar ODS",
-object: @goal,
-textodelete:"Está seguro que desea elimimodalDelGlobalContentnar el ODS: "+@goal.number+"?"
+title: "Eliminar Departamento",
+object: @department,
+textodelete:"Está seguro que desea eliminar este Departamento: "+@department.name+" ?"
 }
 %>');

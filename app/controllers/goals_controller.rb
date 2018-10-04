@@ -2,7 +2,7 @@ class GoalsController < ApplicationController
 
   def index
     ##trae todos los resultados
-    @goals= Goal.where(delete_at:[nil] )
+    @goals= Goal.where(delete_at:[nil])
   end
 
   def new
@@ -23,11 +23,6 @@ class GoalsController < ApplicationController
     @goal=Goal.find(params[:id])
   end
 
-  def deletegoal
-    ##abre el modal para borrarlo
-    @goal=Goal.find(params[:id])
-  end
-
   def show
     @goal= Goal.find(params[:id])
   end
@@ -39,6 +34,11 @@ class GoalsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def deletegoal
+    ##abre el modal para borrarlo
+    @goal=Goal.find(params[:id])
   end
 
   def destroy

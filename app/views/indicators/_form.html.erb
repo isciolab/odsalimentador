@@ -1,7 +1,4 @@
-
-<div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-
+<div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title"><%= title %></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -25,6 +22,21 @@
               <%= f.radio_button :available, false %>
             </div>
           </div>
+
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label class="form-check-label" for="gridCheck">
+                  Trazador ODS
+                </label>
+              </div>
+              <div class="col-sm-9">
+                <%= f.label :trazador_goal, "Si", :value => "1"  %>
+                <%= f.radio_button :trazador_goal, true, :checked =>true %>
+                <%= f.label :trazador_goal, "No", :value => "0" %>
+                <%= f.radio_button :trazador_goal, false %>
+              </div>
+            </div>
+
           <div class="form-group">
             <label for="formGroupExampleInput">Nombre</label>
             <%= f.text_field :name, class: "form-control input-lg", placeholder: "Ingrese un nombre",autofocus:true %>
@@ -40,19 +52,19 @@
               <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
                          { include_blank: false,
                            prompt: "Seleccione un ODS para seleccionar la Meta"},
-                         {:class => "form-control"}) %>
+                         {:class => "custom-select chosen"}) %>
             </div>
 
           <div class="form-group ">
             <label for="formGroupExampleInput">Meta</label>
             <%= f.collection_select :target_id, Target.all.where(goal_id: :goal_id), :id, :name, {prompt: "Seleccione la Meta a la que pertenece"},
-                                    {class: "custom-select",id:"target_id"} %>
+                                    {class: "custom-select chosen",id:"target_id_modal"} %>
           </div>
 
           <div class="form-group ">
             <label for="formGroupExampleInput">Unidad de Medida</label>
             <%= f.collection_select :measure_id, Measure.all, :id, :name, {prompt: "Seleccione la unidad de Medida"},
-                                    {class: "custom-select"} %>
+                                    {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group">

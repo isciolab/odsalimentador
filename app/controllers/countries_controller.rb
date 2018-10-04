@@ -2,7 +2,7 @@ class CountriesController < ApplicationController
 
   def index
     ##trae todoss los paises
-    @countries= Country.all
+    @countries= Country.where(delete_at:[nil])
   end
 
   def new

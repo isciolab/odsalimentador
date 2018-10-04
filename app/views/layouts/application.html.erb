@@ -3,24 +3,31 @@
 <head>
   <title>Odsalimentador</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <%= csrf_meta_tags %>
+  <script >
+      var base_url = '<%= request.base_url %>'
+  </script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= csrf_meta_tags %>
+
 </head>
 
 <body>
 
+<% if user_signed_in? %>
   <%= render "layouts/menu" %>
   <div class="container-fluid page-body-wrapper">
     <div id="right-panel" class="right-panel">
       <%= render "layouts/partealta" %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
       <%= yield %>
     </div>
   </div>
-
+<% else %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+<% end %>
 
   <div class="modal fade" id="modalDelGlobal" tabindex="-1" role="dialog" aria-labelledby="modalodsLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" id="modalDelGlobalContent">

@@ -8,6 +8,10 @@ class AddDeleteAttAllTables < ActiveRecord::Migration[5.1]
     add_column :roles, :delete_at, :datetime
     add_column :targets, :delete_at, :datetime
     add_column :users, :delete_at, :datetime
+    add_column :goal_cities, :delete_at, :datetime
+    add_column :goal_groups, :delete_at, :datetime
+    add_column :measures, :delete_at, :datetime
+    add_column :group_cities, :delete_at, :datetime
   end
   def down
     remove_column :goals, :delete_at
@@ -18,5 +22,10 @@ class AddDeleteAttAllTables < ActiveRecord::Migration[5.1]
     remove_column :roles, :delete_at
     remove_column :targets, :delete_at
     remove_column :users, :delete_at
+    remove_column :goal_cities, :delete_at
+    remove_column :goal_groups, :delete_at
+    remove_column :measures, :delete_at
+    remove_column :group_cities, :delete_at
+
   end
 end

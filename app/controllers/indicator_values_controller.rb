@@ -16,11 +16,21 @@ class IndicatorValuesController < ApplicationController
   end
 
   def create
-    @indicatorvalue = IndicatorValue.new(indicator_params)
-    if @indicatorvalue.save
-      redirect_to indicators_url
-    else
-      render :new
+
+    @indicatorvalue=params[:indicador_value]
+    @indicatorvalue.each do |ciudad_id,indexciudad|
+      indexciudad.each do |indicador_id,valueindicador|
+
+        @objeto= IndicatorValue.where(indicator_id:indicador_id, city_id:ciudad_id )
+        if valueindicador!=""
+          if @objeto.empty?
+            @objeto = IndicatorValue.new(:score => valueindicador, :city_id => ciudad_id, :indicator_id=>null)
+            @objeto.save
+          else
+            @objeto.update(:score => valueindicador, :city_id => ciudad_id, :indicator_id=>indicador_id)
+            end
+          end
+      end
     end
 
   end
@@ -44,12 +54,19 @@ class IndicatorValuesController < ApplicationController
     @indicatorvalue = IndicatorValue.new
   end
 
+  def getvalueindicators
+
+    @cities=City.all
+    @indicators= Indicator.all
+    @indicatorvalue = IndicatorValue.new
+
+    ###render "getvalueindicators"
+
+  end
+
 
   ##metodos privados
   private
-
-  ##nombre del modelo _params
-
   def indicator_params
 
     ##parametros permitidos

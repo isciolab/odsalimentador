@@ -32,7 +32,7 @@
 //= require 'js/lib/chosen/chosen.jquery.min.js'
 //= require font_awesome5
 
-//= require indicator_values
+//= require indicator_values.js
 
 
 

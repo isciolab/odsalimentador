@@ -2,7 +2,7 @@ class MeasuresController < ApplicationController
 
   def index
     ##trae todas las measures
-    @measures= Measure.all
+    @measures= Measure.where(delete_at:[nil])
   end
 
   def new
@@ -34,6 +34,20 @@ class MeasuresController < ApplicationController
 
   def show
     @measure= Measure.find(params[:id])
+  end
+
+  def deletemeasure
+    ##abre el modal para borrarlo
+    @measure=Measure.find(params[:id])
+  end
+
+  def destroy
+    @measure = Measure.find(params[:id])
+    if @measure.update_attributes(delete_at:DateTime.now.to_datetime)
+      redirect_to measures_url
+    else
+      render :edit
+    end
   end
 
   ##metodos privados

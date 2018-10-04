@@ -3,7 +3,7 @@ class RolesController < ApplicationController
 
   def index
     ##trae todos los roles
-    @roles= Role.all
+    @roles= Role.where(delete_at: [nil])
   end
 
   def new
@@ -38,10 +38,23 @@ class RolesController < ApplicationController
     @role= Role.find(params[:id])
   end
 
+  def deleterole
+    ##abre el modal para borrarlo
+    @role=Role.find(params[:id])
+  end
+
+  def destroy
+    @role = Role.find(params[:id])
+    if @role.update_attributes(delete_at:DateTime.now.to_datetime)
+      redirect_to roles_url
+    else
+      render :edit
+    end
+  end
+
   ##metodos privados
   private
 
-  ##nombre del modelo _params
   def role_params
     ##parametros permitidos
     params.require(:role).permit(:name)

@@ -2,7 +2,7 @@ class CitiesController < ApplicationController
 
   def index
     ##trae todas las ciudades
-    @cities= City.all
+    @cities= City.where(delete_at: [nil])
   end
 
   def new
@@ -37,11 +37,22 @@ class CitiesController < ApplicationController
     @city= City.find(params[:id])
   end
 
+  def deletecity
+    ##abre el modal para borrarlo
+    @city=City.find(params[:id])
+  end
+
+  def destroy
+    @city = City.find(params[:id])
+    if @city.update_attributes(delete_at:DateTime.now.to_datetime)
+      redirect_to cities_url
+    else
+      render :edit
+    end
+  end
+
   ##metodos privados
   private
-
-  ##nombre del modelo _params
-
   def city_params
 
     ##parametros permitidos

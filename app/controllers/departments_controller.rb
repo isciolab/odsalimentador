@@ -2,7 +2,7 @@ class DepartmentsController < ApplicationController
 
   def index
     ##trae todoss los departamentos
-    @departments= Department.all
+    @departments= Department.where(delete_at:[nil])
   end
 
   def new
@@ -36,6 +36,21 @@ class DepartmentsController < ApplicationController
   def show
     @department= Department.find(params[:id])
   end
+
+  def deletedepartment
+    ##abre el modal para borrarlo
+    @department=Department.find(params[:id])
+  end
+
+  def destroy
+    @department = Department.find(params[:id])
+    if @department.update_attributes(delete_at:DateTime.now.to_datetime)
+      redirect_to departments_url
+    else
+      render :edit
+    end
+  end
+
 
   ##metodos privados
   private

@@ -2,7 +2,7 @@ class GoalsController < ApplicationController
 
   def index
     ##trae todos los resultados
-    @goals= Goal.all
+    @goals= Goal.where(delete_at:[nil])
   end
 
   def new
@@ -32,16 +32,21 @@ class GoalsController < ApplicationController
     if @goal.update_attributes(goal_params)
       redirect_to goals_url
     else
-      render 'edit'
+      render :edit
     end
   end
 
-  def delete
+  def deletegoal
+    ##abre el modal para borrarlo
+    @goal=Goal.find(params[:id])
+  end
+
+  def destroy
     @goal = Goal.find(params[:id])
-    if @goal.update_attributes(goal_params)
+    if @goal.update_attributes(delete_at:DateTime.now.to_datetime)
       redirect_to goals_url
     else
-      render 'edit'
+      render :edit
     end
   end
 

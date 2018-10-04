@@ -7,7 +7,7 @@ class GoalGroupsController < ApplicationController
 
   def new
     ##crea la instancia del Grupo ODS
-    @goalgroup=GoalGroup.new
+    @goalgroup=GoalGroup.where(delete_at:[nil])
   end
 
   def edit
@@ -34,6 +34,20 @@ class GoalGroupsController < ApplicationController
 
   def show
     @goalgroup= GoalGroup.find(params[:id])
+  end
+
+  def deletegoalgroup
+    ##abre el modal para borrarlo
+    @goalgroup=GoalGroup.find(params[:id])
+  end
+
+  def destroy
+    @goalgroup = GoalGroup.find(params[:id])
+    if @goalgroup.delete
+      redirect_to goal_groups_url
+    else
+      render :edit
+    end
   end
 
   ##metodos privados

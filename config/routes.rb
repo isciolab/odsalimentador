@@ -81,7 +81,18 @@ Rails.application.routes.draw do
       get "getCities", on: :collection
     end
 
-
+    resources :goals do
+      get "getGoals", on: :collection
+    end
+    resources :goal_groups do
+      get "getGoalGroups", on: :collection
+    end
+    resources :targets do
+      get "getTargets", on: :collection
+    end
+    resources :indicators do
+      get "getIndicators", on: :collection
+    end
   end
 
 end

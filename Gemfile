@@ -58,3 +58,5 @@ gem 'bootstrap', '~> 4.0.0'
 gem "font_awesome5_rails"
 
 gem 'jquery-rails'
+
+gem 'rack-cors', require: 'rack/cors'

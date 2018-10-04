@@ -2,7 +2,7 @@ class GroupCitiesController < ApplicationController
 
   def index
     ##trae todos los grupos de ciudad
-    @groupcities= GroupCity.all
+    @groupcities= GroupCity.where(delete_at:[nil])
   end
 
   def new
@@ -37,10 +37,22 @@ class GroupCitiesController < ApplicationController
     @groupcity= GroupCity.find(params[:id])
   end
 
+  def deletegroupcity
+    ##abre el modal para borrarlo
+    @groupcity=GroupCity.find(params[:id])
+  end
+
+  def destroy
+    @groupcity = GroupCity.find(params[:id])
+    if @groupcity.update_attributes(delete_at:DateTime.now.to_datetime)
+      redirect_to group_cities_url
+    else
+      render :edit
+    end
+  end
+
   ##metodos privados
   private
-
-  ##nombre del modelo _params
   def group_city_params
     ##parametros permitidos
     params.require(:group_city).permit(:name,:description)

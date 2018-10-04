@@ -56,6 +56,7 @@
             <table id="tblmetas" class="table table-striped table-bordered">
               <thead>
               <tr>
+                <th scope="col">ODS</th>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Disponible</th>
@@ -65,6 +66,7 @@
               <tbody>
               <% @targets.each do |row| %>
                 <tr>
+                  <th scope="row"><%= row.goal.number %></th>
                   <th scope="row"><%= row.number %></th>
                   <td><%= row.name %></td>
                   <td><% if row.available==true
@@ -74,7 +76,9 @@
                          end %></td>
                   <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalmetas",toggle:"modal"}, remote: true, class:"btn btn-primary",
                                     :method => :get %>
-                    <button type="button" class="btn btn-danger">Eliminar</button></td>
+                    <%= button_to "Eliminar", {action: "deletetarget", id: row.id},data:{target:"#modalDelGlobal",toggle:"modal"}, remote: true,
+                                  class:"btn btn-danger",
+                                  :method => :get %>
                 </tr>
               <% end %>
 
@@ -87,25 +91,23 @@
   </div><!-- .animated -->
 </div>
 
-<div class="modal fade" id="modalmetas" tabindex="-1" role="dialog"
-     aria-labelledby="mediumModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalmetas" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" id="modaltargetdialog">
+
+  </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tblmetas').DataTable();
         $('#modalmetas').on('hidden.bs.modal', function (e) {
+            $("#modaltargetdialog").html("");
         });
 
-
-        $(function() {
-            jQuery(".chosen").chosen({
+        jQuery(".chosen").chosen({
                 disable_search_threshold: 10,
                 no_results_text: "Oops, nothing found!",
                 width: "100%"
-            });
-
         });
-
     } );
 </script>

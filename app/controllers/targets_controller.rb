@@ -2,7 +2,7 @@ class TargetsController < ApplicationController
 
   def index
     ##trae todas las measures
-    @targets= Target.all
+    @targets= Target.where(delete_at:[nil])
   end
 
   def new
@@ -35,6 +35,20 @@ class TargetsController < ApplicationController
 
   def show
     @target= Target.find(params[:id])
+  end
+
+  def deletetarget
+    ##abre el modal para borrarlo
+    @target=Target.find(params[:id])
+  end
+
+  def destroy
+    @target = Target.find(params[:id])
+    if @target.update_attributes(delete_at:DateTime.now.to_datetime)
+      redirect_to targets_url
+    else
+      render :edit
+    end
   end
 
   ##metodos privados

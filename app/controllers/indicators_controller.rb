@@ -2,7 +2,7 @@ class IndicatorsController < ApplicationController
 
   def index
     ##trae todos los indicadores
-    @indicators= Indicator.all
+    @indicators= Indicator.where(delete_at:[nil])
   end
 
   def new
@@ -39,20 +39,32 @@ class IndicatorsController < ApplicationController
 
   def filter_targets_by_goals
     @filtered_units = Target.where(goal_id: params[:selected_goal])
+    @selectargetid=params[:selectargetid] ##para decirle a cual select de target va a actualizar
+  end
+
+  def deleteindicator
+    ##abre el modal para borrarlo
+    @indicator=Indicator.find(params[:id])
+  end
+
+  def destroy
+    @indicator = Indicator.find(params[:id])
+    if @indicator.update_attributes(delete_at:DateTime.now.to_datetime)
+      redirect_to indicators_url
+    else
+      render :edit
+    end
   end
 
   ##metodos privados
   private
-
-  ##nombre del modelo _params
-
   def indicator_params
 
     ##parametros permitidos
     params.require(:indicator).permit(:name,:number,:description,:national_base_line,:year_national_base_line,:national_goal,
                                       :year_national_goal,:reference_value_low,:reference_value_mid,:reference_value_high,
                                       :trazador_conpes,:available,:institutional_inf,:methodological_proposal,:comment,
-                                      :target_id,:measure_id)
+                                      :target_id,:measure_id,:trazador_goal)
   end
 
 end

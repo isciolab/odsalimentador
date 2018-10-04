@@ -1,6 +1,6 @@
 
 /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modalindicador").html('<%= j render "form", {title: "Nuevo Indicador",title_button:"Crear"} %>');
+$("#modalindicatordialog").html('<%= j render "form", {title: "Nuevo Indicador",title_button:"Crear"} %>');
 
 $(function() {
     jQuery(".chosen").chosen({
@@ -16,7 +16,7 @@ $(function() {
         $.ajax({
             url:  "/filter_targets_by_goals",
             type: "GET",
-            data: { selected_goal: $(this).val() }
+            data: { selected_goal: $(this).val(),selectargetid:"target_id_modal" }
         });
     });
 });

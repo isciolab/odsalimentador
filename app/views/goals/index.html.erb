@@ -53,9 +53,13 @@
                 <th scope="row"><%= row.number %></th>
                 <td><%= row.name %></td>
                 <td><%= row.description %></td>
-                <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalods",toggle:"modal"}, remote: true, class:"btn btn-primary",
+                <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalods",toggle:"modal"}, remote: true,
+                                  class:"btn btn-primary",
                                   :method => :get %>
-                  <button type="button" class="btn btn-danger">Eliminar</button></td>
+                  <%= button_to "Eliminar", {action: "deletegoal", id: row.id},data:{target:"#modalDelGlobal",toggle:"modal"}, remote: true,
+                                class:"btn btn-danger",
+                                :method => :get %>
+
               </tr>
             <% end %>
 
@@ -68,14 +72,17 @@
 </div><!-- .animated -->
 </div>
 
-<div class="modal fade" id="modalods" tabindex="-1" role="dialog"
-     aria-labelledby="mediumModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalods" tabindex="-1" role="dialog" aria-labelledby="modalodsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" id="modalodsdialog">
+
+  </div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tablaprincipal').DataTable();
         $('#modalods').on('hidden.bs.modal', function (e) {
+            $("#modalodsdialog").html("");
         });
     } );
 </script>

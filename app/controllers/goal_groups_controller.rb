@@ -7,7 +7,7 @@ class GoalGroupsController < ApplicationController
 
   def new
     ##crea la instancia del Grupo ODS
-    @goalgroup=GoalGroup.where(delete_at:[nil])
+    @goalgroup=GoalGroup.new
   end
 
   def edit

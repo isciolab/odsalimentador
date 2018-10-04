@@ -23,6 +23,8 @@
 .byebug_historyconfig/puma.rb
 
 .idea
+.git-credentials
+
 Gemfile.lock
 
 

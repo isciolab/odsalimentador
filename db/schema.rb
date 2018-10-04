@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180830210740) do
+ActiveRecord::Schema.define(version: 20180919170211) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.string "dnp_category"
     t.string "ddt_typology"
     t.bigint "department_id"
+    t.text "description"
+    t.datetime "delete_at"
     t.index ["department_id"], name: "index_cities_on_department_id"
     t.index ["goal_group_id"], name: "index_cities_on_goal_group_id"
     t.index ["group_cities_id"], name: "index_cities_on_group_cities_id"
@@ -35,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "delete_at"
   end
 
   create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -42,6 +45,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "country_id"
+    t.datetime "delete_at"
     t.index ["country_id"], name: "index_departments_on_country_id"
   end
 
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.bigint "city_id"
     t.float "goal", limit: 24
     t.bigint "goal_id"
+    t.datetime "delete_at"
     t.index ["city_id"], name: "index_goal_cities_on_city_id"
     t.index ["goal_id"], name: "index_goal_cities_on_goal_id"
   end
@@ -61,6 +66,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "delete_at"
   end
 
   create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -69,12 +75,15 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "delete_at"
   end
 
   create_table "group_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.datetime "delete_at"
   end
 
   create_table "indicator_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -109,6 +118,9 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.datetime "updated_at", null: false
     t.bigint "target_id"
     t.bigint "measure_id"
+    t.string "target_type", limit: 9
+    t.boolean "trazador_goal"
+    t.datetime "delete_at"
     t.index ["measure_id"], name: "index_indicators_on_measure_id"
     t.index ["target_id"], name: "index_indicators_on_target_id"
   end
@@ -117,6 +129,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "delete_at"
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -124,6 +137,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "delete_at"
   end
 
   create_table "targets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -133,6 +147,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "goal_id"
+    t.datetime "delete_at"
     t.index ["goal_id"], name: "index_targets_on_goal_id"
   end
 
@@ -160,6 +175,7 @@ ActiveRecord::Schema.define(version: 20180830210740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "role_id"
+    t.datetime "delete_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"

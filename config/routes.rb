@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :indicator_values do ##indicadore_value
     get 'newindicadorvalue', on: :collection
     get 'getvalueindicators', on: :collection
+    get 'updatefechatoyear', on: :collection
   end
 
   resources :countries ##paises

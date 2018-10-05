@@ -1,6 +1,6 @@
 class Api::TargetsController < ApplicationController
   def getTargets
-    @targets= Target.where(delete_at: [nil])
+    @targets= Target.select('*').joins(:goal)
     render json: @targets, status: :ok
   end
 end

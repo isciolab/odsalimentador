@@ -17,21 +17,28 @@ class IndicatorValuesController < ApplicationController
 
   def create
 
-    @indicatorvalue=params[:indicador_value]
-    @indicatorvalue.each do |ciudad_id,indexciudad|
-      indexciudad.each do |indicador_id,valueindicador|
+    @indicatorvalue=params[:indicador_value] ##recibe el objeto de la tabla de la vista
 
-        @objeto= IndicatorValue.where(indicator_id:indicador_id, city_id:ciudad_id )
-        if valueindicador!=""
+    @indicatorvalue.each do |ciudad_id,indexciudad| ##Lo recorro y el primer indice es el de la ciudad
+
+      indexciudad.each do |indicador_id,valueindicador| ##tomo el arreglo de la ciudad y lo recorro, ya que cada ciudad tiene dentro,
+        ##sus indicadores
+
+        @objeto= IndicatorValue.where(indicator_id:indicador_id, city_id:ciudad_id,date_from:params[:anio]  )
+
           if @objeto.empty?
-            @objeto = IndicatorValue.new(:score => valueindicador, :city_id => ciudad_id, :indicator_id=>null)
+            @objeto = IndicatorValue.new(:score => valueindicador, :city_id => ciudad_id,
+                                         :indicator_id=>indicador_id,:date_from=> params[:anio])
             @objeto.save
           else
-            @objeto.update(:score => valueindicador, :city_id => ciudad_id, :indicator_id=>indicador_id)
+            @objeto.update(:score => valueindicador, :city_id => ciudad_id,
+                           :indicator_id=>indicador_id,:date_from=> params[:anio])
             end
-          end
+
       end
     end
+
+    redirect_to 'indicator_values/newindicadorvalue'
 
   end
 
@@ -56,14 +63,36 @@ class IndicatorValuesController < ApplicationController
 
   def getvalueindicators
 
-    @cities=City.all
-    @indicators= Indicator.all
-    @indicatorvalue = IndicatorValue.new
+    @cities=City.where(delete_at: [nil])
+    @indicators= Indicator.joins(:target).where(delete_at:[nil])
+    @indicatorsvalue = IndicatorValue.joins(:indicator).joins(indicator: :target).where(date_from: params[:anio])
 
-    ###render "getvalueindicators"
+    if params[:target]!=""
+      @indicatorsvalue=@indicatorsvalue.where(:targets => {:id=>params[:target]})
+      @indicators=@indicators.where(:targets => {:id=>params[:target]})
+    end
 
+    if params[:goal]!=""
+      @indicatorsvalue=@indicatorsvalue.where(:targets => {:goal_id=>params[:goal]})
+      @indicators=@indicators.where(:targets => {:goal_id=>params[:goal]})
+    end
+
+    @indicatorvalue = IndicatorValue.new ##para crear el nuevo objeto en el formulario
+    render :partial => 'tblnewindicatorvalue'
   end
 
+  def updatefechatoyear
+    ##esto es una prueba para cambiarle las fechas a los
+    @indicatorvalues = IndicatorValue.all
+
+    @indicatorvalues.each do |indicador|
+      puts Date.strptime(indicador.date_from, '%Y')
+        @objeto= IndicatorValue.where(id:indicador.id)
+        @objeto.update(:date_from => Date.strptime(indicador.date_from, '%Y'))
+
+    end
+
+  end
 
   ##metodos privados
   private

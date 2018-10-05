@@ -1,5 +1,3 @@
-
-
 <table id="tablanewindicvalue" class="table table-striped table-bordered">
   <thead>
   <tr>
@@ -14,12 +12,19 @@
   <% @cities.each do |row| %>
     <tr>
       <th scope="row"><%= row.name %></th>
-
+      <% score = "" %>
       <% @indicators.each do |rowindicator| %>
-        <td > <%= text_field("indicador_value[#{row.id}]",rowindicator.id, class:"form-control") %></td>
+
+        <% @indicatorsvalue.each do |indicatorval| %>
+          <% if indicatorval.indicator_id == rowindicator.id && indicatorval.city_id == row.id %>
+            <% score = indicatorval.score %>
+          <% end %>
+        <% end %>
+
+        <td> <%= text_field("indicador_value[#{row.id}]", rowindicator.id, class: "form-control", value: score) %></td>
+
       <% end %>
     </tr>
   <% end %>
   </tbody>
 </table>
-

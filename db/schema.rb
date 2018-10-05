@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20181004222451) do
 
   create_table "indicator_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.float "score", limit: 24
-    t.date "date_from"
+    t.integer "date_from"
     t.date "date_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

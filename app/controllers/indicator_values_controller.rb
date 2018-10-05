@@ -20,10 +20,10 @@ class IndicatorValuesController < ApplicationController
 
     @indicatorvalue.each do |ciudad_id,indexciudad| ##Lo recorro y el primer indice es el de la ciudad
 
-      indexciudad.each do |indicador_id,valueindicador| ##tomo el arreglo de la ciudad y lo recorro, ya que cada ciudad tiene dentro,
-        ##sus indicadores
+      indexciudad.each do |indicador_id,valueindicador| ##tomo el arreglo de la ciudad y lo recorro, ya que cada ciudad tiene
+        # dentro, sus indicadores
 
-        @objeto= IndicatorValue.where(indicator_id:indicador_id, city_id:ciudad_id,date_from:params[:anio]  )
+        @objeto= IndicatorValue.where(indicator_id:indicador_id, city_id:ciudad_id,date_from:params[:anio])
 
           if @objeto.empty?
             @objeto = IndicatorValue.new(:score => valueindicador, :city_id => ciudad_id,

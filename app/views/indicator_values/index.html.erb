@@ -90,7 +90,7 @@
             <strong class="card-title">Lista de Indicadores</strong>
           </div>
           <div class="card-body">
-            <table id="tablaindicvalue" class="table table-striped table-bordered">
+            <table id="tablavalueindica" class="table table-striped table-bordered">
               <thead>
               <tr>
                 <th scope="col">ODS</th>
@@ -103,69 +103,17 @@
               </tr>
               </thead>
               <tbody>
-
-              <tr>
-                <td>01</td>
-                <td>1.1</td>
-                <td>1.1.1</td>
-                <td>Cartagena</td>
-                <td>2018</td>
-                <td>20%</td>
-                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
-                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
-              </tr>
-              <tr>
-                <td>01</td>
-                <td>1.2</td>
-                <td>1.2.1</td>
-                <td>Bogota</td>
-                <td>2018</td>
-                <td>25%</td>
-                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
-                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
-              </tr>
-              <tr>
-                <td>02</td>
-                <td>2.1</td>
-                <td>2.1.1</td>
-                <td>Cartagena</td>
-                <td>2018</td>
-                <td>60%</td>
-                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
-                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
-              </tr>
-              <tr>
-                <td>02</td>
-                <td>2.2</td>
-                <td>2.2.1</td>
-                <td>Medellin</td>
-                <td>2018</td>
-                <td>60%</td>
-                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
-                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
-              </tr>
-              <tr>
-                <td>03</td>
-                <td>3.1</td>
-                <td>3.1.1</td>
-                <td>Ibague</td>
-                <td>2018</td>
-                <td>55.50%</td>
-                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
-                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
-              </tr>
-
-              <tr>
-                <td>03</td>
-                <td>3.2</td>
-                <td>3.2.1</td>
-                <td>Bogota</td>
-                <td>2017</td>
-                <td>23.18%</td>
-                <td> <button type="button" class="btn btn-primary btn-fw">Editar</button>
-                  <button type="button" class="btn btn-danger btn-fw">Eliminar</button></td>
-              </tr>
-
+              <% @indicatorvalues.each do |row| %>
+                <tr>
+                  <td scope="row"><%= row.indicator.target.goal.number %></td>
+                  <td ><%= row.indicator.target.number %></td>
+                  <td><%= row.indicator.number %></td>
+                  <td><%= row.city.name %></td>
+                  <td><%= row.date_from %></td>
+                  <td><%= row.score %></td>
+                  <td></td>
+                </tr>
+              <% end %>
               </tbody>
             </table>
           </div>
@@ -181,7 +129,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#tablaindicvalue').DataTable();
+        $('#tablavalueindica').DataTable();
         $('#modalindicador').on('hidden.bs.modal', function (e) {
         });
 

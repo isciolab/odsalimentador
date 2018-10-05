@@ -2,8 +2,7 @@ class IndicatorValuesController < ApplicationController
 
   def index
     ##trae todos los indicadores
-    @indicatorvalues = IndicatorValue.all
-    @cities=City.all
+    @indicatorvalues = IndicatorValue.all.order(:date_from)
   end
 
   def new
@@ -21,10 +20,10 @@ class IndicatorValuesController < ApplicationController
 
     @indicatorvalue.each do |ciudad_id,indexciudad| ##Lo recorro y el primer indice es el de la ciudad
 
-      indexciudad.each do |indicador_id,valueindicador| ##tomo el arreglo de la ciudad y lo recorro, ya que cada ciudad tiene dentro,
-        ##sus indicadores
+      indexciudad.each do |indicador_id,valueindicador| ##tomo el arreglo de la ciudad y lo recorro, ya que cada ciudad tiene
+        # dentro, sus indicadores
 
-        @objeto= IndicatorValue.where(indicator_id:indicador_id, city_id:ciudad_id,date_from:params[:anio]  )
+        @objeto= IndicatorValue.where(indicator_id:indicador_id, city_id:ciudad_id,date_from:params[:anio])
 
           if @objeto.empty?
             @objeto = IndicatorValue.new(:score => valueindicador, :city_id => ciudad_id,
@@ -89,7 +88,6 @@ class IndicatorValuesController < ApplicationController
       puts Date.strptime(indicador.date_from, '%Y')
         @objeto= IndicatorValue.where(id:indicador.id)
         @objeto.update(:date_from => Date.strptime(indicador.date_from, '%Y'))
-
     end
 
   end

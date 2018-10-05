@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181004222451) do
+ActiveRecord::Schema.define(version: 20181005190503) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "group_cities_id"
+    t.bigint "group_city_id"
     t.boolean "is_capital"
     t.bigint "goal_group_id"
     t.string "rccv_program"
@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 20181004222451) do
     t.bigint "department_id"
     t.text "description"
     t.datetime "delete_at"
+    t.string "avatar"
     t.index ["department_id"], name: "index_cities_on_department_id"
     t.index ["goal_group_id"], name: "index_cities_on_goal_group_id"
-    t.index ["group_cities_id"], name: "index_cities_on_group_cities_id"
+    t.index ["group_city_id"], name: "index_cities_on_group_cities_id"
   end
 
   create_table "countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -88,9 +89,9 @@ ActiveRecord::Schema.define(version: 20181004222451) do
 
   create_table "indicator_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.float "score", limit: 24
-    t.date "date_from"
+    t.integer "date_from"
     t.date "date_to"
-    t.datetime "created_at", null: false
+    t.date "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "indicator_id"
     t.bigint "city_id"
@@ -183,7 +184,7 @@ ActiveRecord::Schema.define(version: 20181004222451) do
 
   add_foreign_key "cities", "departments"
   add_foreign_key "cities", "goal_groups"
-  add_foreign_key "cities", "group_cities", column: "group_cities_id"
+  add_foreign_key "cities", "group_cities"
   add_foreign_key "departments", "countries"
   add_foreign_key "goal_cities", "cities"
   add_foreign_key "goal_cities", "goals"

@@ -2,8 +2,7 @@ class IndicatorValuesController < ApplicationController
 
   def index
     ##trae todos los indicadores
-    @indicatorvalues = IndicatorValue.all
-    @cities=City.all
+    @indicatorvalues = IndicatorValue.all.order(:date_from)
   end
 
   def new
@@ -89,7 +88,6 @@ class IndicatorValuesController < ApplicationController
       puts Date.strptime(indicador.date_from, '%Y')
         @objeto= IndicatorValue.where(id:indicador.id)
         @objeto.update(:date_from => Date.strptime(indicador.date_from, '%Y'))
-
     end
 
   end

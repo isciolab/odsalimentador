@@ -52,6 +52,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 ##esto es para el login
 gem "devise"
 
+##para subir imagenes con cloudinary
+gem "cloudinary"
+gem "carrierwave"
+
 ##boostrap
 gem 'bootstrap', '~> 4.0.0'
 ##iconos de boostrap 4

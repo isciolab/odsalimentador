@@ -29,7 +29,7 @@ class CitiesController < ApplicationController
 
     if @city.update_attributes(city_params)
 
-      mount_uploaders :avatar, AvatarUploader
+      mount_uploader :avatar, AvatarUploader
 
       redirect_to cities_url
     else

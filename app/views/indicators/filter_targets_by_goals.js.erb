@@ -1,3 +1,0 @@
-$('select#<%= @selectargetid %>').html('<%= j options_from_collection_for_select(@filtered_units, :id, :name) %>');
-
-$('select#<%= @selectargetid %>').trigger("chosen:updated");

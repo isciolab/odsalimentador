@@ -49,7 +49,7 @@
             <div class="form-group ">
               <label for="formGroupExampleInput">ODS</label>
 
-              <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
+              <%= select("goal", "goal_id", Goal.where(delete_at: [nil]).collect {|p| [ p.number, p.id ] },
                          { include_blank: false,
                            prompt: "Seleccione un ODS para seleccionar la Meta"},
                          {:class => "custom-select chosen"}) %>
@@ -57,13 +57,13 @@
 
           <div class="form-group ">
             <label for="formGroupExampleInput">Meta</label>
-            <%= f.collection_select :target_id, Target.all.where(goal_id: :goal_id), :id, :name, {prompt: "Seleccione la Meta a la que pertenece"},
+            <%= f.collection_select :target_id, Target.all.where(goal_id: :goal_id,delete_at: [nil]), :id, :name, {prompt: "Seleccione la Meta a la que pertenece"},
                                     {class: "custom-select chosen",id:"target_id_modal"} %>
           </div>
 
           <div class="form-group ">
             <label for="formGroupExampleInput">Unidad de Medida</label>
-            <%= f.collection_select :measure_id, Measure.all, :id, :name, {prompt: "Seleccione la unidad de Medida"},
+            <%= f.collection_select :measure_id, Measure.where(delete_at: [nil]), :id, :name, {prompt: "Seleccione la unidad de Medida"},
                                     {class: "custom-select chosen"} %>
           </div>
 

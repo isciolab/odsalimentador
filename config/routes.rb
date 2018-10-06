@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'filter_targets_by_goals' => 'indicators#filter_targets_by_goals'
+  get 'filter_targets_by_goals' => 'targets#filter_targets_by_goals'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

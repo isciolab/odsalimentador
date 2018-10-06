@@ -37,10 +37,7 @@ class IndicatorsController < ApplicationController
     @indicator= Indicator.find(params[:id])
   end
 
-  def filter_targets_by_goals
-    @filtered_units = Target.where(goal_id: params[:selected_goal])
-    @selectargetid=params[:selectargetid] ##para decirle a cual select de target va a actualizar
-  end
+
 
   def deleteindicator
     ##abre el modal para borrarlo

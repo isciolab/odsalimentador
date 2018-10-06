@@ -12,6 +12,7 @@ class CitiesController < ApplicationController
 
   def edit
     @city=City.find(params[:id])
+
   end
 
   def create
@@ -28,9 +29,6 @@ class CitiesController < ApplicationController
     @city = City.find(params[:id])
 
     if @city.update_attributes(city_params)
-
-      mount_uploader :avatar, AvatarUploader
-
       redirect_to cities_url
     else
       render 'edit'

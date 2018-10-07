@@ -69,12 +69,7 @@
   </div>
 
   <div class="col-sm-2">
-    <div class="float-left">
-
-      <%= button_to "Nuevo Valor Indicador", { action: "newindicadorvalue" }, remote: false, class: "btn btn-info",
-                    :method => :get %>
-
-    </div>
+      <%= button_to "Editar Valores", { action: "newindicadorvalue" }, remote: false, class: "btn btn-info", :method => :get %>
   </div>
 
 </div>
@@ -99,7 +94,6 @@
                 <th scope="col">Ciudad</th>
                 <th scope="col">Año</th>
                 <th scope="col">% Actual</th>
-                <th scope="col">Acci&oacute;n</th>
               </tr>
               </thead>
               <tbody>
@@ -111,7 +105,6 @@
                   <td><%= row.city.name %></td>
                   <td><%= row.date_from %></td>
                   <td><%= row.score %></td>
-                  <td></td>
                 </tr>
               <% end %>
               </tbody>

@@ -44,6 +44,7 @@
                 <th scope="col">Departamento</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Poblaci&oacute;n Total</th>
+                <th scope="col">Grupo</th>
                 <th scope="col">Descripci&oacute;n</th>
                 <th scope="col">Acci&oacute;n</th>
               </tr>
@@ -60,6 +61,7 @@
                   </td>
                   <td><%= row.name %></td>
                   <td><%= row.total_population %></td>
+                  <td><%= row.group_city.nil? ? '' : row.group_city.name %></td>
                   <td><%= row.description %></td>
                   <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalciudad",toggle:"modal"}, remote: true, class:"btn btn-primary",
                                     :method => :get %>
@@ -92,5 +94,6 @@
         $('#modalciudad').on('hidden.bs.modal', function (e) {
             $("#modalcitydialog").html("");
         });
+
     } );
 </script>

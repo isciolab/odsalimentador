@@ -1,9 +1,11 @@
 
 /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
 $("#modalindicatordialog").html('<%= j render "form", {title: "Editar Indicador",title_button:"Actualizar"} %>');
+
 function changeSelectGoal(){
     $("select#goal_goal_id").change();
 }
+
 $(function() {
     jQuery(".chosen").chosen({
         disable_search_threshold: 10,
@@ -18,7 +20,7 @@ $(function() {
         $.ajax({
             url:  "/filter_targets_by_goals",
             type: "GET",
-            data: { selected_goal: $(this).val(),selectargetid:"target_id_modal" }
+            data: { selected_goal: $(this).val(),selectargetid:"target_id_modal", target_selected:'<%= @indicator.target_id %>' }
         });
     });
 

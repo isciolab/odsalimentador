@@ -59,7 +59,8 @@
           <div class="form-group ">
             <label for="formGroupExampleInput">Meta</label>
             <%= f.collection_select :target_id, Target.where(goal_id: :goal_id,delete_at: [nil]), :id, :name,
-                                    {prompt: "Seleccione la Meta a la que pertenece"},
+                                    {prompt: "Seleccione la Meta a la que pertenece",
+                                     :selected => ( @indicator.target.nil? ? "" : @indicator.target.goal_id)},
                                     {class: "custom-select chosen",id:"target_id_modal"} %>
           </div>
 

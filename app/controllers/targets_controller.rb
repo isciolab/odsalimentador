@@ -51,9 +51,16 @@ class TargetsController < ApplicationController
     end
   end
 
+  ##metodo que retorna las metas o targets filtradas por un ODS o Goal
   def filter_targets_by_goals
     @filtered_units = Target.where(goal_id: params[:selected_goal])
     @selectargetid=params[:selectargetid] ##para decirle a cual select de target va a actualizar
+    @target_selected=""
+
+    ##target_selected es por si quieres marcar como selected una opcion en el select
+    if params[:target_selected]!=""
+      @target_selected=params[:target_selected]
+    end
   end
 
   ##metodos privados

@@ -1,4 +1,5 @@
-$('select#<%= @selectargetid %>').html('<%= j options_from_collection_for_select(@filtered_units, :id, :numbername) %>');
+$('select#<%= @selectargetid %>').html('<%= j options_from_collection_for_select(@filtered_units, :id,
+ :numbername,@target_selected=="" ? '':@target_selected) %>');
 //:numbername es el nombre de un metodo definido en el modelo de target, que loque hace es concatenar el numero de la meta
 //con el nombre
 

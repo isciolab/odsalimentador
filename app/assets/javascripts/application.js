@@ -12,9 +12,10 @@
 //
 //= require 'js/vendor/jquery-2.1.4.min.js'
 //= require rails-ujs
+//= require 'js/popper.min.js'
 //= require turbolinks
 //= require bootstrap
-//= require 'js/popper.min.js'
+
 //= require 'js/plugins'
 //= require 'js/main'
 //= require 'js/lib/chart-js/Chart.bundle.js'

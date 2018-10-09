@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todos los resultados
     @goals= Goal.where(delete_at:[nil])

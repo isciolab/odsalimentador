@@ -1,5 +1,5 @@
 class GroupCitiesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todos los grupos de ciudad
     @groupcities= GroupCity.where(delete_at:[nil])

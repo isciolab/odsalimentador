@@ -1,5 +1,5 @@
 class TargetsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todas las measures
     @targets= Target.where(delete_at:[nil])

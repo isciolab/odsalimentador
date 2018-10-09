@@ -1,6 +1,6 @@
 
 class RolesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todos los roles
     @roles= Role.where(delete_at: [nil])

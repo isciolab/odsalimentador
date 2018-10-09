@@ -1,5 +1,5 @@
 class IndicatorValuesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todos los indicadores
     @indicatorvalues = IndicatorValue.all.order(:date_from)

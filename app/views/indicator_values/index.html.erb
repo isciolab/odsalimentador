@@ -131,6 +131,14 @@
             no_results_text: "Oops, nothing found!",
             width: "100%"
         });
+
+        $("select#goal_goal_id").on("change", function() {
+            $.ajax({
+                url:  "/filter_targets_by_goals",
+                type: "GET",
+                data: { selected_goal: $(this).val(),selectargetid:"target_id" }
+            });
+        });
     } );
 </script>
 

@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20181005190503) do
     t.float "score", limit: 24
     t.integer "date_from"
     t.date "date_to"
-    t.date "created_at", null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "indicator_id"
     t.bigint "city_id"

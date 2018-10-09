@@ -8,5 +8,6 @@ class ChangeGroupCitiesToCity < ActiveRecord::Migration[5.1]
        execute "ALTER TABLE `cities`
  CHANGE `group_city_id` `group_cities_id` BIGINT(20) NULL;
    "
-     end
+   end
+  
   end

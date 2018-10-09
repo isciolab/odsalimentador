@@ -1,5 +1,5 @@
 class DepartmentsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todoss los departamentos
     @departments= Department.where(delete_at:[nil])

@@ -16310,35 +16310,44 @@
 </style>
 
 <div class="container-scroller">
-  <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+  <div class="container-fluid page-body-wrapper full-page-wrapper auth-page register-bg-1">
     <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
       <div class="row w-100">
         <div class="col-lg-4 mx-auto">
           <h2 class="text-center mb-4">Register</h2>
           <div class="auto-form-wrapper">
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <%= devise_error_messages! %>
 
-              <div class="field">
-                <%= f.label :email %><br />
+              <div class="form-group">
+                <%= f.label :email, class:"label" %><br />
+                <div class="input-group">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                </div>
               </div>
 
-              <div class="field">
-                <%= f.label :password %>
+              <div class="form-group">
+                <%= f.label :password, class:"label" %>
                 <% if @minimum_password_length %>
                   <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %><br />
+                <div class="input-group">
                 <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                </div>
               </div>
 
-              <div class="field">
-                <%= f.label :password_confirmation %><br />
+              <div class="form-group">
+                <%= f.label :password_confirmation, class:"label" %><br />
+                <div class="input-group">
                 <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+                </div>
               </div>
 
-              <div class="actions">
-                <%= f.submit "Sign up" %>
+              <div class="form-group">
+                <%= f.submit "Registrarse", class:"btn btn-primary submit-btn btn-block" %>
               </div>
             <% end %>
 

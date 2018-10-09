@@ -16308,37 +16308,45 @@
 </style>
 
   <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+    <div class="container-fluid page-body-wrapper full-page-wrapper auth-page auth-bg-1">
       <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
         <div class="row w-100">
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
 
               <%= form_for(resource, as: resource_name, url: session_path(resource_name), id: "Login") do |f| %>
-                <div class="field">
-                  <%= f.label :email %><br/>
+                <div class="form-group">
+                  <%= f.label :email, class:"label" %><br/>
+                  <div class="input-group">
                   <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                  </div>
                 </div>
 
-                <div class="field">
-                  <%= f.label :password %><br/>
+                <div class="form-group">
+                  <%= f.label :password,class:"label" %><br/>
+                  <div class="input-group">
                   <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                  </div>
                 </div>
 
                 <% if devise_mapping.rememberable? -%>
                   <div class="field">
                     <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me %>
+                    <%= f.label "Recordarme" %>
                   </div>
                 <% end -%>
 
                 <div class="actions">
-                  <%= f.submit "Log in" %>
+                  <%= f.submit "Log in", class:"btn btn-primary submit-btn btn-block" %>
                 </div>
+                <%= render "devise/shared/links" %>
+                <p class="footer-text text-center">Ciudatos © 2018.</p>
               <% end %>
             </div>
-            <%= render "devise/shared/links" %>
-            <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p>
+
+
           </div>
         </div>
       </div>

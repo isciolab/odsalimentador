@@ -1,5 +1,5 @@
 class IndicatorsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todos los indicadores
     @indicators= Indicator.where(delete_at:[nil])

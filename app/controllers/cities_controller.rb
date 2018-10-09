@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todas las ciudades
     @cities= City.where(delete_at: [nil])

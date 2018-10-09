@@ -1,4 +1,4 @@
-<%= cloudinary_js_config %>
+
     <div class="modal-content">
 
       <div class="modal-header">
@@ -16,13 +16,14 @@
           </div>
           <div class="form-group ">
             <label for="company" class=" form-control-label">Departamento</label>
-            <%= f.collection_select :department_id, Department.where(delete_at: [nil]), :id, :name, {prompt: "Seleccione un Departamento"},
+            <%= f.collection_select :department_id, Department.where(delete_at: [nil]), :id, :name,
+                                    {prompt: "Seleccione un Departamento"},
                                     {class: "custom-select chosen"} %>
           </div>
 
           <div class="form-group ">
             <label for="company" class=" form-control-label">Grupo Ciudad</label>
-            <%= f.collection_select :group_city_id, GroupCity.where(delete_at: [nil]), :id, :name, {prompt: "Seleccione un Grupo de Ciudad"},
+            <%= f.collection_select :group_cities_id, GroupCity.where(delete_at: [nil]), :id, :name, {prompt: "Seleccione un Grupo de Ciudad"},
                                     {class: "custom-select chosen"} %>
           </div>
 
@@ -80,11 +81,19 @@
               <%= f.hidden_field(:avatar) %>
               <%= f.file_field(:avatar) %>
             </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput">Descripción</label>
+              <%= f.text_area  :description, class: "form-control input-lg", placeholder: "Ingrese una descripción", rows:4 %>
+            </div>
+
+
             <div class="form-group">
               <label for="company" class=" form-control-label">Logo</label>
               <!--Con lo siguiente mando a buscar la url completa de la imagen, con lo queviene de BD -->
               <%= cl_image_tag(@city.avatar) %>
             </div>
+
 
           </div>
         </div>
@@ -94,12 +103,4 @@
         </div>
       <% end %>
     </div>
-</div>
 
-    <script>
-        $(function() {
-            if($.fn.cloudinary_fileupload !== undefined) {
-                $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
-            }
-        });
-    </script>

@@ -19,7 +19,7 @@
   </div>
   <div class="col-sm-4">
     <div class="float-left">
-      <%= button_to "Nuevo Grupo", { action: "new" },data:{target:"#modalgrupocidad",toggle:"modal"}, remote: true, class: "btn btn-info",
+      <%= button_to "Nuevo Grupo", { action: "new" },data:{target:"#modalgrupociudad",toggle:"modal"}, remote: true, class: "btn btn-info",
                     :method => :get %>
     </div>
   </div>
@@ -82,5 +82,7 @@
         $('#modalgrupociudad').on('hidden.bs.modal', function (e) {
             $("#modalgrupociudaddialog").html("");
         });
+
+
     } );
 </script>

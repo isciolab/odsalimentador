@@ -12,4 +12,8 @@ $(function() {
     setTimeout( function (){
         $('*[autofocus]').focus()
     },500)
+
+    if($.fn.cloudinary_fileupload !== undefined) {
+        $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+    }
 });

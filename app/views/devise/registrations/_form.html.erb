@@ -5,27 +5,35 @@
     <h4 class="modal-title">d</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   </div>
+
+
+
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <div class="modal-body">
-
-
+    <div class="card-body card-block">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
       <%= devise_error_messages! %>
+      <div class="form-group">
 
-      <div><%= f.label :email %><br />
-
-        <%= f.email_field :email, :autofocus => true %></div>
-
-      <div><%= f.label :password %><br />
-
-        <%= f.password_field :password %></div>
-
-      <div><%= f.label :password_confirmation %><br />
-
-        <%= f.password_field :password_confirmation %></div>
+        <label for="company" class=" form-control-label">Email</label>
+        <%= f.email_field :email, :autofocus => true, class:"form-control input-lg" %>
 
       </div>
 
+    <div class="form-group">
+      <%= f.label :password %>
+        <%= f.password_field :password, class:"form-control input-lg" %>
+      </div>
+
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class:"form-control input-lg" %>
+    </div>
+    </div>
+      </div>
       <div class="modal-footer">
 
         <p><div><%= f.submit "Sign up", :class => 'btn btn-small btn-success' %></div></p>

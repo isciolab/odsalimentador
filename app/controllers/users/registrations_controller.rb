@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  skip_before_action :require_no_authentication, only: [:create,:new]
 
   def newuser
 
@@ -12,13 +13,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
    def new
-     super
+     @user=User.new
    end
 
   # POST /resource
    def create
      super
    end
+
+  def create_user
+    @user = User.new(:email => params[:email], :password => params[:password])
+    @user.save
+
+  end
 
   # GET /resource/edit
    def edit
@@ -65,4 +72,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  #
+  protected
+
+  def after_create_path_for(resource)
+    user_path(resource)
+  end
+
 end

@@ -71,8 +71,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
 
   devise_scope :user do
-    get 'allusers', to: "devise/sessions#allusers"
-    get 'newuser', to: "devise/registrations#newuser"
+    get 'allusers', to: "users/sessions#allusers"
+    get 'newuser', to: "users/registrations#newuser"
   end
 
 

@@ -73,7 +73,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'allusers', to: "users/sessions#allusers"
     get 'newuser', to: "users/registrations#newuser"
-    post 'create_user', to: "users/registrations#create_user"
   end
 
 

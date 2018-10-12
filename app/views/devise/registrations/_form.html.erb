@@ -1,46 +1,75 @@
-
 <div class="modal-content">
 
   <div class="modal-header">
-    <h4 class="modal-title">d</h4>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Crear Nuevo Usuario</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
   </div>
 
-
-
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <div class="modal-body">
-    <div class="card-body card-block">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="modal-body">
+      <div class="card-body card-block">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
 
-      <%= devise_error_messages! %>
-      <div class="form-group">
+        <%= devise_error_messages! %>
 
-        <label for="company" class=" form-control-label">Email</label>
-        <%= f.email_field :email, :autofocus => true, class:"form-control input-lg" %>
+        <div class="form-group">
+          <label for="company" class=" form-control-label">Rol</label>
+        <%= f.collection_select :role_id, Role.where(delete_at: [nil]), :id, :name,
+                                {prompt: "Seleccione un rol a asignar"},
+                                {class: "custom-select chosen"} %>
+        </div>
 
+        <div class="form-group">
+          <label for="company" class=" form-control-label">Ciudad</label>
+          <%= f.collection_select :city_id, City.where(delete_at: [nil]), :id, :name,
+                                  {prompt: "Seleccione una ciudad a asignar"},
+                                  {class: "custom-select chosen"} %>
+        </div>
+
+        <div class="form-group">
+          <label for="company" class=" form-control-label">Nro Identificaci&oacute;n</label>
+          <%= f.text_field :identification, :autofocus => true, class: "form-control input-lg" %>
+        </div>
+
+        <div class="form-group">
+          <label for="company" class=" form-control-label">Nombres</label>
+          <%= f.text_field :name, :autofocus => true, class: "form-control input-lg" %>
+        </div>
+
+        <div class="form-group">
+          <label for="company" class=" form-control-label">Apellidos</label>
+          <%= f.text_field :surname, :autofocus => true, class: "form-control input-lg" %>
+        </div>
+
+
+        <div class="form-group">
+          <label for="company" class=" form-control-label">Email</label>
+          <%= f.email_field :email, :autofocus => true, class: "form-control input-lg" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control input-lg" %>
+        </div>
+
+
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: "form-control input-lg" %>
+        </div>
       </div>
-
-    <div class="form-group">
-      <%= f.label :password %>
-        <%= f.password_field :password, class:"form-control input-lg" %>
-      </div>
-
-
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, class:"form-control input-lg" %>
     </div>
+    <div class="modal-footer">
+
+      <p>
+      <div><%= f.submit "Sign up", :class => 'btn btn-small btn-success' %></div>
+      </p>
+
+      <p><a href="#" class="btn btn-small" data-dismiss="modal">Close</a></p>
+
     </div>
-      </div>
-      <div class="modal-footer">
 
-        <p><div><%= f.submit "Sign up", :class => 'btn btn-small btn-success' %></div></p>
-
-        <p><a href="#" class="btn btn-small" data-dismiss="modal">Close</a></p>
-
-      </div>
-
-    <% end %>
-    </div>
+  <% end %>
+</div>

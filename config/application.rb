@@ -13,9 +13,11 @@ module Odsalimenta
     config.i18n.default_locale = :en ##esto configura para que el archivo es.yml que esta dentro de config/locales, sea el idioma por defecto
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # -- all .rb files in that directory are automMyFailureAppatically loaded.
     #
     #
+
+    config.autoload_paths << Rails.root.join('lib')
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do

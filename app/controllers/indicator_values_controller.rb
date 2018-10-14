@@ -10,7 +10,7 @@ class IndicatorValuesController < ApplicationController
     @indicatorvalue = IndicatorValue.new
   end
 
-  def edit
+  def editindicator_values
     @indicatorvalue = IndicatorValue.find(params[:id])
   end
 
@@ -36,8 +36,10 @@ class IndicatorValuesController < ApplicationController
 
       end
     end
-
-    redirect_to 'indicator_values/newindicadorvalue'
+    @cities=City.all
+    @indicators= Indicator.all
+    @indicatorvalue = IndicatorValue.new
+    render 'newindicadorvalue'
 
   end
 

@@ -17,6 +17,7 @@ module Odsalimenta
     #
     #
 
+    ##para agregar los que estan dentro de la carpeta lib
     config.autoload_paths << Rails.root.join('lib')
 
     config.middleware.insert_before 0, Rack::Cors do

@@ -55,7 +55,7 @@ class GoalsController < ApplicationController
 
   def goal_params
     ##parametros permitidos
-    params.require(:goal).permit(:name,:number,:description)
+    params.require(:goal).permit(:name,:number,:description,:avatar)
   end
 
 end

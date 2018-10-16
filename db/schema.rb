@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181009155832) do
+ActiveRecord::Schema.define(version: 20181015224215) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20181009155832) do
     t.text "description"
     t.datetime "delete_at"
     t.string "avatar"
+    t.float "urban_population", limit: 24
+    t.float "rural_population", limit: 24
+    t.string "total_area"
+    t.integer "foundation_year"
+    t.string "folder_avatar", default: "logos/cities/"
     t.index ["department_id"], name: "index_cities_on_department_id"
     t.index ["goal_group_id"], name: "index_cities_on_goal_group_id"
     t.index ["group_cities_id"], name: "index_cities_on_group_cities_id"
@@ -77,6 +82,8 @@ ActiveRecord::Schema.define(version: 20181009155832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "delete_at"
+    t.string "avatar"
+    t.string "folder_avatar", default: "logos/goals/"
   end
 
   create_table "group_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

@@ -1,4 +1,5 @@
 var indicadorValue = {
+    tablaindicador: null,
     initNewIndicadorValue: function () {
 
         jQuery(".chosen").chosen({
@@ -19,16 +20,20 @@ var indicadorValue = {
             indicadorValue.tableCargarTodos();
         });
 
+
         indicadorValue.tableCargarTodos();
 
 
+
+
+
     },
-    onchangeGoal: function (){
+    onchangeGoal: function () {
         $("select#goal_id_index").on("change", function () {
             $.ajax({
                 url: "/filter_targets_by_goals",
                 type: "GET",
-                async:false,
+                async: false,
                 data: {selected_goal: $(this).val(), selectargetid: "target_id"}
             });
         });
@@ -42,10 +47,42 @@ var indicadorValue = {
             data: {goal: $("#goal_id_index").val(), target: $("#target_id").val(), anio: $("#anio").val()},
             url: base_url + '/indicator_values/getvalueindicators',
             success: function (data) {
-
                 $("#opentbl").html(data);
-                $('#tablanewindicvalue').DataTable();
+                indicadorValue.tablaindicador = $('#tablanewindicvalue').DataTable({
+                    keys: true,
+                    "searching": false,
+                    "ordering": false,
+                    "bPaginate": false,
+                    fixedHeader: {
+                        header: true,
+                        footer: true
+                    },
+                    scrollY: '30vh',
+                    scrollCollapse: true,
+                    paging: false,
+                    info: false,
+                    "sScrollX": "100%",
+                });
+                indicadorValue.keyFocusEvent();
             }
+        });
+    },
+    keyFocusEvent: function () {
+        // Inline editing on tab focus
+
+
+        indicadorValue.tablaindicador.off('key-focus');
+        indicadorValue.tablaindicador.on('key-focus', function (e, datatable, cell) {
+            var rowData = datatable.row(cell.index().row).data();
+            var colData = cell.data();
+            var objectCell = $($.parseHTML(colData));
+            var elemento = $("#" + objectCell.attr('id'));
+
+
+            //esto lo hago para que cuandp pase el keyfocus sobre el td busque los datos del producto
+            //sobre el cual se esta seleccionado
+            var rowNode = datatable.row(cell.index().row).node();
+
         });
     }
 }

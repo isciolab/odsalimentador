@@ -27,7 +27,7 @@ class CitiesController < ApplicationController
 
   def update
     @city = City.find(params[:id])
-
+    @city
     if @city.update_attributes(city_params)
       redirect_to cities_url
     else

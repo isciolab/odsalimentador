@@ -1,17 +1,19 @@
-<table id="tablanewindicvalue" class="table table-striped table-bordered">
+<table id="tablanewindicvalue" class="table table-striped dataTable table-bordered
+                                             table-hover table-featured">
   <thead>
   <tr>
     <th scope="col"></th>
 
     <% @indicators.each do |row| %>
       <th scope="col"><%= row.number %></th>
-    <% end %>
+    <% end %>DataTables
   </tr>
   </thead>
   <tbody>
-  <% @cities.each do |row| %>
+  <% cont=0
+     @cities.each do |row| %>
     <tr>
-      <th scope="row"><%= row.name %></th>
+      <th role="row" tabindex="<%= cont %>"><%= row.name %></th>
       <% score = "" %>
       <% @indicators.each do |rowindicator| %>
 
@@ -23,7 +25,8 @@
 
         <td> <%= text_field("indicador_value[#{row.id}]", rowindicator.id, class: "form-control", value: score) %></td>
 
-      <% end %>
+      <% cont=cont+1
+         end %>
     </tr>
   <% end %>
   </tbody>

@@ -20,6 +20,7 @@ class Users::SessionsController < Devise::SessionsController
 
   def allusers
     @users= User.all
+    puts current_user.inspect
   end
 
   # protected

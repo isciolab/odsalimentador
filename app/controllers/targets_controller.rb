@@ -69,7 +69,7 @@ class TargetsController < ApplicationController
   ##nombre del modelo _params
   def target_params
     ##parametros permitidos
-    params.require(:target).permit(:name,:available,:goal_id,:number)
+    params.require(:target).permit(:name,:available,:goal_id,:number,:description)
 
   end
 

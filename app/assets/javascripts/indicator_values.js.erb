@@ -44,22 +44,9 @@ var indicadorValue = {
             url: base_url + '/indicator_values/getvalueindicators',
             success: function (data) {
                 $("#opentbl").html(data);
-                indicadorValue.tablaindicador = $('#tablanewindicvalue').DataTable({
-                    keys: true,
-                    "searching": false,
-                    "ordering": false,
-                    "bPaginate": false,
-                    fixedHeader: {
-                        header: true,
-                        footer: true
-                    },
-                    scrollY: '30vh',
-                    scrollCollapse: true,
-                    paging: false,
-                    info: false,
-                    "sScrollX": "100%",
-                });
-                indicadorValue.keyFocusEvent();
+                alert(data)
+                $('#tablanewindicvalue').DataTable();
+
             }
         });
     },

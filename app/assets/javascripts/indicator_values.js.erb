@@ -44,7 +44,6 @@ var indicadorValue = {
             url: base_url + '/indicator_values/getvalueindicators',
             success: function (data) {
                 $("#opentbl").html(data);
-                alert(data)
                 $('#tablanewindicvalue').DataTable();
 
             }

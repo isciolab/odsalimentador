@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181015224215) do
+ActiveRecord::Schema.define(version: 20181016220700) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20181015224215) do
     t.datetime "updated_at", null: false
     t.bigint "goal_id"
     t.datetime "delete_at"
+    t.text "description"
     t.index ["goal_id"], name: "index_targets_on_goal_id"
   end
 

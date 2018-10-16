@@ -127,6 +127,7 @@
 
     $(document).ready(function() {
 
+        $('#tablavalueindica').DataTable();
 
         $('#modalindicador').on('hidden.bs.modal', function (e) {
         });
@@ -144,6 +145,8 @@
                 data: { selected_goal: $(this).val(),selectargetid:"target_id" }
             });
         });
+
+
     } );
 </script>
 

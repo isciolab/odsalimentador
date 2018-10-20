@@ -14,31 +14,31 @@
 //= require rails-ujs
 //= require 'js/popper.min.js'
 //= require turbolinks
-//= require bootstrap
 
-//= require 'js/plugins'
-//= require 'js/main'
-//= require 'js/lib/chart-js/Chart.bundle.js'
-//= require 'js/lib/data-table/datatables.min.js'
-//= require 'js/lib/data-table/dataTables.bootstrap.min.js'
-//= require 'js/lib/data-table/dataTables.buttons.min.js'
-//= require 'js/lib/data-table/buttons.bootstrap.min.js'
-//= require 'js/lib/data-table/jszip.min.js'
-//= require 'js/lib/data-table/pdfmake.min.js'
-//= require 'js/lib/data-table/vfs_fonts.js'
-//= require 'js/lib/data-table/buttons.html5.min.js'
-//= require 'js/lib/data-table/buttons.print.min.js'
-//= require 'js/lib/data-table/buttons.colVis.min.js'
-//= require 'js/lib/data-table/datatables-init.js'
-//= require 'js/lib/chosen/chosen.jquery.min.js'
-//= require font_awesome5
+
+//= require 'newtemplate/plugins/respond.min.js'
+//= require 'newtemplate/plugins/excanvas.min.js'
+//= require 'newtemplate/plugins/ie8.fix.min.js'
+//= require 'newtemplate/plugins/bootstrap/js/bootstrap.min.js'
+//= require 'newtemplate/plugins/js.cookie.min.js'
+//= require 'newtemplate/plugins/jquery-slimscroll/jquery.slimscroll.min.js'
+//= require 'newtemplate/plugins/jquery.blockui.min.js'
+//= require 'newtemplate/plugins/bootstrap-switch/js/bootstrap-switch.min.js'
+//= require 'newtemplate/plugins/select2.full.min.js'
+//= require 'newtemplate/scripts/datatable.js'
+//= require 'newtemplate/plugins/datatables/datatables.min.js'
+//= require 'newtemplate/plugins/datatables/datatables.bootstrap.js'
+//= require 'newtemplate/plugins/toast-master/js/jquery.toast.js'
+//= require 'newtemplate/scripts/Utilities.js'
+//= require 'newtemplate/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js'
+//= require 'newtemplate/scripts/app.min.js'
+//= require 'newtemplate/layouts/layout/scripts/layout.min.js'
+//= require 'newtemplate/layouts/layout/scripts/demo.min.js'
+//= require 'newtemplate/layouts/global/scripts/quick-sidebar.min.js'
+//= require 'newtemplate/layouts/global/scripts/quick-nav.min.js'
 
 //= require indicator_values.js
 
 
 
-var App = {
-
-
-}
 

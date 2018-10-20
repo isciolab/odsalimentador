@@ -12,17 +12,25 @@
  * The available variables can be found here.
 
  */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all);
+@import 'newtemplate/plugins/font-awesome/css/font-awesome.min.css';
+@import 'newtemplate/plugins/simple-line-icons/simple-line-icons.min.css';
+@import 'newtemplate/plugins/bootstrap/css/bootstrap.min.css';
+@import 'newtemplate/plugins/bootstrap-switch/css/bootstrap-switch.min.css';
+@import 'newtemplate/css/components-rounded.min.css';
+@import 'newtemplate/css/datatable/datatables.min.css';
 
-@import 'css/normalize.css';
-@import 'css/bootstrap.min.css';
-@import 'css/font-awesome.min.css';
-@import 'css/themify-icons';
-@import 'css/flag-icon.min';
-@import 'css/cs-skin-elastic';
+@import 'newtemplate/css/datatable/datatables.bootstrap.css';
+@import 'newtemplate/css/select2.min.css';
+@import 'newtemplate/css/select2-bootstrap.min.css';
+@import 'newtemplate/plugins/toast-master/css/jquery.toast.css';
+@import 'newtemplate/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css';
+@import 'newtemplate/css/plugins.min.css';
+@import 'newtemplate/layouts/layout/css/layout.min.css';
+@import 'newtemplate/layouts/layout/css/themes/darkblue.min.css';
+@import 'newtemplate/layouts/layout/css/custom.min.css';
 
-@import 'css/lib/datatable/dataTables.bootstrap.min.css';
-@import 'scss/style.scss';
-@import 'css/lib/chosen/chosen.min.css';
+
 
 
 

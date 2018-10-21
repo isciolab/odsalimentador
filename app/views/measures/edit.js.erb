@@ -1,6 +1,9 @@
 
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modalmeasuredialog").html('<%= j render "form", {title: "Editar Unidad de Medida",title_button:"Actualizar"} %>');
 setTimeout( function (){
+    $("#modalmeasure").modal('show');
+
+    /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+    $("#modalmeasuredialog").html('<%= j render "form", {title: "Editar Unidad de Medida",title_button:"Actualizar"} %>');
+
     $('*[autofocus]').focus()
 },500)

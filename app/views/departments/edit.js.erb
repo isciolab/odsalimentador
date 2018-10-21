@@ -1,7 +1,8 @@
 
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modaldepartmentdialog").html('<%= j render "form", {title: "Editar Departamento",title_button:"Actualizar"} %>');
+$("#modaldepartamento").modal('show')
 $(function() {
+    /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+    $("#modaldepartmentdialog").html('<%= j render "form", {title: "Editar Departamento",title_button:"Actualizar"} %>');
     setTimeout( function (){
         $('*[autofocus]').focus()
     },500)

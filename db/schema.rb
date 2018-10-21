@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181016220700) do
+ActiveRecord::Schema.define(version: 20181021211325) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -166,6 +166,13 @@ ActiveRecord::Schema.define(version: 20181016220700) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_by_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.bigint "user_id"
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_user_by_cities_on_city_id"
+    t.index ["user_id"], name: "index_user_by_cities_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -203,6 +210,8 @@ ActiveRecord::Schema.define(version: 20181016220700) do
   add_foreign_key "indicators", "measures"
   add_foreign_key "indicators", "targets"
   add_foreign_key "targets", "goals"
+  add_foreign_key "user_by_cities", "cities"
+  add_foreign_key "user_by_cities", "users"
   add_foreign_key "users", "cities"
   add_foreign_key "users", "roles"
 end

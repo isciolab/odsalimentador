@@ -1,8 +1,9 @@
 
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modalgrupociudaddialog").html('<%= j render "form", {title: "Nuevo Grupo Ciudad",title_button:"Crear"} %>');
 
 $(function() {
+    $('#modalgrupociudad').modal('show')
+    /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+    $("#modalgrupociudaddialog").html('<%= j render "form", {title: "Nuevo Grupo Ciudad",title_button:"Crear"} %>');
 
     setTimeout( function (){
         $('*[autofocus]').focus()

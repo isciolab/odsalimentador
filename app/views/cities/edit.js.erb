@@ -1,8 +1,8 @@
 
 /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modalcitydialog").html('<%= j render "form", {title: "Editar Ciudad",title_button:"Actualizar"} %>');
-
+$("#modalciudad").modal('show');
 $(function() {
+    $("#modalcitydialog").html('<%= j render "form", {title: "Editar Ciudad",title_button:"Actualizar"} %>');
     jQuery(".chosen").chosen({
         disable_search_threshold: 10,
         no_results_text: "Oops, nothing found!",

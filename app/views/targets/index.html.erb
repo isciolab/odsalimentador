@@ -1,11 +1,10 @@
 
 <div class="row bg-title">
   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-    <h4 class="page-title">Productos</h4></div>
+    <h4 class="page-title">Metas</h4></div>
   <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
     <ol class="breadcrumb">
-      <li><a href="<?= base_url() ?>">SID</a></li>
-      <li class="active">Productos</li>
+      <li class="active">Metas</li>
     </ol>
   </div>
   <!-- /.col-lg-12 -->
@@ -20,10 +19,13 @@
       <div class="row">
         <div class="btn-group m-b-20">
 
-          <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
-                     { include_blank: false,
-                       prompt: "Seleccione Un ODS"},
-                     {:class => "form-control chosen"}) %>
+          <div class="col-sm-2">
+            <div class="float-left">
+              <%= button_to "Nueva Meta", { action: "new" },data:{toggle:"modal"}, remote: true, class: "btn btn-info",
+                            :method => :get %>
+            </div>
+          </div>
+
 
         </div>
       </div>
@@ -32,19 +34,18 @@
       <div class="row">
         <div class="form-group">
           <div class="col-md-1">
-            <label>Bodega</label>
+            <label>Filtrar por ODS</label>
           </div>
-          <div class="col-md-5"></div>
-          <div class="col-md-2">
-            <label>Control de inventario</label>
-          </div>
-          <div class="col-md-4"></div>
+          <div class="col-md-5">    <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
+                                               { include_blank: false,
+                                                 prompt: "Seleccione Un ODS"},
+                                               {:class => "form-control chosen"}) %></div>
 
         </div>
       </div>
       <br>
 
-      <div class="table-responsive" id="productostable">
+      <div class="table-responsive" id="">
         <table class='table table-striped dataTable table-bordered' id="tblmetas">
           <thead>
           <tr>
@@ -68,9 +69,9 @@
                      else
                        concat  "NO";
                      end %></td>
-              <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalmetas",toggle:"modal"}, remote: true, class:"btn btn-primary",
+              <td><%= button_to "Editar", {action: "edit", id: row.id},data:{toggle:"modal"}, remote: true, class:"btn btn-primary",
                                 :method => :get %>
-                <%= button_to "Eliminar", {action: "deletetarget", id: row.id},data:{target:"#modalDelGlobal",toggle:"modal"}, remote: true,
+                <%= button_to "Eliminar", {action: "deletetarget", id: row.id},data:{toggle:"modal"}, remote: true,
                               class:"btn btn-danger",
                               :method => :get %>
               </td>

@@ -1,6 +1,8 @@
 
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modalodsgroupdialog").html('<%= j render "form", {title: "Editar Grupo ODS",title_button:"Actualizar"} %>');
+
 setTimeout( function (){
+    $("#modalgrupoods").modal('show')
+    /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+    $("#modalodsgroupdialog").html('<%= j render "form", {title: "Editar Grupo ODS",title_button:"Actualizar"} %>');
     $('*[autofocus]').focus()
 },500)

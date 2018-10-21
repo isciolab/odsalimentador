@@ -1,7 +1,14 @@
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modalDelGlobalContent").html('<%= j render "layouts/modaldelete", {
+$(function () {
+
+    $("#modalDelGlobal").modal('show');
+
+    /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+    $("#modalDelGlobalContent").html('<%= j render "layouts/modaldelete", {
 title: "Eliminar Ciudad",
 object: @city,
 textodelete:"Está seguro que desea eliminar esta Ciudad: "+@city.name+" ?"
 }
 %>');
+
+
+});

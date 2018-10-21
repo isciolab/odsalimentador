@@ -1,85 +1,93 @@
 
-<div class="breadcrumbs">
-  <div class="col-sm-4">
-    <div class="page-header float-left">
-      <div class="page-title">
-        <h1>Parametrizar Ciudades#index</h1>
-      </div>
-    </div>
+<div class="row bg-title">
+  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <h4 class="page-title">Ciudades</h4></div>
+  <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+    <ol class="breadcrumb">
+      <li class="">Ciudades</li>
+      <li class="active">Parametrizar Ciudades</li>
+    </ol>
   </div>
-  <div class="col-sm-8">
-    <div class="page-header float-right">
-      <div class="page-title">
-        <ol class="breadcrumb text-right">
-          <li><a href="#">Ciudad</a></li>
-          <li class="active">Parametrizar Ciudades</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="float-left">
-      <%= button_to "Nueva Ciudad", { action: "new" },data:{target:"#modalciudad",toggle:"modal"}, remote: true, class: "btn btn-info",
-                    :method => :get %>
-    </div>
-  </div>
-
+  <!-- /.col-lg-12 -->
 </div>
+<div class="row">
 
-<div class="content mt-3">
 
-  <div class="animated fadeIn">
-    <div class="row">
+  <div class="col-md-12">
+    <div class="white-box">
 
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <strong class="card-title">Lista de Ciudades</strong>
-          </div>
-          <div class="card-body">
-            <table id="tblciudad" class="table table-striped table-bordered">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Departamento</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Poblaci&oacute;n Total</th>
-                <th scope="col">Grupo</th>
-                <th scope="col">Descripci&oacute;n</th>
-                <th scope="col">Acci&oacute;n</th>
-              </tr>
-              </thead>
-              <tbody>
 
-              <% @cities.each do |row| %>
-                <tr>
-                  <th scope="row"><%= row.id %></th>
-                  <td>
-                    <% unless row.department.nil? %>
-                     <%= row.department.name %>
-                      <% end %>
-                  </td>
-                  <td><%= row.name %></td>
-                  <td><%= row.total_population %></td>
-                  <td><%= row.group_city.nil? ? '' : row.group_city.name %></td>
-                  <td><%= row.description %></td>
-                  <td><%= button_to "Editar", {action: "edit", id: row.id},data:{target:"#modalciudad",toggle:"modal"}, remote: true, class:"btn btn-primary",
-                                    :method => :get %>
-                    <%= button_to "Eliminar", {action: "deletecity", id: row.id},data:{target:"#modalDelGlobal",toggle:"modal"}, remote: true,
-                                  class:"btn btn-danger",
-                                  :method => :get %>
-                  </td>
-                </tr>
-              <% end %>
+      <div class="row">
+        <div class="btn-group m-b-20">
 
-              </tbody>
-            </table>
+          <div class="col-sm-2">
+            <div class="float-left">
+              <%= button_to "Nueva Ciudad", { action: "new" },data:{toggle:"modal"}, remote: true, class: "btn btn-info",
+                            :method => :get %>
+            </div>
           </div>
         </div>
       </div>
+      <br>
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-2">
+            <label>Filtrar por Departamento</label>
+          </div>
+          <div class="col-md-5">    <%= select("department", "department_id", Department.all.collect {|p| [ p.name, p.id ] },
+                                               { include_blank: false,
+                                                 prompt: "Seleccione Un Departamento"},
+                                               {:class => "form-control chosen"}) %></div>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="table-responsive" id="">
+        <table class='table table-striped dataTable table-bordered' id="tblciudad">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Poblaci&oacute;n Total</th>
+            <th scope="col">Grupo</th>
+            <th scope="col">Descripci&oacute;n</th>
+            <th scope="col">Acci&oacute;n</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <% @cities.each do |row| %>
+            <tr>
+              <th scope="row"><%= row.id %></th>
+              <td>
+                <% unless row.department.nil? %>
+                  <%= row.department.name %>
+                <% end %>
+              </td>
+              <td><%= row.name %></td>
+              <td><%= row.total_population %></td>
+              <td><%= row.group_city.nil? ? '' : row.group_city.name %></td>
+              <td><%= row.description %></td>
+              <td><%= button_to "Editar", {action: "edit", id: row.id},data:{toggle:"modal"}, remote: true, class:"btn btn-primary",
+                                :method => :get %>
+                <%= button_to "Eliminar", {action: "deletecity", id: row.id},data:{toggle:"modal"}, remote: true,
+                              class:"btn btn-danger",
+                              :method => :get %>
+              </td>
+            </tr>
+          <% end %>
+
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div><!-- .animated -->
+  </div>
 </div>
+
+
 
 <div class="modal fade" id="modalciudad" tabindex="-1" role="dialog"
      aria-labelledby="mediumModalLabel" aria-hidden="true">
@@ -88,6 +96,7 @@
 
   </div>
 </div>
+
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -98,3 +107,6 @@
 
     } );
 </script>
+
+
+

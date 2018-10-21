@@ -43,27 +43,49 @@ var indicadorValue = {
             data: {goal: $("#goal_id_index").val(), target: $("#target_id").val(), anio: $("#anio").val()},
             url: base_url + '/indicator_values/getvalueindicators',
             success: function (data) {
+                $("#opentbl").html('');
                 $("#opentbl").html(data);
 
-
+                indicadorValue.tablaindicador = $('#tablanewindicvalue').DataTable({
+                    keys: true,
+                    "searching": false,
+                    "ordering": false,
+                    "bPaginate": false,
+                    fixedHeader: {
+                        header: true,
+                        footer: true
+                    },
+                    scrollY: '40vh',
+                    scrollCollapse: true,
+                    paging: false,
+                    info: false,
+                    "sScrollX": "100%",
+                });
+                indicadorValue.keyFocusEvent();
             }
         });
     },
     keyFocusEvent: function () {
         // Inline editing on tab focus
-
-
         indicadorValue.tablaindicador.off('key-focus');
         indicadorValue.tablaindicador.on('key-focus', function (e, datatable, cell) {
-            var rowData = datatable.row(cell.index().row).data();
+
             var colData = cell.data();
             var objectCell = $($.parseHTML(colData));
-            var elemento = $("#" + objectCell.attr('id'));
 
-
-            //esto lo hago para que cuandp pase el keyfocus sobre el td busque los datos del producto
             //sobre el cual se esta seleccionado
-            var rowNode = datatable.row(cell.index().row).node();
+            if ($("#" + objectCell.attr('id')).length != 0) {
+                //esto es para poner el curso al final del input y no al principio
+                var strLength = $("#" + objectCell.attr('id')).val().length * 2;
+                $("#" + objectCell.attr('id')).focus();
+                $("#" + objectCell.attr('id')).select();//esto es para que seleccione todo el valor del campo de texto
+                // $("#" + objectCell.attr('id'))[0].setSelectionRange(strLength, strLength);para que lo pongoal final
+            } else if (objectCell[0].lastChild != null) {
+
+                //aqui entra en el inputsearch para que le permita colocar el focus
+                $("#" + objectCell[0].lastChild.id).focus();
+                $("#" + objectCell[0].lastChild.id).select();
+            }
 
         });
     }

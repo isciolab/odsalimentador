@@ -68,12 +68,91 @@
   </div><!-- .animated -->
 </div>
 
+
+
+
+<div class="row bg-title">
+  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <h4 class="page-title">Departamentos</h4></div>
+  <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+    <ol class="breadcrumb">
+      <li class="">Configuraciones</li>
+      <li class="active">Departamentos</li>
+    </ol>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<div class="row">
+
+
+  <div class="col-md-12">
+    <div class="white-box">
+
+
+      <div class="row">
+        <div class="btn-group m-b-20">
+
+          <div class="col-sm-2">
+            <div class="float-left">
+              <%= button_to "Nuevo Departamento", { action: "new" },data:{toggle:"modal"}, remote: true, class: "btn btn-info",
+                            :method => :get %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-1">
+            <label>Filtrar por Departamento</label>
+          </div>
+          <div class="col-md-5">    <%= select("department", "department_id", Department.all.collect {|p| [ p.name, p.id ] },
+                                               { include_blank: false,
+                                                 prompt: "Seleccione Un Departamento"},
+                                               {:class => "form-control chosen"}) %></div>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="table-responsive" id="">
+        <table class='table table-striped dataTable table-bordered' id="tabladepartamentos">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acci&oacute;n</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @departments.each do |row| %>
+            <tr>
+              <th scope="row"><%= row.id %></th>
+              <td><%= row.name %></td>
+              <td><%= button_to "Editar", {action: "edit", id: row.id},data:{toggle:"modal"}, remote: true, class:"btn btn-primary",
+                                :method => :get %>
+                <%= button_to "Eliminar", {action: "deletedepartment", id: row.id},data:{toggle:"modal"}, remote: true,
+                              class:"btn btn-danger",
+                              :method => :get %>
+              </td>
+            </tr>
+          <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="modaldepartamento" tabindex="-1" role="dialog"
      aria-labelledby="mediumModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document" id="modaldepartmentdialog">
 
   </div>
 </div>
+
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -83,3 +162,6 @@
         });
     } );
 </script>
+
+
+

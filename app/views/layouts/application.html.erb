@@ -23,83 +23,6 @@
     <div class="row" id="page-content">
       <%= yield %>
     </div>
-    <div class="right-sidebar">
-      <div class="slimscrollright">
-        <div class="rpanel-title"> Panel de servicio <span><i class="ti-close right-side-toggle"></i></span>
-        </div>
-        <div class="r-panel-body">
-          <ul>
-            <li><b>Layout Options</b></li>
-            <li>
-              <div class="checkbox checkbox-info">
-                <input id="checkbox1" type="checkbox" class="fxhdr">
-                <label for="checkbox1"> Fix Header </label>
-              </div>
-            </li>
-            <li>
-              <div class="checkbox checkbox-warning">
-                <input id="checkbox2" type="checkbox" checked="" class="fxsdr">
-                <label for="checkbox2"> Fix Sidebar </label>
-              </div>
-            </li>
-            <li>
-              <div class="checkbox checkbox-success">
-                <input id="checkbox4" type="checkbox" class="open-close">
-                <label for="checkbox4"> Toggle Sidebar </label>
-              </div>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <div class="btn-group btn-group-justified btn-group-sm">
-                <a href="#"
-                   onclick="Venta.ver_catalogo('COOPIDRGOGAS')"
-                   class=" btn btn-primary">
-                  C. PRINCIPAL</a>
-              </div>
-            </li>
-            <li>
-              <div class="btn-group btn-group-justified btn-group-sm">
-                <a href="#"
-                   onclick="Venta.ver_catalogo('DROGUERIA')"
-                   class="btn btn-primary"> C. DROGUERIA</a>
-              </div>
-            </li>
-            <li>
-              <div class="btn-group btn-group-justified btn-group-sm">
-                <a href="#"
-                   onclick="Utilities.drogueriasRelacionadasModal()"
-                   class="btn btn-primary">RELACIONADAS</a>
-              </div>
-            </li>
-            <li>
-              <div class="btn-group btn-group-justified btn-group-sm">
-                <a href="javascript:App.buscarActualizacionesRepository()" class="btn btn-info"
-                   id="options-header-default">Buscar Actualizaciones</a>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="btn-group btn-group-justified btn-group-sm">
-                <a href="javascript:App.buscarActualizaciones()" class="btn btn-info"
-                   id="options-header-default">Actualizar base de datos</a>
-                <!--  <a href="javascript:void(0)" class="btn btn-primary"
-                     id="options-header-inverse">Dark</a>-->
-              </div>
-            </li>
-            <li>
-              <div class="btn-group btn-group-justified btn-group-sm">
-                <a href="javascript:App.generarBackup()" class="btn btn-success"
-                   id="options-header-default">Generar Backup</a>
-                <!--  <a href="javascript:void(0)" class="btn btn-primary"
-                     id="options-header-inverse">Dark</a>-->
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
   </div>
   <!-- /.container-fluid -->
@@ -111,7 +34,11 @@
   <%= yield %>
 <% end %>
 
+<div class="modal fade" id="modalDelGlobal" tabindex="-1" role="dialog" aria-labelledby="modalodsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" id="modalDelGlobalContent">
 
+  </div>
+</div>
 
 </body>
 </html>

@@ -51,10 +51,22 @@
 //= require 'newtemplate/js/flot-valuelabels-master/jquery.flot.valuelabels.min.js'
 //= require 'newtemplate/js/flot.stackpercent-master/jquery.flot.stackpercent.js'
 //= require 'newtemplate/js/flotanimator-master/jquery.flot.animator.min.js'
+//= require 'newtemplate/js/select2.full.min.js'
 
 //= require 'newtemplate/plugins/bower_components/datatables/media/js/jquery.dataTables.min.js'
 //= require 'newtemplate/js/dataTables.keyTable.min.js'
 //= require 'newtemplate/plugins/bower_components/datatables/media/js/dataTables.bootstrap.min.js'
+//= require 'newtemplate/plugins/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js'
+//= require 'newtemplate/plugins/bower_components/datatables.net-buttons/js/buttons.flash.min.js'
+//= require 'newtemplate/plugins/bower_components/jszip/dist/jszip.min.js'
+//= require 'newtemplate/plugins/bower_components/pdfmake/build/pdfmake.min.js'
+//= require 'newtemplate/plugins/bower_components/pdfmake/build/vfs_fonts.js'
+//= require 'newtemplate/plugins/bower_components/datatables.net-buttons/js/buttons.html5.min.js'
+//= require 'newtemplate/plugins/bower_components/datatables.net-buttons/js/buttons.print.min.js'
+//= require 'newtemplate/plugins/bower_components/datatables-plugins/api/sum().js'
+
+
+
 //= require 'newtemplate/js/flotanimator-master/jquery.flot.animator.min.js'
 //= require 'newtemplate/js/flotanimator-master/jquery.flot.animator.min.js'
 //= require 'newtemplate/js/app.js'

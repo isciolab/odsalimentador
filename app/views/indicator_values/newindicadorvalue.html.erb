@@ -1,12 +1,11 @@
-
-
 <div class="row bg-title">
   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-    <h4 class="page-title">Productos</h4></div>
+    <h4 class="page-title">Valores de Indicadores</h4></div>
   <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
     <ol class="breadcrumb">
-      <li><a href="<?= base_url() ?>">SID</a></li>
-      <li class="active">Productos</li>
+      <li><a href="#">Indicadores</a></li>
+      <li class="">Valores de Indicadores</li>
+      <li class="active">Editar Valores de Indicadores</li>
     </ol>
   </div>
   <!-- /.col-lg-12 -->
@@ -14,117 +13,95 @@
 <div class="row">
 
   <%= form_for @indicatorvalue, remote: true do |f| %>
-  <div class="col-md-12">
-    <div class="white-box">
+    <div class="col-md-12">
+      <div class="white-box">
+        <div class="row">
+          <div class="btn-group m-b-20">
+            <div class="col-sm-2">
+              <%= f.submit "Guardar", class: "btn btn-primary" %>  </div>
+          </div>
+        </div>
+        <br>
 
+        <div class="row">
+          <div class="form-group">
 
-
-
-      <div class="row">
-        <div class="btn-group m-b-20">
-
-
-          <div class="col-sm-4">
-            <div class="page-header float-left">
-              <div class="page-title">
-                <h1>Nuevo Valor Indicador#index</h1>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="">Filtrar por ODS</label>
               </div>
             </div>
-          </div>
-          <div class="col-sm-8">
-            <div class="page-header float-right">
-              <div class="page-title">
-                <ol class="breadcrumb text-right">
-                  <li><a href="#">Indicadores</a></li>
-                  <li class="active">Valores Indicadores</li>
-                </ol>
+            <div class="col-md-2">
+              <div class="form-group">
+
+                <%= select("goal", "id_index", Goal.all.collect {|p| [p.number, p.id]},
+                           {include_blank: false,
+                            prompt: "Seleccione Un ODS"},
+                           {:class => "form-control chosen", :onChange => "indicadorValue.onchangeGoal();"}) %>
+
               </div>
             </div>
-          </div>
 
-          <div class="col-md-2">
-            <div class="form-group">
-              <label for="">Filtrar por ODS</label>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="">Filtrar por Meta</label>
+              </div>
             </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
+            <div class="col-md-2">
+              <div class="form-group">
 
-              <%= select("goal", "id_index", Goal.all.collect {|p| [ p.number, p.id ] },
-                         { include_blank: false,
-                           prompt: "Seleccione Un ODS"},
-                         {:class => "form-control chosen",:onChange=>"indicadorValue.onchangeGoal();"}) %>
+                <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
+                           {include_blank: false,
+                            prompt: "Seleccione Una Meta"},
+                           {:class => "form-control chosen buscarvalores", id: "target_id"}) %>
 
+              </div>
             </div>
-          </div>
 
-          <div class="col-md-2">
-            <div class="form-group">
-              <label for="">Filtrar por Meta</label>
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="">Filtrar por año</label>
+              </div>
             </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
+            <div class="col-md-2">
+              <div class="form-group">
 
-              <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
-                         { include_blank: false,
-                           prompt: "Seleccione Una Meta"},
-                         {:class => "form-control chosen buscarvalores",id:"target_id"}) %>
-
+                <select class="form-control chosen buscarvalores" id="anio" name="anio">
+                  <% for i in 2000..2018 %>
+                    <option value="<%= i %>"
+                            <% if i == DateTime.now.year %>
+                            <%= "selected" %>
+                            <% end %> ><%= i %></option>
+                  <% end %>
+                </select>
+              </div>
             </div>
-          </div>
 
 
-          <div class="col-md-2">
-            <div class="form-group">
-              <label for="">Filtrar por año</label>
-            </div>
           </div>
-          <div class="col-md-2">
-            <div class="form-group">
+        </div>
 
-              <select  class="form-control chosen buscarvalores" id="anio" name="anio" >
-                <% for i in 2000..2018 %>
-                  <option value="<%= i %>"
-                          <% if i==DateTime.now.year  %>
-                          <%= "selected" %>
-                          <% end %> ><%= i %></option>
-                <% end %>
-              </select>
-            </div>
+        <br>
+        <div class="row">
+          <div class="form-group">
+
+            <p>* En la parte superior se listan los indicadores</p>
+            <p>* En la parte izquierda se listan las ciudades</p>
+
           </div>
+        </div>
+
+
+        <div class="table-responsive  " id="opentbl" style="position: relative;">
 
         </div>
       </div>
-      <br>
-
-      <%= f.submit "Guardar", class: "btn btn-primary"%>
-      <div class="row">
-        <div class="form-group">
-          <div class="col-md-1">
-            <label>Bodega</label>
-          </div>
-          <div class="col-md-5"></div>
-          <div class="col-md-2">
-            <label>Control de inventario</label>
-          </div>
-          <div class="col-md-4"></div>
-
-        </div>
-      </div>
-      <br>
-      <div class="card-body" id="opentbl" >
-
-
-      </div>
-
     </div>
 
+  <% end %>
 
-  </div>
-    <% end %>
 </div>
-
 
 <div class="modal fade" id="modalindicador" tabindex="-1" role="dialog"
      aria-labelledby="mediumModalLabel" aria-hidden="true">
@@ -132,12 +109,11 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         indicadorValue.initNewIndicadorValue()
-
-
-    } );
+    });
 </script>
+
 
 
 

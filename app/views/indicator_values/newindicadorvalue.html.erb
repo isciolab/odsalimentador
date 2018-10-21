@@ -1,121 +1,143 @@
 
-<%= form_for @indicatorvalue, remote: true do |f| %>
-<div class="breadcrumbs">
-  <div class="col-sm-4">
-    <div class="page-header float-left">
-      <div class="page-title">
-        <h1>Nuevo Valor Indicador#index</h1>
-      </div>
-    </div>
+
+<div class="row bg-title">
+  <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+    <h4 class="page-title">Productos</h4></div>
+  <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+    <ol class="breadcrumb">
+      <li><a href="<?= base_url() ?>">SID</a></li>
+      <li class="active">Productos</li>
+    </ol>
   </div>
-  <div class="col-sm-8">
-    <div class="page-header float-right">
-      <div class="page-title">
-        <ol class="breadcrumb text-right">
-          <li><a href="#">Indicadores</a></li>
-          <li class="active">Valores Indicadores</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label for="">Filtrar por ODS</label>
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-
-      <%= select("goal", "id_index", Goal.all.collect {|p| [ p.number, p.id ] },
-                 { include_blank: false,
-                   prompt: "Seleccione Un ODS"},
-                 {:class => "form-control chosen",:onChange=>"indicadorValue.onchangeGoal();"}) %>
-
-    </div>
-  </div>
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label for="">Filtrar por Meta</label>
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-
-      <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
-                 { include_blank: false,
-                   prompt: "Seleccione Una Meta"},
-                 {:class => "form-control chosen buscarvalores",id:"target_id"}) %>
-
-    </div>
-  </div>
-
-
-  <div class="col-md-2">
-    <div class="form-group">
-      <label for="">Filtrar por año</label>
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-
-      <select  class="form-control chosen buscarvalores" id="anio" name="anio" >
-        <% for i in 2000..2018 %>
-          <option value="<%= i %>"
-                  <% if i==DateTime.now.year  %>
-                      <%= "selected" %>
-                    <% end %> ><%= i %></option>
-        <% end %>
-      </select>
-    </div>
-  </div>
-
-
-
+  <!-- /.col-lg-12 -->
 </div>
+<div class="row">
 
-<div class="content mt-3">
-
-  <div class="animated fadeIn">
-    <div class="row">
-
-      <div class="col-md-12">
-        <div class="card">
-
-          <div class="card-header">
-            <div class="col-sm-2">
-              <div class="float-left">
+  <%= form_for @indicatorvalue, remote: true do |f| %>
+  <div class="col-md-12">
+    <div class="white-box">
 
 
-                <%= f.submit "Guardar", class: "btn btn-primary"%>
+
+
+      <div class="row">
+        <div class="btn-group m-b-20">
+
+
+          <div class="col-sm-4">
+            <div class="page-header float-left">
+              <div class="page-title">
+                <h1>Nuevo Valor Indicador#index</h1>
               </div>
             </div>
           </div>
-          <div class="card-body dataTables_wrapper no-footer" id="opentbl" >
+          <div class="col-sm-8">
+            <div class="page-header float-right">
+              <div class="page-title">
+                <ol class="breadcrumb text-right">
+                  <li><a href="#">Indicadores</a></li>
+                  <li class="active">Valores Indicadores</li>
+                </ol>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="">Filtrar por ODS</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+
+              <%= select("goal", "id_index", Goal.all.collect {|p| [ p.number, p.id ] },
+                         { include_blank: false,
+                           prompt: "Seleccione Un ODS"},
+                         {:class => "form-control chosen",:onChange=>"indicadorValue.onchangeGoal();"}) %>
+
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="">Filtrar por Meta</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+
+              <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
+                         { include_blank: false,
+                           prompt: "Seleccione Una Meta"},
+                         {:class => "form-control chosen buscarvalores",id:"target_id"}) %>
+
+            </div>
+          </div>
+
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="">Filtrar por año</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+
+              <select  class="form-control chosen buscarvalores" id="anio" name="anio" >
+                <% for i in 2000..2018 %>
+                  <option value="<%= i %>"
+                          <% if i==DateTime.now.year  %>
+                          <%= "selected" %>
+                          <% end %> ><%= i %></option>
+                <% end %>
+              </select>
+            </div>
           </div>
 
         </div>
       </div>
+      <br>
+
+      <%= f.submit "Guardar", class: "btn btn-primary"%>
+      <div class="row">
+        <div class="form-group">
+          <div class="col-md-1">
+            <label>Bodega</label>
+          </div>
+          <div class="col-md-5"></div>
+          <div class="col-md-2">
+            <label>Control de inventario</label>
+          </div>
+          <div class="col-md-4"></div>
+
+        </div>
+      </div>
+      <br>
+      <div class="card-body" id="opentbl" >
+
+
+      </div>
 
     </div>
-  </div><!-- .animated -->
+
+
+  </div>
+    <% end %>
 </div>
-<% end %>
+
 
 <div class="modal fade" id="modalindicador" tabindex="-1" role="dialog"
      aria-labelledby="mediumModalLabel" aria-hidden="true">
 </div>
 
+
 <script type="text/javascript">
+    $(document).ready(function() {
+        indicadorValue.initNewIndicadorValue()
 
-    indicadorValue.initNewIndicadorValue()
 
-    $('#example').DataTable( {
-        keys: {
-            blurable: false
-        }
     } );
 </script>
+
+
 

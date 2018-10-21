@@ -1,115 +1,125 @@
 
-<div class="col-md-12">
-  <!-- BEGIN EXAMPLE TABLE PORTLET-->
-  <div class="portlet light bordered">
-    <div class="portlet-title">
-      <div class="caption font-dark">
-        <i class="icon-settings font-dark"></i>
-        <span class="caption-subject bold uppercase"> Lista de Indicadores </span>
-      </div>
-
-    </div>
-    <div class="portlet-body">
-      <div class="table-toolbar">
-        <div class="row">
-
-
-          <div class="col-md-2">
-            <div class="form-group">
-              <label for="">Filtrar por ODS</label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
-
-              <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
-                         { include_blank: false,
-                           prompt: "Seleccione Un ODS"},
-                         {:class => "form-control chosen"}) %>
-
-            </div>
-          </div>
-
-          <div class="col-md-2">
-            <div class="form-group">
-              <label for="">Filtrar por Meta</label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
-
-              <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
-                         { include_blank: false,
-                           prompt: "Seleccione Una Meta"},
-                         {:class => "form-control chosen",id:"target_id"}) %>
-
-            </div>
-          </div>
-
-
-          <div class="col-md-2">
-            <div class="form-group">
-              <label for="">Filtrar por año</label>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
-
-              <select  class="form-control chosen">
-                <% for i in 2000..2018 %>
-                  <option value="<%= i %>"><%= i %></option>
-                <% end %>
-              </select>
-
-            </div>
-          </div>
-
-          <div class="col-sm-2">
-            <%= button_to "Editar Valores", { action: "newindicadorvalue" }, remote: false, class: "btn sbold green", :method => :get %>
-          </div>
-
-
-        </div>
-      </div>
-      <div  class="dataTables_wrapper no-footer">
-        <div  class="table-scrollable">
-          <table id="tablavalueindica" class="table table-striped table-bordered table-hover table-checkable
-           order-column dataTable no-footer"
-                 role="grid" aria-describedby="sample_1_info">
-            <thead>
-            <tr>
-              <th scope="col">ODS</th>
-              <th scope="col">Meta</th>
-              <th scope="col"># Indicador</th>
-              <th scope="col">Ciudad</th>
-              <th scope="col">Año</th>
-              <th scope="col">% Actual</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% @indicatorvalues.each do |row| %>
-              <tr>
-                <td scope="row"><%= row.indicator.target.goal.number %></td>
-                <td ><%= row.indicator.target.number %></td>
-                <td><%= row.indicator.number %></td>
-                <td><%= row.city.name %></td>
-                <td><%= row.date_from %></td>
-                <td><%= row.score %></td>
-              </tr>
-            <% end %>
-            </tbody>
-          </table>
-        </div>
+<div class="breadcrumbs">
+  <div class="col-sm-4">
+    <div class="page-header float-left">
+      <div class="page-title">
+        <h1>Valores de Indicadores#index</h1>
       </div>
     </div>
   </div>
-  <!-- END EXAMPLE TABLE PORTLET-->
+  <div class="col-sm-8">
+    <div class="page-header float-right">
+      <div class="page-title">
+        <ol class="breadcrumb text-right">
+          <li><a href="#">Indicadores</a></li>
+          <li class="active">Valores Indicadores</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="">Filtrar por ODS</label>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+
+      <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
+                 { include_blank: false,
+                   prompt: "Seleccione Un ODS"},
+                 {:class => "form-control chosen"}) %>
+
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="">Filtrar por Meta</label>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+
+      <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
+                 { include_blank: false,
+                   prompt: "Seleccione Una Meta"},
+                 {:class => "form-control chosen",id:"target_id"}) %>
+
+    </div>
+  </div>
+
+
+  <div class="col-md-2">
+    <div class="form-group">
+      <label for="">Filtrar por año</label>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <div class="form-group">
+
+      <select  class="form-control chosen">
+        <% for i in 2000..2018 %>
+          <option value="<%= i %>"><%= i %></option>
+        <% end %>
+      </select>
+
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+    <%= button_to "Editar Valores", { action: "newindicadorvalue" }, remote: false, class: "btn btn-info", :method => :get %>
+  </div>
+
 </div>
 
+<div class="content mt-3">
 
+  <div class="animated fadeIn">
+    <div class="row">
 
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <strong class="card-title">Lista de Indicadores</strong>
+          </div>
 
-<div class="modal fade draggable-modal ui-draggable" id="modalindicador" tabindex="-1" role="dialog"
+          <div class="table-responsive  " id="open_table_compra" style="position: relative;">
+            <table id="tablavalueindica" class="table table-striped dataTable table-bordered
+                                             table-hover table-featured">
+              <thead>
+              <tr>
+                <th scope="col">ODS</th>
+                <th scope="col">Meta</th>
+                <th scope="col"># Indicador</th>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Año</th>
+                <th scope="col">% Actual</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @indicatorvalues.each do |row| %>
+                <tr>
+                  <td scope="row"><%= row.indicator.target.goal.number %></td>
+                  <td ><%= row.indicator.target.number %></td>
+                  <td><%= row.indicator.number %></td>
+                  <td><%= row.city.name %></td>
+                  <td><%= row.date_from %></td>
+                  <td><%= row.score %></td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div><!-- .animated -->
+</div>
+
+<div class="modal fade" id="modalindicador" tabindex="-1" role="dialog"
      aria-labelledby="mediumModalLabel" aria-hidden="true">
 </div>
 
@@ -122,7 +132,11 @@
         $('#modalindicador').on('hidden.bs.modal', function (e) {
         });
 
-        jQuery("select").select2();
+        jQuery(".chosen").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
 
         $("select#goal_goal_id").on("change", function() {
             $.ajax({

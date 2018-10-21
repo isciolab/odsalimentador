@@ -4,36 +4,114 @@
   <title>Odsalimentador</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= csrf_meta_tags %>
-
+  <script >
+      var base_url = '<%= request.base_url %>'
+  </script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <script>
-      var baseURL = '<%= request.base_url %>'
-      var constantevaluador = "<?= ROLE_EVALUATOR ?>";
-      var constanteejecutor = "<?= ROLE_EXECUTOR ?>";
-      var constanteroleadmin = "<?= ROLE_ADMIN ?>";
-  </script>
+
 </head>
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+<body style="padding-right: 0px !important;">
 
 <% if user_signed_in? %>
 
-  <%= render "layouts/partealta" %>
-
-  <%= yield %>
-
+  <div id="wrapper">
+      <%= render "layouts/partealta" %>
   <%= render "layouts/menu" %>
+  <div id="page-wrapper">
+    <div class="row" id="page-content">
+      <%= yield %>
+    </div>
+    <div class="right-sidebar">
+      <div class="slimscrollright">
+        <div class="rpanel-title"> Panel de servicio <span><i class="ti-close right-side-toggle"></i></span>
+        </div>
+        <div class="r-panel-body">
+          <ul>
+            <li><b>Layout Options</b></li>
+            <li>
+              <div class="checkbox checkbox-info">
+                <input id="checkbox1" type="checkbox" class="fxhdr">
+                <label for="checkbox1"> Fix Header </label>
+              </div>
+            </li>
+            <li>
+              <div class="checkbox checkbox-warning">
+                <input id="checkbox2" type="checkbox" checked="" class="fxsdr">
+                <label for="checkbox2"> Fix Sidebar </label>
+              </div>
+            </li>
+            <li>
+              <div class="checkbox checkbox-success">
+                <input id="checkbox4" type="checkbox" class="open-close">
+                <label for="checkbox4"> Toggle Sidebar </label>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <div class="btn-group btn-group-justified btn-group-sm">
+                <a href="#"
+                   onclick="Venta.ver_catalogo('COOPIDRGOGAS')"
+                   class=" btn btn-primary">
+                  C. PRINCIPAL</a>
+              </div>
+            </li>
+            <li>
+              <div class="btn-group btn-group-justified btn-group-sm">
+                <a href="#"
+                   onclick="Venta.ver_catalogo('DROGUERIA')"
+                   class="btn btn-primary"> C. DROGUERIA</a>
+              </div>
+            </li>
+            <li>
+              <div class="btn-group btn-group-justified btn-group-sm">
+                <a href="#"
+                   onclick="Utilities.drogueriasRelacionadasModal()"
+                   class="btn btn-primary">RELACIONADAS</a>
+              </div>
+            </li>
+            <li>
+              <div class="btn-group btn-group-justified btn-group-sm">
+                <a href="javascript:App.buscarActualizacionesRepository()" class="btn btn-info"
+                   id="options-header-default">Buscar Actualizaciones</a>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="btn-group btn-group-justified btn-group-sm">
+                <a href="javascript:App.buscarActualizaciones()" class="btn btn-info"
+                   id="options-header-default">Actualizar base de datos</a>
+                <!--  <a href="javascript:void(0)" class="btn btn-primary"
+                     id="options-header-inverse">Dark</a>-->
+              </div>
+            </li>
+            <li>
+              <div class="btn-group btn-group-justified btn-group-sm">
+                <a href="javascript:App.generarBackup()" class="btn btn-success"
+                   id="options-header-default">Generar Backup</a>
+                <!--  <a href="javascript:void(0)" class="btn btn-primary"
+                     id="options-header-inverse">Dark</a>-->
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+  <footer class="footer text-center"> Developed by &copy; LABSUS SAS</footer>
+  </div>
+
 <% else %>
 
   <%= yield %>
 <% end %>
 
-<div class="modal fade" id="modalDelGlobal" tabindex="-1" role="dialog" aria-labelledby="modalodsLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document" id="modalDelGlobalContent">
 
-  </div>
-</div>
 
 </body>
 </html>

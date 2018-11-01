@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todos los resultados
     @goals= Goal.where(delete_at:[nil])
@@ -55,7 +55,7 @@ class GoalsController < ApplicationController
 
   def goal_params
     ##parametros permitidos
-    params.require(:goal).permit(:name,:number,:description)
+    params.require(:goal).permit(:name,:number,:description,:avatar)
   end
 
 end

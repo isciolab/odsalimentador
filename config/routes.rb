@@ -66,9 +66,20 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'filter_targets_by_goals' => 'indicators#filter_targets_by_goals'
+  get 'filter_targets_by_goals' => 'targets#filter_targets_by_goals'
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
+
+  devise_scope :user do
+    get 'allusers', to: "users/sessions#allusers"
+    get 'newuser', to: "users/registrations#newuser"
+  end
+
+
+
+
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
 
@@ -93,6 +104,10 @@ Rails.application.routes.draw do
     end
     resources :indicators do
       get "getIndicators", on: :collection
+    end
+
+    resources :group_cities do
+      get "getGrupos", on: :collection
     end
   end
 

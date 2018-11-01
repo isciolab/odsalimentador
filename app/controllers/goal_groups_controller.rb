@@ -1,5 +1,5 @@
 class GoalGroupsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todoss los Grupos ODS
     @goalgroups= GoalGroup.all

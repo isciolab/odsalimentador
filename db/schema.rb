@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181005190503) do
+ActiveRecord::Schema.define(version: 20181016220700) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "group_city_id"
+    t.bigint "group_cities_id"
     t.boolean "is_capital"
     t.bigint "goal_group_id"
     t.string "rccv_program"
@@ -29,9 +29,14 @@ ActiveRecord::Schema.define(version: 20181005190503) do
     t.text "description"
     t.datetime "delete_at"
     t.string "avatar"
+    t.float "urban_population", limit: 24
+    t.float "rural_population", limit: 24
+    t.string "total_area"
+    t.integer "foundation_year"
+    t.string "folder_avatar", default: "logos/cities/"
     t.index ["department_id"], name: "index_cities_on_department_id"
     t.index ["goal_group_id"], name: "index_cities_on_goal_group_id"
-    t.index ["group_city_id"], name: "index_cities_on_group_cities_id"
+    t.index ["group_cities_id"], name: "index_cities_on_group_cities_id"
   end
 
   create_table "countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -77,6 +82,8 @@ ActiveRecord::Schema.define(version: 20181005190503) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "delete_at"
+    t.string "avatar"
+    t.string "folder_avatar", default: "logos/goals/"
   end
 
   create_table "group_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -149,6 +156,7 @@ ActiveRecord::Schema.define(version: 20181005190503) do
     t.datetime "updated_at", null: false
     t.bigint "goal_id"
     t.datetime "delete_at"
+    t.text "description"
     t.index ["goal_id"], name: "index_targets_on_goal_id"
   end
 
@@ -177,6 +185,8 @@ ActiveRecord::Schema.define(version: 20181005190503) do
     t.datetime "updated_at", null: false
     t.bigint "role_id"
     t.datetime "delete_at"
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
@@ -184,7 +194,7 @@ ActiveRecord::Schema.define(version: 20181005190503) do
 
   add_foreign_key "cities", "departments"
   add_foreign_key "cities", "goal_groups"
-  add_foreign_key "cities", "group_cities"
+  add_foreign_key "cities", "group_cities", column: "group_cities_id"
   add_foreign_key "departments", "countries"
   add_foreign_key "goal_cities", "cities"
   add_foreign_key "goal_cities", "goals"
@@ -193,5 +203,6 @@ ActiveRecord::Schema.define(version: 20181005190503) do
   add_foreign_key "indicators", "measures"
   add_foreign_key "indicators", "targets"
   add_foreign_key "targets", "goals"
+  add_foreign_key "users", "cities"
   add_foreign_key "users", "roles"
 end

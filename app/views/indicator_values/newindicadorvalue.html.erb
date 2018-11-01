@@ -92,12 +92,13 @@
               </div>
             </div>
           </div>
-          <div class="card-body" id="opentbl">
+          <div class="card-body dataTables_wrapper no-footer" id="opentbl" >
 
           </div>
 
         </div>
       </div>
+
     </div>
   </div><!-- .animated -->
 </div>
@@ -111,5 +112,10 @@
 
     indicadorValue.initNewIndicadorValue()
 
+    $('#example').DataTable( {
+        keys: {
+            blurable: false
+        }
+    } );
 </script>
 

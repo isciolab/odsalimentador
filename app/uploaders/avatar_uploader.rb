@@ -1,18 +1,8 @@
 class AvatarUploader < CarrierWave::Uploader::Base
-  include Cloudinary::CarrierWave
-
-  process :convert => 'png'
-  process :tags => ['city_avatar']
-
-  version :standard do
-    process :resize_to_fill => [100, 150, :north]
-  end
-
-  version :thumbnail do
-    resize_to_fit(50, 50)
-  end
-
-  def public_id
-    return model.name
+  ##con esto defino la ruta a guardar, dentro de la carpeta public ubicada en la raiz.
+  # model.folder_avatar es una rupa especifida dada a los logos, viene de la base de datos
+  # model.id.to_s es el id convertido a cadena de texto para que pueda guardarse
+  def store_dir
+    model.folder_avatar+"/"+model.id.to_s
   end
 end

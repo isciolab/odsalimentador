@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todas las ciudades
     @cities= City.where(delete_at: [nil])
@@ -12,6 +12,7 @@ class CitiesController < ApplicationController
 
   def edit
     @city=City.find(params[:id])
+
   end
 
   def create
@@ -26,11 +27,8 @@ class CitiesController < ApplicationController
 
   def update
     @city = City.find(params[:id])
-
+    @city
     if @city.update_attributes(city_params)
-
-      mount_uploader :avatar, AvatarUploader
-
       redirect_to cities_url
     else
       render 'edit'
@@ -55,12 +53,12 @@ class CitiesController < ApplicationController
     end
   end
 
-  ##metodos privados
+  ##metodos privadosgroup_cities_id
   private
   def city_params
 
     ##parametros permitidos
-    params.require(:city).permit(:name,:group_city_id,:is_capital,:goal_group_id,:rccv_program,:total_population,
+    params.require(:city).permit(:name,:group_cities_id,:is_capital,:goal_group_id,:rccv_program,:total_population,
                                  :metropolitan_area,:city_system_dnp,:dnp_category,:ddt_typology,:department_id,
                                  :description,:avatar)
   end

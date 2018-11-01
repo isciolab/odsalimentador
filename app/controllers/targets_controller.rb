@@ -1,5 +1,5 @@
 class TargetsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todas las measures
     @targets= Target.where(delete_at:[nil])
@@ -51,13 +51,25 @@ class TargetsController < ApplicationController
     end
   end
 
+  ##metodo que retorna las metas o targets filtradas por un ODS o Goal
+  def filter_targets_by_goals
+    @filtered_units = Target.where(goal_id: params[:selected_goal])
+    @selectargetid=params[:selectargetid] ##para decirle a cual select de target va a actualizar
+    @target_selected=""
+
+    ##target_selected es por si quieres marcar como selected una opcion en el select
+    if params[:target_selected]!=""
+      @target_selected=params[:target_selected]
+    end
+  end
+
   ##metodos privados
   private
 
   ##nombre del modelo _params
   def target_params
     ##parametros permitidos
-    params.require(:target).permit(:name,:available,:goal_id,:number)
+    params.require(:target).permit(:name,:available,:goal_id,:number,:description)
 
   end
 

@@ -14,7 +14,14 @@
           <%= image_tag('notuser.png',class: "user-avatar rounded-circle") %>
         </a>
 
-        <div class="user-menu dropdown-menu"></div>
+        <div class="user-menu dropdown-menu" x-placement="bottom-start"
+             style="position: absolute; transform: translate3d(-88px, 0px, 0px); top: 0px; left: 0px;
+                 will-change: transform; background-color: #F1EEEE; ">
+          <a class="nav-link" href="#"><i class="fa fa- user"></i>My Perfil</a>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa fa-power -off"></i>Logout
+          <% end %>
+        </div>
       </div>
 
       <div class="language-select dropdown" id="language-select"></div>

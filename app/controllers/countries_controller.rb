@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     ##trae todoss los paises
     @countries= Country.where(delete_at:[nil])

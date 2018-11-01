@@ -2030,3 +2030,100 @@ puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
 === puma shutdown: 2018-09-07 18:04:55 -0400 ===
 - Goodbye!
 Exiting
+=> Booting Puma
+=> Rails 5.1.6 application starting in development 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.0 (ruby 2.3.7-p456), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://ciudatos.com:8080
+Exiting
+/usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/binder.rb:272:in `initialize': Cannot assign requested address - bind(2) for "ciudatos.com" port 8080 (Errno::EADDRNOTAVAIL)
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/binder.rb:272:in `new'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/binder.rb:272:in `add_tcp_listener'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/binder.rb:105:in `block in parse'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/binder.rb:88:in `each'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/binder.rb:88:in `parse'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/runner.rb:151:in `load_and_bind'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/single.rb:96:in `run'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/puma/launcher.rb:184:in `run'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/puma-3.12.0/lib/rack/handler/puma.rb:70:in `run'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/rack-2.0.5/lib/rack/server.rb:297:in `start'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/railties-5.1.6/lib/rails/commands/server/server_command.rb:44:in `start'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/railties-5.1.6/lib/rails/commands/server/server_command.rb:135:in `block in perform'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/railties-5.1.6/lib/rails/commands/server/server_command.rb:130:in `tap'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/railties-5.1.6/lib/rails/commands/server/server_command.rb:130:in `perform'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/thor-0.20.0/lib/thor/command.rb:27:in `run'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/thor-0.20.0/lib/thor/invocation.rb:126:in `invoke_command'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/thor-0.20.0/lib/thor.rb:387:in `dispatch'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/railties-5.1.6/lib/rails/command/base.rb:63:in `perform'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/railties-5.1.6/lib/rails/command.rb:44:in `invoke'
+	from /usr/local/rvm/gems/ruby-2.3.7/gems/railties-5.1.6/lib/rails/commands.rb:16:in `<top (required)>'
+	from bin/rails:4:in `require'
+	from bin/rails:4:in `<main>'
+=> Booting Puma
+=> Rails 5.1.6 application starting in development 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.0 (ruby 2.3.7-p456), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://88.208.3.175:8080
+Use Ctrl-C to stop
+Started GET "/" for 181.53.133.185 at 2018-11-01 20:48:06 +0000
+Cannot render console from 181.53.133.185! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+Mysql2::Error::ConnectionError (Access denied for user 'root'@'localhost' (using password: YES)):
+  
+mysql2 (0.5.2) lib/mysql2/client.rb:90:in `connect'
+mysql2 (0.5.2) lib/mysql2/client.rb:90:in `initialize'
+activerecord (5.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:21:in `new'
+activerecord (5.1.6) lib/active_record/connection_adapters/mysql2_adapter.rb:21:in `mysql2_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:759:in `new_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:803:in `checkout_new_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:782:in `try_to_checkout_new_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:743:in `acquire_connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:500:in `checkout'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:374:in `connection'
+activerecord (5.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:931:in `retrieve_connection'
+activerecord (5.1.6) lib/active_record/connection_handling.rb:116:in `retrieve_connection'
+activerecord (5.1.6) lib/active_record/connection_handling.rb:88:in `connection'
+activerecord (5.1.6) lib/active_record/migration.rb:562:in `connection'
+activerecord (5.1.6) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.6) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.6) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:22:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.6) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.6) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.6) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.6) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.6) lib/rails/engine.rb:522:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+- Gracefully stopping, waiting for requests to finish
+=== puma shutdown: 2018-11-01 20:48:43 +0000 ===
+- Goodbye!
+Exiting

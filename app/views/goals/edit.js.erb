@@ -1,8 +1,7 @@
 
-
-setTimeout( function (){
+$(function() {
     $('#modalods').modal('show')
-    /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+        /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
     $("#modalodsdialog").html('<%= j render "form", {title: "Editar ODS",title_button:"Actualizar"} %>');
-    $('*[autofocus]').focus()
-},500)
+
+})

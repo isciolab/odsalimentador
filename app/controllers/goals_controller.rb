@@ -50,6 +50,19 @@ class GoalsController < ApplicationController
     end
   end
 
+  def redirect(url, text)
+    redirect_to url, notice: text
+  end
+
+  def import
+    if params[:file]
+      Goal.import(params[:file])
+      redirect(configs_path, "Datos guardados éxito!")
+    else
+      redirect(configs_path, "Por favor seleccionar un archivo CSV")
+    end
+  end
+
   ##metodos privados
   private
 

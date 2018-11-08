@@ -1,0 +1,41 @@
+
+<table class='table table-striped dataTable table-bordered' id="tblindicador">
+  <thead>
+  <tr>
+    <th scope="col">ODS</th>
+    <th scope="col">Meta</th>
+    <th scope="col">#</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Descripci&oacute;n</th>
+    <th scope="col">Disponible</th>
+    <th scope="col">Acci&oacute;n</th>
+  </tr>
+  </thead>
+  <tbody>
+
+
+  <% @indicators.each do |row| %>
+    <tr>
+      <td><%= row.target.goal.number %></td>
+      <td><%= row.target.number %></td>
+      <th scope="row"><%= row.number %></th>
+      <td><%= row.name %></td>
+      <td><%= row.description %></td>
+      <td>
+        <% if row.available==true
+             concat "SI";
+           else
+             concat  "NO";
+           end %>
+      </td>
+      <td><%= button_to "Editar", {action: "edit", id: row.id},data:{toggle:"modal"}, remote: true, class:"btn btn-primary",
+                        :method => :get %>
+        <%= button_to "Eliminar", {action: "deleteindicator", id: row.id},data:{toggle:"modal"}, remote: true,
+                      class:"btn btn-danger",
+                      :method => :get %>
+      </td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>

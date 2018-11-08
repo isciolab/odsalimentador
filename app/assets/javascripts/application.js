@@ -64,15 +64,17 @@
 //= require 'newtemplate/plugins/bower_components/datatables.net-buttons/js/buttons.html5.min.js'
 //= require 'newtemplate/plugins/bower_components/datatables.net-buttons/js/buttons.print.min.js'
 //= require 'newtemplate/plugins/bower_components/datatables-plugins/api/sum().js'
+//= require 'newtemplate/plugins/bower_components/toast-master/js/jquery.toast.js'
 
-
-
-//= require 'newtemplate/js/flotanimator-master/jquery.flot.animator.min.js'
+//= require 'newtemplate/js/tablesDatatables.js'
 //= require 'newtemplate/js/flotanimator-master/jquery.flot.animator.min.js'
 //= require 'newtemplate/js/app.js'
 
+//= require 'newtemplate/js/Utilities.js'
+
 //= require indicator_values.js
-
-
+//= require indicators.js
+//= require targets.js
+//= require cities.js
 
 

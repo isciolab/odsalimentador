@@ -1,6 +1,6 @@
 <div class="navbar-default sidebar" role="navigation">
   <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-    <ul class="nav" id="side-menu">
+    <ul class="nav in" id="side-menu">
       <li class="sidebar-search hidden-sm hidden-md hidden-lg">
         <!-- input-group -->
         <div class="input-group custom-search-form">
@@ -25,7 +25,7 @@
       <li class="nav-small-cap m-t-10">--- MENU PRINCIPAL</li>
 
       <li>
-        <a href="#" class="  waves-effect">
+        <a  class="  waves-effect">
           <i class="fa fa-shield"></i>
 
           <span class="hide-menu">ODS <span class="fa arrow"></span></span>
@@ -55,7 +55,7 @@
       </li>
 
       <li>
-        <a href="#" class="  waves-effect">
+        <a class="  waves-effect">
           <i class="fa fa-share"></i>
 
           <span class="hide-menu">Indicadores  <span class="fa arrow"></span></span>
@@ -77,7 +77,7 @@
       </li>
 
       <li>
-        <a href="#" class="  waves-effect">
+        <a class="  waves-effect">
           <i class="fa fa-cog"></i>
 
           <span class="hide-menu">Ciudades <span class="fa arrow"></span></span>
@@ -106,7 +106,7 @@
       </li>
 
       <li>
-        <a href="#" class="  waves-effect">
+        <a  class="  waves-effect" aria-expanded="false">
           <i class="fa fa-cogs"></i>
 
           <span class="hide-menu">Configuraciones  <span class="fa arrow"></span></span>
@@ -127,6 +127,12 @@
           <li>
             <%= link_to "allusers", class:"menulink" do  %>
               <i class="fa fa-id-badge"></i>Usuarios
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to configs_path, class:"menulink" do  %>
+              <i class="fa fa-id-badge"></i>Importar
             <% end %>
           </li>
 

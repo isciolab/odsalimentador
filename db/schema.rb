@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181021211325) do
+ActiveRecord::Schema.define(version: 20181108222022) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(version: 20181021211325) do
     t.datetime "delete_at"
   end
 
-  create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "number"
     t.string "name"
-    t.text "description"
+    t.text "description", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "delete_at"
@@ -106,10 +106,10 @@ ActiveRecord::Schema.define(version: 20181021211325) do
     t.index ["indicator_id"], name: "index_indicator_values_on_indicator_id"
   end
 
-  create_table "indicators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "indicators", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "number"
-    t.string "name"
-    t.text "description"
+    t.text "name"
+    t.text "description", limit: 16777215
     t.string "national_base_line"
     t.string "year_national_base_line"
     t.string "national_goal"
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 20181021211325) do
     t.boolean "available"
     t.string "institutional_inf"
     t.string "methodological_proposal"
-    t.text "comment"
+    t.text "comment", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "target_id"
@@ -148,15 +148,15 @@ ActiveRecord::Schema.define(version: 20181021211325) do
     t.datetime "delete_at"
   end
 
-  create_table "targets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.text "name"
+  create_table "targets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "name", limit: 16777215
     t.string "number"
     t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "goal_id"
     t.datetime "delete_at"
-    t.text "description"
+    t.text "description", limit: 16777215
     t.index ["goal_id"], name: "index_targets_on_goal_id"
   end
 

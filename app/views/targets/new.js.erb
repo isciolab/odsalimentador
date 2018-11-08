@@ -1,17 +1,9 @@
 
-
-
 $(function() {
     $('#modalmetas').modal('show')
-
     /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
     $("#modaltargetdialog").html('<%= j render "form", {title: "Nueva Meta",title_button:"Crear"} %>');
-    jQuery("select").chosen({
-        disable_search_threshold: 10,
-        no_results_text: "Oops, nothing found!",
-        width: "100%"
-    });
-    setTimeout( function (){
-        $('*[autofocus]').focus()
-    },500)
+
+    Target.initModalTarget();
+
 });

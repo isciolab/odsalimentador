@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   get 'measures/index'
 
+  resources :configs
+
   resources :goals do ##ODS
+    collection { post :import}
+    get 'goals/import'
     member do
       get "deletegoal" #Esto reconocerá /goals/1/deletegoal con GET
     end
@@ -18,12 +22,18 @@ Rails.application.routes.draw do
   end
 
   resources :targets do ##metas
+    collection { post :import}
+    get 'targets/import'
     member do
       get 'deletetarget'
     end
+    get 'tbltargets', on: :collection
   end
 
   resources :indicators do ##indicadores
+    collection { post :import}
+    get 'indicators/import'
+    get 'getindicatorstbl', on: :collection
     member do
       get 'deleteindicator'
     end
@@ -33,6 +43,8 @@ Rails.application.routes.draw do
     get 'newindicadorvalue', on: :collection
     get 'getvalueindicators', on: :collection
     get 'updatefechatoyear', on: :collection
+    get 'tblindicatorvalue', on: :collection
+
   end
 
   resources :countries ##paises
@@ -47,6 +59,7 @@ Rails.application.routes.draw do
     member do
       get 'deletecity'
     end
+    get "tblcities", on: :collection
   end
 
   resources :measures do ##unidades de Medida

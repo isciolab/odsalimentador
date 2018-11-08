@@ -1,7 +1,10 @@
 
-setTimeout( function (){
+$(function() {
     $("#modalgrupoods").modal('show')
-    /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-    $("#modalodsgroupdialog").html('<%= j render "form", {title: "Nuevo Grupo ODS",title_button:"Crear"} %>');
-    $('*[autofocus]').focus()
-},500)
+    setTimeout(function () {
+
+        /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+        $("#modalodsgroupdialog").html('<%= j render "form", {title: "Nuevo Grupo ODS",title_button:"Crear"} %>');
+        $('*[autofocus]').focus()
+    }, 500)
+})

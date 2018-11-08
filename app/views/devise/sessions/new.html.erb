@@ -16106,8 +16106,10 @@
   /*-------------------------------------------------------------------*/
   /* === Landing screens === */
   /* Auth */
+  /* si coloco asi : /images/login_1.png, busca en styleshees/images,
+  pero si coloco ../images/login_1.png busca dentro de assets/images*/
   .auth.auth-bg-1 {
-    background: url("/images/logo.png");
+    background: url(<%= asset_path 'images/login_1.jpg' %>);
     background-size: cover; }
 
   .auth.register-bg-1 {
@@ -16318,14 +16320,14 @@
 
               <%= form_for(resource, as: resource_name, url: session_path(resource_name), id: "Login") do |f| %>
                 <div class="form-group">
-                  <%= f.label :email, class:"label" %><br/>
+                  <%= f.label :email %><br/>
                   <div class="input-group">
                   <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <%= f.label :password,class:"label" %><br/>
+                  <%= f.label :password %><br/>
                   <div class="input-group">
                   <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
                   </div>

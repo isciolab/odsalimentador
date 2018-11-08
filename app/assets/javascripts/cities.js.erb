@@ -1,0 +1,30 @@
+var City = {
+    initCity: function () {
+
+        jQuery(".chosen").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+        $('#modalciudad').on('hidden.bs.modal', function (e) {
+            $("#modalcitydialog").html("");
+        });
+        City.tableCargarTodos();
+
+    },
+    tableCargarTodos: function () {
+
+        $.ajax({
+            type: 'GET',
+            data: {department: $("#department_department_id").val()},
+            url: base_url + '/cities/tblcities',
+            success: function (data) {
+                $("#opentblcity").html('');
+                $("#opentblcity").html(data);
+                TablesDatatables.init();
+            }
+        });
+    },
+}
+
+

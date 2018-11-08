@@ -34,7 +34,17 @@ var indicadorValue = {
             });
         });
         indicadorValue.tableCargarTodos();
-
+    },
+    onchangeGoalIndex: function () {
+        $("select#goal_id_index").on("change", function () {
+            $.ajax({
+                url: "/filter_targets_by_goals",
+                type: "GET",
+                async: false,
+                data: {selected_goal: $(this).val(), selectargetid: "target_id"}
+            });
+        });
+        indicadorValue.tblindicator();
     },
     tableCargarTodos: function () {
 
@@ -88,6 +98,39 @@ var indicadorValue = {
             }
 
         });
+    },
+
+    initIndicadorValue: function () {
+        /*init del index de indicadores value*/
+        jQuery(".chosen").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+
+        $("select#goal_goal_id").on("change", function() {
+            $.ajax({
+                url:  "/filter_targets_by_goals",
+                type: "GET",
+                data: { selected_goal: $(this).val(),selectargetid:"target_id" }
+            });
+        });
+        indicadorValue.tblindicator();
+    },
+    tblindicator: function () {
+    /*carga los datos en la tabla del index de indicadores value*/
+        $.ajax({
+            type: 'GET',
+            data: {goal: $("#goal_goal_id").val(), target: $("#target_id").val(), anio: $("#anio").val(),city: $("#city_id").val()},
+            url: base_url + '/indicator_values/tblindicatorvalue',
+            success: function (data) {
+                $("#open_table_compra").html('');
+                $("#open_table_compra").html(data);
+
+                TablesDatatables.init();
+            }
+        });
+
     }
 }
 

@@ -30,13 +30,13 @@
             <label for="">Filtrar por ODS</label>
           </div>
         </div>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <div class="form-group">
 
               <%= select("goal", "goal_id", Goal.all.collect {|p| [ p.number, p.id ] },
                          { include_blank: false,
                            prompt: "Seleccione Un ODS"},
-                         {:class => "form-control chosen"}) %>
+                         {:class => "form-control chosen",:onChange => "indicadorValue.onchangeGoalIndex();"}) %>
 
             </div>
           </div>
@@ -46,13 +46,29 @@
               <label for="">Filtrar por Meta</label>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <div class="form-group">
 
               <%= select("target", "target_id", Target.all.where(goal_id: :goal_id),
                          { include_blank: false,
                            prompt: "Seleccione Una Meta"},
-                         {:class => "form-control chosen",id:"target_id"}) %>
+                         {:class => "form-control chosen",id:"target_id", :onChange => "indicadorValue.tblindicator();"}) %>
+
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="">Filtrar por Ciudad</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+
+              <%= select("city", "city_id", City.where(delete_at: [nil]).collect {|p| [ p.name, p.id ] },
+                         { include_blank: false,
+                           prompt: "Seleccione Una Ciudad"},
+                         {:class => "form-control chosen",id:"city_id", :onChange => "indicadorValue.tblindicator();"}) %>
 
             </div>
           </div>
@@ -63,11 +79,12 @@
               <label for="">Filtrar por año</label>
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-4">
             <div class="form-group">
 
-              <select  class="form-control chosen">
-                <% for i in 2000..2018 %>
+              <select  class="form-control chosen" id="anio" onchange="indicadorValue.tblindicator();">
+                <option >Seleccione un año</option>
+                <% for i in 2015..Time.current.year %>
                   <option value="<%= i %>"><%= i %></option>
                 <% end %>
               </select>
@@ -80,32 +97,7 @@
       </div>
       <br>
 
-      <div class="table-responsive  " id="open_table_compra" style="position: relative;">
-        <table class='table table-striped dataTable table-bordered' id="tablavalueindica">
-          <thead>
-          <tr>
-            <th scope="col">ODS</th>
-            <th scope="col">Meta</th>
-            <th scope="col"># Indicador</th>
-            <th scope="col">Ciudad</th>
-            <th scope="col">Año</th>
-            <th scope="col">% Actual</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @indicatorvalues.each do |row| %>
-            <tr>
-              <td scope="row"><%= row.indicator.target.goal.number %></td>
-              <td ><%= row.indicator.target.number %></td>
-              <td><%= row.indicator.number %></td>
-              <td><%= row.city.name %></td>
-              <td><%= row.date_from %></td>
-              <td><%= row.score %></td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
+      <div class="table-responsive  " id="open_table_compra" style="position: relative;"></div>
     </div>
   </div>
 </div>
@@ -121,25 +113,7 @@
 
     $(document).ready(function() {
 
-        $('#tablavalueindica').DataTable();
-
-        $('#modalindicador').on('hidden.bs.modal', function (e) {
-        });
-
-        jQuery(".chosen").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Oops, nothing found!",
-            width: "100%"
-        });
-
-        $("select#goal_goal_id").on("change", function() {
-            $.ajax({
-                url:  "/filter_targets_by_goals",
-                type: "GET",
-                data: { selected_goal: $(this).val(),selectargetid:"target_id" }
-            });
-        });
-
+        indicadorValue.initIndicadorValue();
 
     } );
 </script>

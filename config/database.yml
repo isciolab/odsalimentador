@@ -11,6 +11,7 @@ default: &default
 
 development:
   adapter: mysql2
+
   username: root
   password: tgwKTcMf3/ge
   host: localhost

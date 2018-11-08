@@ -94,6 +94,25 @@ class IndicatorValuesController < ApplicationController
 
   end
 
+  def tblindicatorvalue
+
+    @indicatorsvalues = IndicatorValue.joins(:indicator).joins(indicator: :target).where(date_from: params[:anio]).order(:date_from)
+    if params[:target]!=""
+      @indicatorsvalues=@indicatorsvalues.where(:targets => {:id=>params[:target]})
+    end
+
+    if params[:goal]!=""
+      @indicatorsvalues=@indicatorsvalues.where(:targets => {:goal_id=>params[:goal]})
+    end
+
+    if params[:city]!=""
+      @indicatorsvalues=@indicatorsvalues.where(city_id:  params[:city])
+    end
+
+
+    render :partial => 'tblindicatorvalue'
+  end
+
   ##metodos privados
   private
   def indicator_params

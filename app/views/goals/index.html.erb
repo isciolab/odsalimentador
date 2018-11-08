@@ -24,7 +24,7 @@
 
           <div class="col-sm-2">
             <div class="float-left">
-              <%= button_to "Nuevo", { action: "new" },data:{target:"#modalods",toggle:"modal"}, remote: true, class: "btn btn-info",
+              <%= button_to "Nuevo", { action: "new" },data:{toggle:"modal"}, remote: true, class: "btn btn-info",
                             :method => :get %>
             </div>
           </div>
@@ -81,10 +81,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#tablaprincipal').DataTable();
-        $('#modalods').on('hidden.bs.modal', function (e) {
-            $("#modalodsdialog").html("");
-        });
+        Goal.init();
+
     } );
 </script>
 

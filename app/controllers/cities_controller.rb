@@ -27,7 +27,6 @@ class CitiesController < ApplicationController
 
   def update
     @city = City.find(params[:id])
-    @city
     if @city.update_attributes(city_params)
       redirect_to cities_url
     else
@@ -51,6 +50,14 @@ class CitiesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def tblcities
+    @cities = City.where(delete_at: [nil]).order(:id)
+  if params[:department]!=""
+    @cities=@cities.where(department_id: params[:department])
+  end
+  render :partial => 'tblcities'
   end
 
   ##metodos privadosgroup_cities_id

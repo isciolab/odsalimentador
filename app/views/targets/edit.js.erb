@@ -4,9 +4,5 @@ $(function() {
     $('#modalmetas').modal('show')
     /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
     $("#modaltargetdialog").html('<%= j render "form", {title: "Editar Meta",title_button:"Actualizar"} %>');
-
-    jQuery("select").select2();
-    setTimeout( function (){
-        $('*[autofocus]').focus()
-    },500)
+    Target.initModalTarget();
 });

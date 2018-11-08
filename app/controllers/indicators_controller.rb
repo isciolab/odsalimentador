@@ -53,6 +53,30 @@ class IndicatorsController < ApplicationController
     end
   end
 
+  def getindicatorstbl
+  #retorna la vista con la tabla del index de indicadores
+    @indicators= Indicator.joins(:target).where(delete_at:[nil])
+
+    if params[:target]!=""
+      @indicators=@indicators.where(:targets => {:id=>params[:target]})
+    end
+
+    if params[:goal]!=""
+      @indicators=@indicators.where(:targets => {:goal_id=>params[:goal]})
+    end
+    render :partial => 'tblindicator'
+  end
+
+  ##esto se usa para importar los indicadores via csv
+  def import
+    if params[:file]
+      Indicator.import(params[:file])
+      redirect_to configs_path,:flash => { :notice => "Datos guardados éxito!" }
+    else
+      redirect_to configs_path,:flash => { :error => "Por favor seleccionar un archivo CSV" }
+    end
+  end
+
   ##metodos privados
   private
   def indicator_params

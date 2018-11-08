@@ -1,9 +1,15 @@
 <% if @target.errors.empty? %>
 // add the row to the table, show alert and hide modal
-$('table tbody').append(' <%= j render "row", target: @target %>');
-$('.alert-success').html("La unidad de Medida ha sido creada con éxito").show();
-$('#modaltarget').modal('hide');
+$('table tbody').append(' <%= j render "row", department: @department %>');
+Utilities.alertModal("Los datos fueron guardados con éxito", 'success', true);
+$('#modaldepartment').modal('hide');
 <% else %>
 // show first error
-alert('<%= @target.errors.full_messages[0] %>');
+var errores =<%= @target.errors.full_messages.to_json %>
+    console.log('errores',errores)
+jQuery.each( data.error, function( i, val ) {
+    mensaje=""+i+" "+val
+    Utilities.alertModal(message, 'error', true);
+});
+
 <% end %>

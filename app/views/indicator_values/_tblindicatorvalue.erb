@@ -1,0 +1,25 @@
+
+<table class='table table-striped dataTable table-bordered' id="tablavalueindica">
+  <thead>
+  <tr>
+    <th scope="col">ODS</th>
+    <th scope="col">Meta</th>
+    <th scope="col"># Indicador</th>
+    <th scope="col">Ciudad</th>
+    <th scope="col">Año</th>
+    <th scope="col">% Actual</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @indicatorsvalues.each do |row| %>
+    <tr>
+      <td scope="row"><%= row.indicator.target.goal.number %></td>
+      <td ><%= row.indicator.target.number %></td>
+      <td><%= row.indicator.number %></td>
+      <td><%= row.city.name %></td>
+      <td><%= row.date_from %></td>
+      <td><%= row.score %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

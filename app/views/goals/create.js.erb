@@ -1,9 +1,7 @@
 <% if @goal.errors.empty? %>
-// add the row to the table, show alert and hide modal
-$('table tbody').append(' <%= j render "row", goal: @goal %>');
-$('.alert-success').html("EL ODS ha sido creado con éxito").show();
-$('#modalgoals').modal('hide');
+
 <% else %>
-// show first error
-alert('<%= @goal.errors.full_messages[0] %>');
+/*entra aqui solo cuando retorna error al guardar*/
+Utilities.alertModal("<%= j @goal.errors.full_messages.join('; ') %>", 'error', true);
+
 <% end %>

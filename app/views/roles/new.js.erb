@@ -1,6 +1,11 @@
 
-/*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modalroldialog").html('<%= j render "form", {title: "Nuevo Rol",title_button:"Crear"} %>');
-setTimeout( function (){
-    $('*[autofocus]').focus()
-},500)
+$(function() {
+    $("#modalrol").modal('show');
+    $("#modalroldialog").html('<%= j render "form", {title: "Nuevo Rol",title_button:"Crear"} %>');
+
+    setTimeout(function () {
+        /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
+        $('*[autofocus]').focus()
+    }, 500)
+
+})

@@ -1,15 +1,7 @@
 <% if @target.errors.empty? %>
-// add the row to the table, show alert and hide modal
-$('table tbody').append(' <%= j render "row", department: @department %>');
-Utilities.alertModal("Los datos fueron guardados con éxito", 'success', true);
-$('#modaldepartment').modal('hide');
+
 <% else %>
-// show first error
-var errores =<%= @target.errors.full_messages.to_json %>
-    console.log('errores',errores)
-jQuery.each( data.error, function( i, val ) {
-    mensaje=""+i+" "+val
-    Utilities.alertModal(message, 'error', true);
-});
+/*entra aqui solo cuando retorna error al guardar*/
+Utilities.alertModal("<%= j @target.errors.full_messages.join('; ') %>", 'error', true);
 
 <% end %>

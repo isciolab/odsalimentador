@@ -1,51 +1,57 @@
-
 class RolesController < ApplicationController
   before_action :authenticate_user!
+
   def index
     ##trae todos los roles
-    @roles= Role.where(delete_at: [nil])
+    @roles = Role.where(delete_at: [nil])
   end
 
   def new
     ##crea la instancia del rol
-    @role=Role.new
+    @role = Role.new
   end
 
   def edit
-    @role=Role.find(params[:id])
+    @role = Role.find(params[:id])
   end
 
   def create
-    @role=Role.new(role_params)
-    if @role.save
-      redirect_to roles_url
-    else
-      render :new
+    @role = Role.new(role_params)
+    respond_to do |format|
+      if @role.save
+        format.html {redirect_to roles_url, notice: 'Datos guardados con éxito'}
+      else
+        format.html {render "roles/create"}
+        format.js # call create.js.erb on save errors
+      end
     end
 
   end
 
   def update
     @role = Role.find(params[:id])
-    if @role.update_attributes(role_params)
-      redirect_to roles_url
-    else
-      render 'edit'
+    respond_to do |format|
+      if @role.update_attributes(role_params)
+        format.html {redirect_to roles_url, notice: 'Datos guardados con éxito'}
+      else
+        format.html {render "roles/create"}
+        format.js # call create.js.erb on save errors
+      end
     end
   end
 
   def show
-    @role= Role.find(params[:id])
+    @role = Role.find(params[:id])
   end
 
   def deleterole
     ##abre el modal para borrarlo
-    @role=Role.find(params[:id])
+    @role = Role.find(params[:id])
   end
 
   def destroy
     @role = Role.find(params[:id])
-    if @role.update_attributes(delete_at:DateTime.now.to_datetime)
+    if @role.update_attributes(delete_at: DateTime.now.to_datetime)
       redirect_to roles_url
     else
       render :edit
@@ -53,6 +59,7 @@ class RolesController < ApplicationController
   end
 
   ##metodos privados
+
   private
 
   def role_params

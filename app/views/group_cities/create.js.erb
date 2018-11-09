@@ -1,9 +1,8 @@
+
 <% if @groupcity.errors.empty? %>
-// add the row to the table, show alert and hide modal
-$('table tbody').append(' <%= j render "row", group_city: @groupcity %>');
-$('.alert-success').html("EL Grupo Ciudad ha sido con éxito").show();
-$('#modalgroupcity').modal('hide');
+
 <% else %>
-// show first error
-alert('<%= @groupcity.errors.full_messages[0] %>');
+/*entra aqui solo cuando retorna error al guardar*/
+Utilities.alertModal("<%= j @groupcity.errors.full_messages.join('; ') %>", 'error', true);
+
 <% end %>

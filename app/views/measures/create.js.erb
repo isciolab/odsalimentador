@@ -1,9 +1,8 @@
+
 <% if @measure.errors.empty? %>
-// add the row to the table, show alert and hide modal
-$('table tbody').append(' <%= j render "row", measure: @measure %>');
-$('.alert-success').html("La unidad de Medida ha sido creada con éxito").show();
-$('#modalmeasure').modal('hide');
+
 <% else %>
-// show first error
-alert('<%= @measure.errors.full_messages[0] %>');
+/*entra aqui solo cuando retorna error al guardar*/
+Utilities.alertModal("<%= j @measure.errors.full_messages.join('; ') %>", 'error', true);
+
 <% end %>

@@ -14,19 +14,6 @@ var Goal = {
             $('*[autofocus]').focus()
         },500)
 
-        $(document).on('ajax:success','#form',function(data){
-            Utilities.alertModal("Los datos fueron guardados con éxito", 'error', true);
-            $('#modalods').modal('hide')
-        });
-
-        $(document).on('ajax:error','#form',function(data){
-            var mensaje
-            jQuery.each( data.error, function( i, val ) {
-                mensaje=""+i+" "+val
-                Utilities.alertModal(message, 'error', true);
-            });
-        });
-
     }
 
 }

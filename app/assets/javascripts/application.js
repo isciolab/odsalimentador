@@ -72,6 +72,7 @@
 
 //= require 'newtemplate/js/Utilities.js'
 
+//= require goals.js
 //= require indicator_values.js
 //= require indicators.js
 //= require targets.js

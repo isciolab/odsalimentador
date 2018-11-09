@@ -21,8 +21,8 @@ class TargetsController < ApplicationController
       if @target.save
         format.html {redirect_to targets_url, notice: 'Datos guardados con éxito'}
       else
-        format.html  { render "targets/create" }
-        format.js
+        format.html { render "targets/create" }
+        format.js # call create.js.erb on save errors
       end
     end
   end
@@ -31,9 +31,10 @@ class TargetsController < ApplicationController
     @target = Target.find(params[:id])
     respond_to do |format|
       if @target.update_attributes(target_params)
-        format.json  { render json: Target.update(target_params) }
+        format.html { redirect_to targets_path, notice: 'Meta actualizada con éxito' }
       else
-        format.json  {  render :json =>{error: @target.errors, msg: "Error al guardar los datos"}}
+        format.html { render "targets/create" }
+        format.js # call create.js.erb on save errors
       end
     end
 
@@ -87,9 +88,9 @@ class TargetsController < ApplicationController
   def import
     if params[:file]
       Target.import(params[:file])
-      redirect(configs_path, "Datos guardados éxito!")
+      redirect_to configs_path, :flash => {:notice => "Datos guardados éxito!"}
     else
-      redirect(configs_path, "Por favor seleccionar un archivo CSV")
+      redirect_to configs_path, :flash => {:error => "Por favor seleccionar un archivo CSV"}
     end
   end
 

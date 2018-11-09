@@ -1,9 +1,8 @@
+
 <% if @indicator.errors.empty? %>
-// add the row to the table, show alert and hide modal
-$('table tbody').append(' <%= j render "row", indicator: @indicator %>');
-$('.alert-success').html("La Ciudad ha sido agregada con éxito").show();
-$('#modalindicator').modal('hide');
+
 <% else %>
-// show first error
-alert('<%= @indicator.errors.full_messages[0] %>');
+/*entra aqui solo cuando retorna error al guardar*/
+Utilities.alertModal("<%= j @indicator.errors.full_messages.join('; ') %>", 'error', true);
+
 <% end %>

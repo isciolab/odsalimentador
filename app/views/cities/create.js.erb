@@ -1,9 +1,8 @@
+
 <% if @city.errors.empty? %>
-// add the row to the table, show alert and hide modal
-$('table tbody').append(' <%= j render "row", city: @city %>');
-$('.alert-success').html("La Ciudad ha sido agregada con éxito").show();
-$('#modalcity').modal('hide');
+
 <% else %>
-// show first error
-alert('<%= @city.errors.full_messages[0] %>');
+/*entra aqui solo cuando retorna error al guardar*/
+Utilities.alertModal("<%= j @city.errors.full_messages.join('; ') %>", 'error', true);
+
 <% end %>

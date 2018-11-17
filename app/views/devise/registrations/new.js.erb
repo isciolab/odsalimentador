@@ -1,8 +1,15 @@
 
 /*llamo el mismo form, pero le paso las variables como los titulos, ya que se usa la misma vista para edit*/
-$("#modaluserdialog").html('<%= j render "form", {title: "Nuevo Departamento",title_button:"Crear"} %>');
+$("#modaluserdialog").html('<%= j render "form", {title: "Nuevo Usuario",title_button:"Crear"} %>');
 $(function() {
     setTimeout( function (){
         $('*[autofocus]').focus()
     },500)
+    $("#modalusers").modal('show');
+
+    jQuery(".chosen").chosen({
+        disable_search_threshold: 10,
+        no_results_text: "Oops, nothing found!",
+        width: "100%"
+    });
 });

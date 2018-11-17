@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  respond_to :html, :js
    before_action :configure_sign_up_params, only: [:create]
    before_action :configure_account_update_params, only: [:update]
    prepend_before_action :require_no_authentication, only: :cancel
    include Devise::Controllers::Helpers
+
+
 
   def newuser
 
@@ -19,17 +22,69 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
-     super
+
+     # will be the similar to user = User.new(sign_up_params)
+     build_resource(sign_up_params)
+
+     resource.save
+
+     ##if was saved
+     if resource.persisted?
+
+       if resource.active_for_authentication?
+         puts "activo"
+         set_flash_message :notice, :signed_up if is_flashing_format?
+         sign_up(resource_name, resource)
+         redirect_to allusers_url, notice: 'Datos guardados con éxito'
+       else
+         puts "inactivo"
+         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+         expire_data_after_sign_in!
+         redirect_to allusers_url, notice: 'Datos guardados con éxito'
+       end
+     else
+       ##
+       clean_up_passwords resource
+       set_minimum_password_length
+       ##si entra aqui, es porque se hizo la validacion y retorno error
+
+     end
    end
 
   # GET /resource/edit
    def edit
-    super
+     @user = User.find(params[:id])
    end
 
   # PUT /resource
    def update
-     super
+     # will be the similar to user = User.new(sign_up_params)
+     build_resource(sign_up_params)
+
+     resource.update
+
+
+     ##if was saved
+     if resource.persisted?
+
+       if resource.active_for_authentication?
+         puts "activo"
+         set_flash_message :notice, :signed_up if is_flashing_format?
+         sign_up(resource_name, resource)
+         redirect_to allusers_url, notice: 'Datos guardados con éxito'
+       else
+         puts "inactivo"
+         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+         expire_data_after_sign_in!
+         redirect_to allusers_url, notice: 'Datos guardados con éxito'
+       end
+     else
+       puts "no actualizo"
+       clean_up_passwords resource
+       set_minimum_password_length
+       ##si entra aqui, es porque se hizo la validacion y retorno error
+
+     end
    end
 
   # DELETE /resource
@@ -77,9 +132,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+   def after_inactive_sign_up_path_for(resource)
+     "/allusers"
+   end
   #
 
 end

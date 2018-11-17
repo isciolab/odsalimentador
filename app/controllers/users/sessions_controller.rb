@@ -23,6 +23,10 @@ class Users::SessionsController < Devise::SessionsController
     puts current_user.inspect
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

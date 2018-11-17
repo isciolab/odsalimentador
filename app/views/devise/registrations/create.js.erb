@@ -1,0 +1,7 @@
+<% if @user.errors.empty? %>
+
+<% else %>
+/*entra aqui solo cuando retorna error al guardar*/
+Utilities.alertModal("<%= j @user.errors.full_messages.join('; ') %>", 'error', true);
+
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181108222022) do
+ActiveRecord::Schema.define(version: 20181120170643) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20181108222022) do
     t.float "score", limit: 24
     t.integer "date_from"
     t.date "date_to"
-    t.datetime "created_at", null: false
+    t.date "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "indicator_id"
     t.bigint "city_id"
@@ -140,6 +140,27 @@ ActiveRecord::Schema.define(version: 20181108222022) do
     t.datetime "delete_at"
   end
 
+  create_table "peoples", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "sex"
+    t.string "city"
+    t.string "age"
+    t.integer "answer_year"
+    t.string "unique_id"
+    t.string "stratum"
+    t.string "location"
+    t.string "zone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "available"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.boolean "available"
@@ -158,6 +179,13 @@ ActiveRecord::Schema.define(version: 20181108222022) do
     t.datetime "delete_at"
     t.text "description", limit: 16777215
     t.index ["goal_id"], name: "index_targets_on_goal_id"
+  end
+
+  create_table "themes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "towns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

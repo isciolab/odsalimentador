@@ -64,3 +64,5 @@ gem "font_awesome5_rails"
 gem 'jquery-rails'
 
 gem 'rack-cors', require: 'rack/cors'
+
+gem 'activerecord-insert_many'

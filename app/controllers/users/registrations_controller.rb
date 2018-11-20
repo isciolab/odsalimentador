@@ -61,7 +61,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
      # will be the similar to user = User.new(sign_up_params)
      build_resource(sign_up_params)
 
-     resource.update
+     puts resource.inspect
+     resource.update_attributes
 
 
      ##if was saved

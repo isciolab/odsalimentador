@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181120170643) do
+ActiveRecord::Schema.define(version: 20181120203012) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20181120170643) do
     t.datetime "delete_at"
   end
 
-  create_table "peoples", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "sex"
     t.string "city"
     t.string "age"
@@ -151,6 +151,16 @@ ActiveRecord::Schema.define(version: 20181120170643) do
     t.string "zone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "person_has_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.text "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "people_id"
+    t.bigint "question_id"
+    t.index ["people_id"], name: "index_person_has_questions_on_people_id"
+    t.index ["question_id"], name: "index_person_has_questions_on_question_id"
   end
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -237,6 +247,8 @@ ActiveRecord::Schema.define(version: 20181120170643) do
   add_foreign_key "indicator_values", "indicators"
   add_foreign_key "indicators", "measures"
   add_foreign_key "indicators", "targets"
+  add_foreign_key "person_has_questions", "people", column: "people_id"
+  add_foreign_key "person_has_questions", "questions"
   add_foreign_key "targets", "goals"
   add_foreign_key "user_by_cities", "cities"
   add_foreign_key "user_by_cities", "users"

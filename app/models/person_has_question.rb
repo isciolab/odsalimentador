@@ -14,10 +14,18 @@ class PersonHasQuestion < ApplicationRecord
     contcabecera = 0
     columnspeople = [:stratum, :sex, :city, :age,:answer_year,:unique_id,:location,:zone,:id]
     columnspersonhasq = [:answer, :people_id, :question_id]
+    lastpeople=People.last(1)
+
     CSV.foreach(file.path, col_sep: ';', headers: false, encoding: 'iso-8859-1:utf-8') do |row|
 
       if i == 0
         encabezado = row
+        if lastpeople.blank?
+
+        else
+          i=lastpeople.id+1
+        end
+
       else
         @person << {
             :stratum => row[1],
@@ -33,26 +41,26 @@ class PersonHasQuestion < ApplicationRecord
 
         encabezado.each do |cebecera|
 
-          if contcabecera>7
-            @question =Question.where(name: cebecera)
-            question_id= @question
-            if @question.empty?
+          if cebecera.strip!="0" && cebecera.strip!="NSE" && cebecera.strip!="LOCALIDAD_COMUNA" && cebecera.strip!="SEXO" &&
+              cebecera.strip!="EDAD" && cebecera!="AÑO" && cebecera.strip!="ZONAS" && cebecera.strip!=nil && cebecera.strip!="CIUDAD"
+              @question =Question.find_by name: cebecera.strip
+
+            if @question.blank?
               @question = Question.new
-              @question.name=cebecera
+              @question.name=cebecera.strip
               @question.available=1
               @question.save!
-              question_id= @question
             end
 
-            if cebecera!="#!NULO!" && cebecera!="#¡NULO" && cebecera!="#¡NULO!" && cebecera!="#!NULO¡"
+            if row[contcabecera]!=nil && row[contcabecera].strip!="#!NULO!" && row[contcabecera].strip!="#¡NULO" && row[contcabecera].strip!="#¡NULO!" && row[contcabecera].strip!="#!NULO¡" &&
+                row[contcabecera].strip!=""
 
               @personhasquestion << {
-                  :answer => row[contcabecera],
+                  :answer => row[contcabecera].strip,
                   :people_id => i,
-                  :question_id => question_id,
+                  :question_id => @question.id,
               }
             end
-
           end
 
           contcabecera = contcabecera + 1

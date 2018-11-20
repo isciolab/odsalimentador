@@ -65,4 +65,4 @@ gem 'jquery-rails'
 
 gem 'rack-cors', require: 'rack/cors'
 
-gem 'activerecord-insert_many'
+gem 'activerecord-import'

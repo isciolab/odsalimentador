@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181121175320) do
+ActiveRecord::Schema.define(version: 20181121192710) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20181121175320) do
     t.text "response"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "dictionary_objetive_id"
+    t.index ["dictionary_objetive_id"], name: "index_data_objetives_on_dictionary_objetive_id"
   end
 
   create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -256,6 +258,7 @@ ActiveRecord::Schema.define(version: 20181121175320) do
   add_foreign_key "cities", "departments"
   add_foreign_key "cities", "goal_groups"
   add_foreign_key "cities", "group_cities", column: "group_cities_id"
+  add_foreign_key "data_objetives", "dictionary_objetives"
   add_foreign_key "departments", "countries"
   add_foreign_key "goal_cities", "cities"
   add_foreign_key "goal_cities", "goals"

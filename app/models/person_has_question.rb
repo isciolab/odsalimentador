@@ -9,12 +9,14 @@ class PersonHasQuestion < ApplicationRecord
     # hace el explode en php
     @personhasquestion = Array.new
     @person = Array.new
+    allquestions=Question.all
+    @question=Array.new
 
     encabezado = Array.new
     contcabecera = 0
     columnspeople = [:stratum, :sex, :city, :age,:answer_year,:unique_id,:location,:zone,:id]
     columnspersonhasq = [:answer, :people_id, :question_id]
-    lastpeople=People.last(1)
+    lastpeople=People.last()
 
     CSV.foreach(file.path, col_sep: ';', headers: false, encoding: 'iso-8859-1:utf-8') do |row|
 
@@ -23,7 +25,9 @@ class PersonHasQuestion < ApplicationRecord
         if lastpeople.blank?
 
         else
+
           i=lastpeople.id+1
+
         end
 
       else
@@ -38,19 +42,38 @@ class PersonHasQuestion < ApplicationRecord
             :zone => row[4],
             :id => i
         }
-
+        contcabecera=0
         encabezado.each do |cebecera|
+
+          @question=""
 
           if cebecera.strip!="0" && cebecera.strip!="NSE" && cebecera.strip!="LOCALIDAD_COMUNA" && cebecera.strip!="SEXO" &&
               cebecera.strip!="EDAD" && cebecera!="AÑO" && cebecera.strip!="ZONAS" && cebecera.strip!=nil && cebecera.strip!="CIUDAD"
-              @question =Question.find_by name: cebecera.strip
 
-            if @question.blank?
-              @question = Question.new
-              @question.name=cebecera.strip
-              @question.available=1
-              @question.save!
+
+            if allquestions.empty?
+                @question = Question.new
+                @question.name=cebecera.strip
+                @question.available=1
+                @question.save!
+            else
+              allquestions.each do |filaquestion|
+                if filaquestion.name==cebecera.strip
+                  @question=filaquestion
+                  break
+                end
+              end
+
+              if @question==""
+                @question = Question.new
+                @question.name=cebecera.strip
+                @question.available=1
+                @question.save!
+                allquestions=Question.all
+              end
             end
+
+
 
             if row[contcabecera]!=nil && row[contcabecera].strip!="#!NULO!" && row[contcabecera].strip!="#¡NULO" && row[contcabecera].strip!="#¡NULO!" && row[contcabecera].strip!="#!NULO¡" &&
                 row[contcabecera].strip!=""
@@ -66,6 +89,7 @@ class PersonHasQuestion < ApplicationRecord
           contcabecera = contcabecera + 1
         end
       end
+
       i = i + 1
     end
     Person.import columnspeople, @person, validate: false

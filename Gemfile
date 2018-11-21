@@ -65,4 +65,5 @@ gem 'jquery-rails'
 
 gem 'rack-cors', require: 'rack/cors'
 
+##gema para importar grandes cantidades de datos
 gem 'activerecord-import'

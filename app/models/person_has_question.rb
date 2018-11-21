@@ -5,32 +5,34 @@ class PersonHasQuestion < ApplicationRecord
   def self.importar(file)
 
     i = 0
+
+    @personhasquestion = Array.new #el arreglo a guardar en la tabla person_has_questions
+    @person = Array.new #el arreglo a guardar en la tabla person
+    @question=Array.new #el arreglo a guardar en la tabla question
+    allquestions=Question.all #almacena todas las questions
+    encabezado = Array.new #almacena el encabezado de los archivos csv, que es donde estaran los nombres de las preguntas
+
+    columnspeople = [:stratum, :sex, :city, :age,:answer_year,:unique_id,:location,:zone,:id] #columnas de la tabla people
+    columnspersonhasq = [:answer, :people_id, :question_id] #columnas de la tabla person_has_questions
+    lastpeople=People.last() #busco el ultimo registro en la tabla people
+
     ##el parametro col_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
     # hace el explode en php
-    @personhasquestion = Array.new
-    @person = Array.new
-    allquestions=Question.all
-    @question=Array.new
-
-    encabezado = Array.new
-    contcabecera = 0
-    columnspeople = [:stratum, :sex, :city, :age,:answer_year,:unique_id,:location,:zone,:id]
-    columnspersonhasq = [:answer, :people_id, :question_id]
-    lastpeople=People.last()
-
     CSV.foreach(file.path, col_sep: ';', headers: false, encoding: 'iso-8859-1:utf-8') do |row|
 
       if i == 0
+        #si entra aqui, guardo el encabezado una sola vez
         encabezado = row
         if lastpeople.blank?
 
         else
-
+          #entra aqui si ya hay al menos un registro en peoples, y guardo el ultimo id insertado en "i"
           i=lastpeople.id
 
         end
 
       else
+        ##esto va almacenando en @person los datos a guardar
         @person << {
             :stratum => row[1],
             :sex => row[5],
@@ -43,6 +45,8 @@ class PersonHasQuestion < ApplicationRecord
             :id => i
         }
         contcabecera=0
+
+        #recorro el encabezado que tiene las preguntas
         encabezado.each do |cebecera|
 
           @question=""
@@ -52,18 +56,23 @@ class PersonHasQuestion < ApplicationRecord
 
 
             if allquestions.empty?
+              ##entra aqui si no hay ningun dato en questions, y guardo una
                 @question = Question.new
                 @question.name=cebecera.strip
                 @question.available=1
                 @question.save!
             else
+              ##entra aqui si ya hay pregutas guardadas
+              # y recorro allquestions
               allquestions.each do |filaquestion|
+                ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
                 if filaquestion.name==cebecera.strip
                   @question=filaquestion
                   break
                 end
               end
 
+              ##aqui valido si no consiguio nada arriba en el each, entonces creo una nueva pregunta
               if @question==""
                 @question = Question.new
                 @question.name=cebecera.strip
@@ -73,11 +82,9 @@ class PersonHasQuestion < ApplicationRecord
               end
             end
 
-
-
             if row[contcabecera]!=nil && row[contcabecera].strip!="#!NULO!" && row[contcabecera].strip!="#¡NULO" && row[contcabecera].strip!="#¡NULO!" && row[contcabecera].strip!="#!NULO¡" &&
                 row[contcabecera].strip!=""
-
+              #almaceno la respuesta a la pregunta
               @personhasquestion << {
                   :answer => row[contcabecera].strip,
                   :people_id => i,
@@ -92,6 +99,7 @@ class PersonHasQuestion < ApplicationRecord
 
       i = i + 1
     end
+    ##aqui guardo los arreglos, usando esta gema  "activerecord-import"
     Person.import columnspeople, @person, validate: false
     PersonHasQuestion.import columnspersonhasq, @personhasquestion, validate:false
   end

@@ -26,7 +26,7 @@ class PersonHasQuestion < ApplicationRecord
 
         else
 
-          i=lastpeople.id+1
+          i=lastpeople.id
 
         end
 

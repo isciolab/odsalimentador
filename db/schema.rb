@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181120203012) do
+ActiveRecord::Schema.define(version: 20181121013937) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20181120203012) do
     t.datetime "delete_at"
   end
 
-  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "sex"
     t.string "city"
     t.string "age"
@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 20181120203012) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "person_has_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.text "answer"
+  create_table "person_has_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "answer", limit: 16777215
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "people_id"
@@ -163,9 +163,9 @@ ActiveRecord::Schema.define(version: 20181120203012) do
     t.index ["question_id"], name: "index_person_has_questions_on_question_id"
   end
 
-  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.text "description"
+    t.text "description", limit: 16777215
     t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

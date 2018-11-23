@@ -110,7 +110,7 @@
 
 
 
-        <div class="tab-pane col-md11 in active" role="tabpanel" id="ciudatos" aria-expanded="true">
+        <div class="tab-pane col-md11 in" role="tabpanel" id="ciudatos" aria-expanded="false">
         <div class="row">
 
           <div class="col-md-12">
@@ -147,7 +147,7 @@
           <div class="row">
             <div class="form-group">
               <div class="col-md-4">
-                <label class="control-label">Cargar datos Ciudatos:</label>
+                <label class="control-label">Cargar datos Subjetivos:</label>
               </div>
               <div class="col-md-5">
                 <%= file_field_tag :file,accept: '.csv' %>
@@ -161,6 +161,42 @@
         <% end %>
         <br>
 
+
+          <%= form_tag "configs/dictionary_objetive", multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar Diccionario de Datos Objetivos:</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
+
+          <%= form_tag "configs/objetive_data", multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar datos Objetivos:</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
       </div>
 
 

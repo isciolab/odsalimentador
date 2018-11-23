@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :configs do ##ODS
     collection { post 'importheme'}
     collection { post 'importpersons_has_questions'}
+    collection { post 'dictionary_objetive'}
+    collection { post 'objetive_data'}
 
   end
 

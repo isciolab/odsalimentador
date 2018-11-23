@@ -75,7 +75,7 @@ class DataObjetive < ApplicationRecord
                     fila[contcabecera].strip != "#!NULO¡" &&
                     fila[contcabecera].strip!= ""
                   #almaceno la respuesta a la pregunta
-                  puts fila.inspect
+
                   @dataobjetive << {
                       :city => fila[0].strip,
                       :answer_year => fila[1].strip,
@@ -83,9 +83,6 @@ class DataObjetive < ApplicationRecord
                       :dictionary_objetive_id=>@dicctionary.id
                   }
                 end
-
-
-
             end
 
             contcabecera = contcabecera + 1

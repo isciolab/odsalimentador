@@ -13,9 +13,9 @@ class DictionaryObjetive < ApplicationRecord
 
       if fila!="no tiene"
         @dictionary << {
-            :name => fila[0].nil? ? nil :fila[0].force_encoding('iso-8859-1').encode('utf-8') ,
-            :description => fila[1].nil? ? nil :fila[1].force_encoding('iso-8859-1').encode('utf-8') ,
-            :source => fila[3].nil? ? nil :fila[3].force_encoding('iso-8859-1').encode('utf-8')
+            :name => fila[0].nil? ? nil :fila[0].force_encoding('utf-8') ,
+            :description => fila[1].nil? ? nil :fila[1].force_encoding('utf-8') ,
+            :source => fila[3].nil? ? nil :fila[3].force_encoding('utf-8')
         }
         end
 

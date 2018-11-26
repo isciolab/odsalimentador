@@ -1,18 +1,17 @@
 class DataObjetive < ApplicationRecord
   require 'csv'
 
-  ##esta funcion, guarda los datos en la tabla goals, para almacenas las ods por archivo csv
   def self.importar(file)
 
     i = 0
 
-    @dataobjetive = Array.new #el arreglo a guardar en la tabla person_has_questions
-    @question = Array.new #el arreglo a guardar en la tabla question
-    allquestions = DictionaryObjetive.all #almacena todas las questions
+    @dataobjetive = Array.new #el arreglo a guardar en la tabla data_objetives
+    @question = Array.new #el arreglo a guardar en la tabla dictionary_objetives
+    allquestions = DictionaryObjetive.all #trae todo el diccionario de datos objetivos
     encabezado = Array.new #almacena el encabezado de los archivos csv, que es donde estaran los nombres de las preguntas
 
-    columnsdataobjetive = [:city, :answer_year, :response, :dictionary_objetive_id] #columnas de la tabla person_has_questions
-    lastpeople = DictionaryObjetive.last() #busco el ultimo registro en la tabla people
+    columnsdataobjetive = [:city, :answer_year, :response, :dictionary_objetive_id] #columnas de la tabla data_objetives
+    lastpeople = DictionaryObjetive.last() #busco el ultimo registro en la tabla data_objetives
 
     ##el parametro col_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
     # hace el explode en php
@@ -20,17 +19,19 @@ class DataObjetive < ApplicationRecord
 
       if i == 0
         #si entra aqui, guardo el encabezado una sola vez
+        # aqui la data viene en una sola fila, en una sola columna, por lo tando le hago un split y las separo
         encabezado = row[0].try(:split, ",") || "no tiene"
         if lastpeople.blank?
 
         else
-          #entra aqui si ya hay al menos un registro en peoples, y guardo el ultimo id insertado en "i"
+          #entra aqui si ya hay al menos un registro en data_objetives, y guardo el ultimo id insertado en "i"
           i = lastpeople.id
 
         end
 
       else
         contcabecera=0
+        # aqui la data viene en una sola fila, en una sola columna, por lo tando le hago un split y las separo
         fila = row[0].try(:split, ",") || "no tiene"
 
         if fila != "no tiene"

@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="form-group">
-              <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
             </div>
 
           <% end %>
@@ -81,7 +81,7 @@
               </div>
             </div>
             <div class="form-group">
-              <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
             </div>
 
           <% end %>
@@ -99,7 +99,7 @@
               </div>
             </div>
             <div class="form-group">
-              <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
             </div>
 
           <% end %>
@@ -135,7 +135,7 @@
             </div>
           </div>
           <div class="form-group">
-            <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+            <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
           </div>
 
         <% end %>
@@ -155,7 +155,7 @@
             </div>
           </div>
           <div class="form-group">
-            <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+            <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
           </div>
 
         <% end %>
@@ -174,7 +174,7 @@
               </div>
             </div>
             <div class="form-group">
-              <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
             </div>
 
           <% end %>
@@ -192,11 +192,86 @@
               </div>
             </div>
             <div class="form-group">
-              <%= submit_tag "Import CSV", class:"btn btn-primary" %>
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
             </div>
 
           <% end %>
           <br>
+
+
+          <!-- diccionario universidades ciudades -->
+          <%= form_tag "configs/dict_univ_cities", multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar Diccionario de Ciudades Universitarias:</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
+          <%= form_tag "configs/university_cities", multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar datos Ciudades Unviersitarias:</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
+
+
+          <!-- EOT -->
+          <%= form_tag "configs/eot_dictionary", multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar Diccionario de EOT (Educaci&oacute;n T&eacute;cnica y Tecnol&oacute;gica):</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
+          <%= form_tag "configs/eot_data", multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar Datos de EOT (Educaci&oacute;n T&eacute;cnica y Tecnol&oacute;gica):</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
+
       </div>
 
 

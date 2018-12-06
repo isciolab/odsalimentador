@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181123120635) do
+ActiveRecord::Schema.define(version: 20181206121518) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(version: 20181123120635) do
     t.bigint "country_id"
     t.datetime "delete_at"
     t.index ["country_id"], name: "index_departments_on_country_id"
+  end
+
+  create_table "dict_univ_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "label"
+    t.string "category"
+    t.string "type"
   end
 
   create_table "dictionary_objetives", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -222,6 +228,14 @@ ActiveRecord::Schema.define(version: 20181123120635) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "university_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "city"
+    t.string "answer_year"
+    t.text "response"
+    t.bigint "dict_univ_city_id"
+    t.index ["dict_univ_city_id"], name: "index_university_cities_on_dict_univ_city_id"
+  end
+
   create_table "user_by_cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.bigint "user_id"
     t.bigint "city_id"
@@ -269,6 +283,7 @@ ActiveRecord::Schema.define(version: 20181123120635) do
   add_foreign_key "person_has_questions", "people", column: "people_id"
   add_foreign_key "person_has_questions", "questions"
   add_foreign_key "targets", "goals"
+  add_foreign_key "university_cities", "dict_univ_cities"
   add_foreign_key "user_by_cities", "cities"
   add_foreign_key "user_by_cities", "users"
   add_foreign_key "users", "cities"

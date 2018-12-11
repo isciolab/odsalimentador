@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     collection { post 'university_cities'}
 
     collection { post 'eot_data'}
-    collection { post 'eot_dictionary'}
+    collection { post 'eot_dictionaryroutes'}
+
+    collection { post 'ods_ciudatos'}
   end
 
   resources :goals do ##ODS

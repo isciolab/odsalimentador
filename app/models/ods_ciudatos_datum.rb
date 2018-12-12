@@ -14,12 +14,12 @@ class OdsCiudatosDatum < ApplicationRecord
 
     ##el parametro col_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
     # hace el explode en php
-    CSV.foreach(file.path, col_sep: ';', headers: false, encoding: 'iso-8859-1:utf-8') do |row|
+    CSV.foreach(file.path, col_sep: ';', headers: false, encoding: 'iso-8859-1:utf-8') do |fila|
 
       if i == 0
         #si entra aqui, guardo el encabezado una sola vez
         # aqui la data viene en una sola fila, en una sola columna, por lo tando le hago un split y las separo
-        encabezado = row[0].try(:split, ",") || "no tiene"
+        encabezado = fila
         if lastdataprincip.blank?
 
         else
@@ -31,20 +31,14 @@ class OdsCiudatosDatum < ApplicationRecord
       else
         contcabecera=0
         # aqui la data viene en una sola fila, en una sola columna, por lo tando le hago un split y las separo
-        fila = row[0].try(:split, ",") || "no tiene"
 
-        if fila != "no tiene"
 
           #recorro el encabezado que tiene las preguntas
-          encabezado.each do |cebecera|
 
-            @dictionary = ""
 
-            if cebecera.strip != "0" && cebecera.strip != "Metas" && cebecera.strip != "Indicadore" &&
-                cebecera.strip != "Objetivos" && cebecera.strip != "Ciudad" &&
-                cebecera.strip != "Valor" && cebecera != "Fuente" && cebecera.strip != nil && cebecera.strip != "simbolo"
-
+              puts fila.inspect
               if fila[contcabecera] != nil && fila[contcabecera].strip != "#!NULO!" && fila[contcabecera].strip != "#¡NULO" &&
+                  fila[contcabecera]!= "" &&
                   fila[contcabecera].strip != "#¡NULO!" &&
                   fila[contcabecera].strip != "#!NULO¡" &&
                   fila[contcabecera].strip!= "" &&  fila[contcabecera].strip!= "NA" &&  fila[contcabecera].strip!= "na" &&
@@ -52,20 +46,17 @@ class OdsCiudatosDatum < ApplicationRecord
                 #almaceno la respuesta
 
                 @dataprincipal << {
-                    :objetive => fila[0].strip,
-                    :target => fila[1].strip,
-                    :indicator=> fila[contcabecera].strip,
-                    :city=>fila[contcabecera].strip,
-                    :response=>fila[contcabecera].strip,
-                    :source=>fila[contcabecera].strip,
-                    :symbol=>fila[contcabecera].strip
+                    :objetive => fila[0],
+                    :target => fila[1],
+                    :indicator=> fila[2],
+                    :city=>fila[3],
+                    :response=>fila[4],
+                    :source=>fila[5],
+                    :symbol=>fila[6]
                 }
-              end
-            end
-
             contcabecera = contcabecera + 1
           end
-        end
+
       end
 
       i = i + 1

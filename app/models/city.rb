@@ -1,86 +1,108 @@
 class City < ApplicationRecord
-  validates :department_id, presence: true
-  belongs_to :department
-  belongs_to :group_city, class_name: 'GroupCity', foreign_key: 'group_cities_id'
+  require 'csv'
+
+  belongs_to :department,optional: true
+  belongs_to :group_city, class_name: 'GroupCity', foreign_key: 'group_cities_id',optional: true
   has_many :indicator_values
   has_many :users
 
   mount_uploader :avatar, AvatarUploader ##esto subira la imagen
 
-  require 'csv'
 
   def self.importar(file)
 
     i = 0
 
-    @dataprincipal= Array.new
+    @dataprincipal = Array.new
 
     encabezado = Array.new #almacena el encabezado de los archivos csv, que es donde estaran los nombres de las preguntas
 
     columnsdataprincipal = [:name, :group_cities_id, :is_capital, :goal_group_id, :rccv_program, :total_population,
-                            :metropolitan_area,:city_system_dnp,:dnp_category,:ddt_typology,:department_id,:description,
-                            :urban_population,:rural_population,:total_area,:foundation_year]
-    lastdataprincip = OdsCiudatosDatum.last() #busco el ultimo registro
-
+                            :metropolitan_area, :city_system_dnp, :dnp_category, :ddt_typology, :department_id, :description,
+                            :urban_population, :rural_population, :total_area, :foundation_year]
     ##el parametro col_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
     # hace el explode en php
-    CSV.foreach(file.path, col_sep: ';', headers: false, encoding: 'iso-8859-1:utf-8') do |fila|
+    CSV.foreach(file.path, col_sep: ';', headers: true, encoding: 'iso-8859-1:utf-8') do |fila|
 
       if i == 0
         #si entra aqui, guardo el encabezado una sola vez
         # aqui la data viene en una sola fila, en una sola columna, por lo tando le hago un split y las separo
         encabezado = fila
-        if lastdataprincip.blank?
-
-        else
-          #entra aqui si ya hay al menos un registro en data_objetives, y guardo el ultimo id insertado en "i"
-          i = lastdataprincip.id
-
-        end
 
       else
-        contcabecera=0
+        contcabecera = 0
         # aqui la data viene en una sola fila, en una sola columna, por lo tando le hago un split y las separo
         #recorro el encabezado que tiene las preguntas
 
         @groupcity = Array.new
 
-        puts fila.inspect
+
         if fila[3] != nil && fila[3].strip != "#!NULO!" && fila[3].strip != "#¡NULO" &&
-            fila[3]!= "" &&
+            fila[3] != "" &&
             fila[3].strip != "#¡NULO!" &&
             fila[3].strip != "#!NULO¡" &&
-            fila[3].strip!= "" &&  fila[3].strip!= "NA" &&  fila[3].strip!= "na" &&
-            fila[3].strip!= "N/A" && fila[3].strip!="No Disponible"
+            fila[3].strip != "" && fila[3].strip != "NA" && fila[3].strip != "na" &&
+            fila[3].strip != "N/A" && fila[3].strip != "No Disponible"
           #almaceno la respuesta
 
-          @groupcity = GroupCity.where(name: fila[18])
+          ##@groupcity = GroupCity.where(name: fila[18])
+          @groupods = GoalGroup.where(name: fila[18])
 
-          if @groupcity == ""
-            @groupcity = EotDictionary.new
-            @groupcity.name = cebecera.strip
-            @groupcity.save!
+          if @groupods.exists?
+            @groupods.each do |filagrupo|
+              ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
+              @groupods = filagrupo
+            end
+          else
+            @groupods = GoalGroup.new
+            @groupods.name = fila[18].strip
+            @groupods.save!
           end
+          @city = City.select("upper(name) as name").where(name: fila[3].upcase)
 
-          @dataprincipal << {
-              :group_cities_id => fila[0],
-              :is_capital => fila[1],
-              :goal_group_id=> fila[2],
-              :rccv_program=>fila[3],
-              :total_population=>fila[4],
-              :metropolitan_area=>fila[5],
-              :city_system_dnp=>fila[6],
-              :dnp_category=>fila[5],
-              :ddt_typology=>fila[5],
-              :department_id=>fila[5],
-              :description=>fila[5],
-              :urban_population=>fila[5],
-              :rural_population=>fila[5],
-              :total_area=>fila[5],
-              :foundation_year=>fila[5],
-              :cod_dane=>fila[5]
-          }
-          contcabecera = contcabecera + 1
+          puts @city
+
+          if @city.exists?
+            @city.update(:name => fila[3].upcase,
+                         :group_cities_id => nil,
+                         :is_capital => fila[17] == "Capital" ? 1 : 0,
+                         :goal_group_id => @groupods.id,
+                         :rccv_program => fila[2],
+                         :total_population => fila[6],
+                         :metropolitan_area => fila[12],
+                         :city_system_dnp => fila[13],
+                         :dnp_category => fila[14],
+                         :ddt_typology => fila[15],
+                         :department_id => nil,
+                         :description => nil,
+                         :urban_population => fila[18],
+                         :rural_population => nil,
+                         :total_area => fila[10],
+                         :foundation_year => fila[4],
+                         :cod_dane => fila[1]
+            )
+          else
+            @dataprincipal << {
+                :name => fila[3].upcase,
+                :group_cities_id => nil,
+                :is_capital => fila[17] == "Capital" ? 1 : 0,
+                :goal_group_id => @groupods.id,
+                :rccv_program => fila[2],
+                :total_population => fila[6],
+                :metropolitan_area => fila[12],
+                :city_system_dnp => fila[13],
+                :dnp_category => fila[14],
+                :ddt_typology => fila[15],
+                :department_id => nil,
+                :description => nil,
+                :urban_population => fila[18],
+                :rural_population => nil,
+                :total_area => fila[10],
+                :foundation_year => fila[4],
+                :cod_dane => fila[1]
+            }
+            contcabecera = contcabecera + 1
+          end
         end
 
       end

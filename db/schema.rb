@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181219002054) do
+ActiveRecord::Schema.define(version: 20181219171444) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20181219002054) do
     t.float "urban_population", limit: 24
     t.float "rural_population", limit: 24
     t.string "total_area"
-    t.integer "foundation_year"
+    t.string "foundation_year"
     t.string "folder_avatar", default: "logos/cities/"
     t.text "cod_dane"
     t.text "web_page"

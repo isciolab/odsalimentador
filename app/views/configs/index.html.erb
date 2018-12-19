@@ -104,6 +104,24 @@
 
           <% end %>
           <br>
+
+          <%= form_tag "configs/load_cities", multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar Ciudades:</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
           <br>
           </div>
 

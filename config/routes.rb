@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     collection { post 'eot_dictionaryroutes'}
 
     collection { post 'ods_ciudatos'}
+
+    collection { post 'load_cities'}
   end
 
   resources :goals do ##ODS

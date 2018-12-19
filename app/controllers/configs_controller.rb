@@ -95,4 +95,22 @@ class ConfigsController < ApplicationController
     end
   end
 
+  def web_pages_cities
+    if params[:file]
+      City.importarWebPages(params[:file])
+      redirect_to configs_path, :flash => {:notice => "Datos guardados éxito!"}
+    else
+      redirect_to configs_path, :flash => {:error => "Por favor seleccionar un archivo CSV"}
+    end
+  end
+
+  def description_cities
+    if params[:file]
+      City.importarDescripcionCity(params[:file])
+      redirect_to configs_path, :flash => {:notice => "Datos guardados éxito!"}
+    else
+      redirect_to configs_path, :flash => {:error => "Por favor seleccionar un archivo CSV"}
+    end
+  end
+
 end

@@ -13,10 +13,30 @@ class Target < ApplicationRecord
       ##en la siguiente linea, le digo que a la columna 0 de la primera fila, que es el numero de la meta
       # que busque desde el caracter 0 hasta donde encuentre un ., ya que a partir del punto en adelante, es el numero de la meta
       # y del punto hacia atras, es el numero del ODS
-      goal= Goal.find_by number: row[0][0,row[0].index('.')]
+      ##goal= Goal.find_by number: row[0][0,row[0].index('.')]
+
+      @target=""
+      goal=""
+      goal= Goal.find_by number: row[0].strip
+      @target= Target.find_by number: row[0]+"."+row[1]
       if goal
-        puts goal.inspect
-      Target.create([{number: row[0], name: row[1],available:1,goal_id:goal.id}])
+        puts "fernando"
+        puts goal.id
+        puts row[0]+"."+row[1]
+
+        if @target
+          @target.number=row[0]+"."+row[1]
+          @target.name=row[3]
+          @target.description=row[2]
+          @target.goal_id=goal.id
+          @target.available=1
+          @target.save
+
+        else
+          Target.create([{number: row[0]+"."+row[1], name: row[3],available:1,
+                          description: row[2], goal_id:goal.id}])
+        end
+
       end
     end
   end

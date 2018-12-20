@@ -15,7 +15,9 @@ class DictionaryObjetive < ApplicationRecord
         @dictionary << {
             :name => fila[0].nil? ? nil :fila[0].force_encoding('utf-8') ,
             :description => fila[1].nil? ? nil :fila[1].force_encoding('utf-8') ,
-            :source => fila[3].nil? ? nil :fila[3].force_encoding('utf-8')
+            :source => fila[3].nil? ? nil :fila[3].force_encoding('utf-8'),
+            :measure => fila[5].nil? ? nil :fila[5].force_encoding('utf-8')
+
         }
         end
 

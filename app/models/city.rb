@@ -41,15 +41,15 @@ class City < ApplicationRecord
         #almaceno la respuesta
 
         ##@groupcity = GroupCity.where(name: fila[18])
-        @groupods = GoalGroup.where(name: fila[18])
+        @groupods = GroupCity.where(name: fila[18])
 
         if @groupods.exists?
           @groupods.each do |filagrupo|
-            ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
+
             @groupods = filagrupo
           end
         else
-          @groupods = GoalGroup.new
+          @groupods = GroupCity.new
           @groupods.name = fila[18].strip
           @groupods.save!
         end
@@ -82,12 +82,11 @@ class City < ApplicationRecord
             ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
             @city = filagrupo
           end
-          
+
 
           @city.name = fila[3]
-          @city.group_cities_id = nil
           @city.is_capital = fila[17] == "Capital" ? 1 : 0
-          @city.goal_group_id = @groupods.id
+          @city.group_cities_id = @groupods.id
           @city.rccv_program = fila[2]
           @city.total_population = fila[6]
           @city.metropolitan_area = fila[12]
@@ -107,9 +106,8 @@ class City < ApplicationRecord
         else
           @dataprincipal << {
               :name => fila[3].upcase,
-              :group_cities_id => nil,
               :is_capital => fila[17] == "Capital" ? 1 : 0,
-              :goal_group_id => @groupods.id,
+              :group_cities_id => @groupods.id,
               :rccv_program => fila[2],
               :total_population => fila[6],
               :metropolitan_area => fila[12],

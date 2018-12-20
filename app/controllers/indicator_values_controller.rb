@@ -113,6 +113,15 @@ class IndicatorValuesController < ApplicationController
     render :partial => 'tblindicatorvalue'
   end
 
+  def importar_indicator_value
+    if params[:file]
+      IndicatorValue.importar(params[:file])
+      redirect_to configs_path, :flash => {:notice => "Datos guardados éxito!"}
+    else
+      redirect_to configs_path, :flash => {:error => "Por favor seleccionar un archivo CSV"}
+    end
+  end
+
   ##metodos privados
   private
   def indicator_params

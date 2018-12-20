@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     collection { post 'web_pages_cities'}
     collection { post 'description_cities'}
 
-    collection { post 'importar_indicator_value'}
+
   end
 
   resources :goals do ##ODS
@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     get 'getvalueindicators', on: :collection
     get 'updatefechatoyear', on: :collection
     get 'tblindicatorvalue', on: :collection
+    collection { post 'importar_indicator_value'}
 
   end
 

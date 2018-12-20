@@ -27,7 +27,7 @@ class Indicator < ApplicationRecord
           end
 
           Indicator.create([{number: row[2], name: row[3], available: 1,
-                             target_id: target.id,measure_id:3}])
+                             target_id: target.id,measure_id:measure}])
         end
       end
     end

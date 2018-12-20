@@ -1,8 +1,6 @@
 class Indicator < ApplicationRecord
   require 'csv'
-  validates :name, presence: true, uniqueness: true
-  validates :target_id, presence: true
-  validates :number, presence: true, uniqueness: true
+
   belongs_to :target, optional:true
   has_many :indicator_values
 
@@ -23,9 +21,13 @@ class Indicator < ApplicationRecord
             @measure.name=row[5]
             @measure.save
           end
+          measure=nil
+          if @measure.id
+            measure=@measure.id
+          end
 
           Indicator.create([{number: row[2], name: row[3], available: 1,
-                             target_id: target.id,measure_id:@measure.id}])
+                             target_id: target.id,measure_id:3}])
         end
       end
     end

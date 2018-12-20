@@ -21,13 +21,12 @@ class IndicatorValue < ApplicationRecord
     ##el parametro col_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
     # hace el explode en php
 
-    cabecera=[]
+    @cabecera=[]
+    contadordespues=0;
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: 'iso-8859-1:utf-8') do |fila|
-
+      contadordespues=0;
       if i == 0
-        #si entra aqui, guardo el encabezado una sola vez
-        puts "fila"
-        puts fila
+        #si entra aqui, entra con las dos primeras filas, por lo tanto las recorro debajo
 
         controwdosfilas=0
         contprimerasdos=0
@@ -36,6 +35,7 @@ class IndicatorValue < ApplicationRecord
           controwdosfilas=0
           primerasdosfilas.each do |rowdosfilas|
 
+            ##solo entro en el segundo item, que es la segunda fila
             if controwdosfilas==1
 
               if rowdosfilas.nil?
@@ -43,8 +43,11 @@ class IndicatorValue < ApplicationRecord
               else
                 cantidadpuntos=contarlength(rowdosfilas,".")
                 if cantidadpuntos>1
-                  puts rowdosfilas
-                  articles << Article.new(:indicador => rowdosfilas, :columna=>contprimerasdos)
+
+                  @cabecera << {
+                      :indicador =>rowdosfilas,
+                      :columna => contprimerasdos,
+                  }
                 end
               end
             end
@@ -53,18 +56,37 @@ class IndicatorValue < ApplicationRecord
 
           end
 
-          puts contprimerasdos
+
           contprimerasdos=contprimerasdos+1
         end
 
 
       else
+        ##aqui entra en la tercera fila en adelante
 
+
+        fila.each do |primerasdosfilas|
+          indicador=""
+          puts row[0]['columna']
+
+
+          if indicador!=""
+
+            @indicator = Indicator.find_by number: indicador.indicador
+
+            if @indicator.id
+
+            end
+
+          end
+          contadordespues=contadordespues+1
+        end
 
       end
 
       i = i + 1
     end
+
     ##aqui guardo los arreglos, usando esta gema  "activerecord-import"
     #City.import columnsdataprincipal, @dataprincipal, validate: false
   end

@@ -53,9 +53,27 @@ class City < ApplicationRecord
           @groupods.name = fila[18].strip
           @groupods.save!
         end
+        departamento=fila[19].upcase
+        departamento=departamento.strip
         @city = City.select("cities.*, upper(name) as name").where(name: fila[3].upcase)
+        @departamento = Department.select("departments.*, upper(name) as name").where(name: departamento)
 
 
+        if @departamento.exists?
+          puts "se salio"
+          @departamento.each do |filagrupo|
+            ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
+            @departamento = filagrupo
+          end
+        else
+          puts "se metio"
+          @departamento=Department.new
+          @departamento.name = departamento
+          @departamento.save
+        end
+        puts "departamento"
+        puts fila[19].upcase
+        puts @departamento
         if @city.exists?
           if fila[3].upcase == "CALI"
 
@@ -64,8 +82,7 @@ class City < ApplicationRecord
             ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
             @city = filagrupo
           end
-          puts "Fernandoooooooooooooooooooooooooooo"
-          puts @city.name
+          
 
           @city.name = fila[3]
           @city.group_cities_id = nil
@@ -77,7 +94,7 @@ class City < ApplicationRecord
           @city.city_system_dnp = fila[13]
           @city.dnp_category = fila[14]
           @city.ddt_typology = fila[15]
-          @city.department_id = nil
+          @city.department_id = @departamento.id
           @city.description = nil
           @city.rural_population = fila[8]
           @city.rural_population = nil
@@ -99,7 +116,7 @@ class City < ApplicationRecord
               :city_system_dnp => fila[13],
               :dnp_category => fila[14],
               :ddt_typology => fila[15],
-              :department_id => nil,
+              :department_id => @departamento.id,
               :description => nil,
               :urban_population => fila[8],
               :rural_population => nil,

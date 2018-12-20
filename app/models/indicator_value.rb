@@ -67,8 +67,8 @@ class IndicatorValue < ApplicationRecord
 
         fila.each do |primerasdosfilas|
           indicador=""
-          puts row[0]
-
+          puts @cabecera[0]
+          puts @cabecera[0]['columna']
 
           if indicador!=""
 

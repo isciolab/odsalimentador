@@ -91,7 +91,25 @@
             <div class="row">
               <div class="form-group">
                 <div class="col-md-4">
-                  <label class="control-label">Cargar Indicadore de las Metas:</label>
+                  <label class="control-label">Cargar Indicadores de las Metas:</label>
+                </div>
+                <div class="col-md-5">
+                  <%= file_field_tag :file,accept: '.csv' %>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "Importar CSV", class:"btn btn-primary" %>
+            </div>
+
+          <% end %>
+          <br>
+
+          <%= form_tag 'indicators/load_descripcion', multipart: true do %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-4">
+                  <label class="control-label">Cargar Descripciones de Indicadores:</label>
                 </div>
                 <div class="col-md-5">
                   <%= file_field_tag :file,accept: '.csv' %>

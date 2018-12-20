@@ -13,7 +13,7 @@ class Goal < ApplicationRecord
         # hace el explode en php
         CSV.foreach(file.path, col_sep: ';', headers: true, encoding: 'iso-8859-1:utf-8') do |row|
             i=i+1
-            Goal.create([{number: i, name: row[2],description:row[1]}])
+            Goal.create([{number: i, name: row[1],description:row[2]}])
         end
     end
 end

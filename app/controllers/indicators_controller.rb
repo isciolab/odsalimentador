@@ -83,6 +83,16 @@ class IndicatorsController < ApplicationController
     end
   end
 
+  ##esto se usa para importar los indicadores via csv
+  def load_descripcion
+    if params[:file]
+      Indicator.load_descripcion(params[:file])
+      redirect_to configs_path, :flash => {:notice => "Datos guardados éxito!"}
+    else
+      redirect_to configs_path, :flash => {:error => "Por favor seleccionar un archivo CSV"}
+    end
+  end
+
   ##metodos privados
 
   private

@@ -1,6 +1,6 @@
 class Target < ApplicationRecord
   require 'csv'
-  validates :name,:presence=> true, uniqueness: true
+
   validates :goal_id, :presence=> true
   validates :number, presence: true,uniqueness: true
   belongs_to :goal
@@ -30,10 +30,20 @@ class Target < ApplicationRecord
           @target.description=row[2]
           @target.goal_id=goal.id
           @target.available=1
-          @target.save
+          puts "entro a actualizar"
+          puts @target.save
 
         else
-          Target.create([{number: row[0]+"."+row[1], name: row[3],available:1,
+          puts "entro a crear"
+          puts row[3]
+          name=""
+          if row[3]!=nil && row[3].strip!=""
+            name=row[3]
+          else
+            name=row[2]
+          end
+
+          Target.create([{number: row[0]+"."+row[1], name:name ,available:1,
                           description: row[2], goal_id:goal.id}])
         end
 

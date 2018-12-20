@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 
   resources :indicators do ##indicadores
     collection { post :import}
+    collection { post 'load_descripcion'}
     get 'indicators/import'
     get 'getindicatorstbl', on: :collection
     member do

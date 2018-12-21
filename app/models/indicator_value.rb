@@ -92,27 +92,29 @@ class IndicatorValue < ApplicationRecord
                 end
 
                 @indicator_value = IndicatorValue.find_by(indicator_id: indicador[:indicador],
-                                                          date_from: fila[2],city_id:@city.id)
-                score=nil
+                                                          date_from: fila[2], city_id: @city.id)
+                score = nil
                 if !fila[indicador[:columna]].nil? && !fila[indicador[:columna]].empty?
-                  score=fila[indicador[:columna]].gsub! ',', '.'
+                  score = fila[indicador[:columna]].gsub! ',', '.'
 
                 else
 
                 end
 
-                if @indicator_value.nil?
+                if !score.nil?
+                  if @indicator_value.nil?
 
-                  IndicatorValue.create([{score: score, date_from: fila[2],date_to:fila[2],
-                                          indicator_id: @indicator.id,city_id:@city.id}])
-                else
-                  @indicador_value=IndicatorValue.new
-                  @indicador_value.score = score
-                  @indicador_value.date_from = fila[2]
-                  @indicador_value.date_to = fila[2]
-                  @indicador_value.indicator_id = @indicator.id
-                  @indicador_value.city_id = @city.id
-                  @indicator.save
+                    IndicatorValue.create([{score: score, date_from: fila[2], date_to: fila[2],
+                                            indicator_id: @indicator.id, city_id: @city.id}])
+                  else
+                    @indicador_value = IndicatorValue.new
+                    @indicador_value.score = score
+                    @indicador_value.date_from = fila[2]
+                    @indicador_value.date_to = fila[2]
+                    @indicador_value.indicator_id = @indicator.id
+                    @indicador_value.city_id = @city.id
+                    @indicator.save
+                  end
                 end
 
 

@@ -41,6 +41,8 @@ class IndicatorValue < ApplicationRecord
               if rowdosfilas.nil?
 
               else
+                ##aqui verifico si el string que tiene el numero del indicador, tenga al menos 2 puntos
+                # para poder determinar que sea un indicador
                 cantidadpuntos = contarlength(rowdosfilas, ".")
                 if cantidadpuntos > 1
 
@@ -64,20 +66,29 @@ class IndicatorValue < ApplicationRecord
       else
         ##aqui entra en la tercera fila en adelante
 
-
+        #recorro la fila por la que estoy pasando
         fila.each do |primerasdosfilas|
           indicador = ""
+          proximoindicador=""
 
+          contadorcabecera=0;
           @cabecera.each do |row|
-
+            ##aqui recorro la cabecera, para buscar el indice donde se almaceno algun idicador,
+            # y tener el indicador sobre el cual voy a insertar
             if row[:columna] == contadordespues
               indicador = row
             end
 
+            if @cabecera[contadorcabecera+1]
+              proximoindicador=@cabecera[contadorcabecera+1]
+            end
+
+            contadorcabecera=contadorcabecera+1
           end
 
           if indicador != ""
 
+            ##busco el indicador que ya encontre arriba
             @indicator = Indicator.find_by number: indicador[:indicador]
             @city = City.select("cities.*, upper(name) as name").where(name: fila[0].upcase)
 
@@ -97,9 +108,34 @@ class IndicatorValue < ApplicationRecord
                 if !fila[indicador[:columna]].nil? && !fila[indicador[:columna]].empty?
                   score = fila[indicador[:columna]].gsub! ',', '.'
 
+                end
+
+                meta=nil
+                if proximoindicador!=""
+
+                  if  !fila[indicador[:columna]-2].nil? && !fila[indicador[:columna]-2].empty? &&
+                      fila[indicador[:columna]-2].to_f>0.0
+                    meta=fila[indicador[:columna]-2].to_f
+                  else
+                    meta=fila[indicador[:columna]-1].to_f
+                  end
+
                 else
 
+                  if  !fila[indicador[:columna]+2].nil? && !fila[indicador[:columna]+2].empty? &&
+                      fila[indicador[:columna]+2].to_f>0.0
+                    meta=fila[indicador[:columna]+2].to_f
+                  end
+
                 end
+
+                if !meta.nil?
+
+                  @indicator.year_national_goal=2030
+                  @indicator.national_goal=meta
+                  @indicator.save
+                end
+
 
                 if !score.nil?
                   if @indicator_value.nil?
@@ -113,16 +149,11 @@ class IndicatorValue < ApplicationRecord
                     @indicador_value.date_to = fila[2]
                     @indicador_value.indicator_id = @indicator.id
                     @indicador_value.city_id = @city.id
-                    @indicator.save
+                    @indicador_value.save
                   end
                 end
-
-
               end
-
-
             end
-
           end
           contadordespues = contadordespues + 1
         end

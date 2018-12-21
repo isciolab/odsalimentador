@@ -44,9 +44,19 @@ class Indicator < ApplicationRecord
             @indicator.trazador_conpes=row[4]
 
             @indicator.year_national_base_line=2015
-            @indicator.national_base_line=row[6]
+            lineabase=nil
+            if !row[6].nil? && row[6].to_f>0
+              lineabase=row[6].gsub! ',', '.'
+              lineabase=lineabase.to_f
+            end
+            @indicator.national_base_line=lineabase
 
-            @indicator.national_goal=row[8]
+            metanacional=nil
+            if !row[8].nil? && row[8].to_f>0
+              metanacional=row[8].gsub! ',', '.'
+              metanacional=metanacional.to_f
+            end
+            @indicator.national_goal=metanacional
             @indicator.year_national_goal=2030
 
             @indicator.reference_value_low=row[16]
@@ -56,8 +66,6 @@ class Indicator < ApplicationRecord
             if row[4]=="X"
             @indicator.trazador_goal=1
             end
-
-
             @indicator.save
 
           else

@@ -75,9 +75,7 @@ class City < ApplicationRecord
         puts fila[19].upcase
         puts @departamento
         if @city.exists?
-          if fila[3].upcase == "CALI"
 
-          end
           @city.each do |filagrupo|
             ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
             @city = filagrupo

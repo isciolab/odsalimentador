@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181220024704) do
+ActiveRecord::Schema.define(version: 20181221133608) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -146,8 +146,8 @@ ActiveRecord::Schema.define(version: 20181220024704) do
 
   create_table "indicator_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.float "score", limit: 24
-    t.integer "date_from"
-    t.date "date_to"
+    t.string "date_from"
+    t.string "date_to"
     t.date "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "indicator_id"

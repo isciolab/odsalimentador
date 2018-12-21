@@ -21,43 +21,43 @@ class IndicatorValue < ApplicationRecord
     ##el parametro col_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
     # hace el explode en php
 
-    @cabecera=[]
-    contadordespues=0;
+    @cabecera = Array.new()
+    contadordespues = 0;
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: 'iso-8859-1:utf-8') do |fila|
-      contadordespues=0;
+      contadordespues = 0;
       if i == 0
         #si entra aqui, entra con las dos primeras filas, por lo tanto las recorro debajo
 
-        controwdosfilas=0
-        contprimerasdos=0
+        controwdosfilas = 0
+        contprimerasdos = 0
         fila.each do |primerasdosfilas|
 
-          controwdosfilas=0
+          controwdosfilas = 0
           primerasdosfilas.each do |rowdosfilas|
 
             ##solo entro en el segundo item, que es la segunda fila
-            if controwdosfilas==1
+            if controwdosfilas == 1
 
               if rowdosfilas.nil?
 
               else
-                cantidadpuntos=contarlength(rowdosfilas,".")
-                if cantidadpuntos>1
+                cantidadpuntos = contarlength(rowdosfilas, ".")
+                if cantidadpuntos > 1
 
-                  @cabecera << {
-                      :indicador =>rowdosfilas,
+                  @cabecera = @cabecera << {
+                      :indicador => rowdosfilas,
                       :columna => contprimerasdos,
                   }
                 end
               end
             end
 
-            controwdosfilas=controwdosfilas+1
+            controwdosfilas = controwdosfilas + 1
 
           end
 
 
-          contprimerasdos=contprimerasdos+1
+          contprimerasdos = contprimerasdos + 1
         end
 
 
@@ -66,20 +66,63 @@ class IndicatorValue < ApplicationRecord
 
 
         fila.each do |primerasdosfilas|
-          indicador=""
-          puts @cabecera[0]
-          puts @cabecera[0]['columna']
+          indicador = ""
 
-          if indicador!=""
+          @cabecera.each do |row|
 
-            @indicator = Indicator.find_by number: indicador.indicador
+            if row[:columna] == contadordespues
+              indicador = row
+            end
 
-            if @indicator.id
+          end
+
+          if indicador != ""
+
+            @indicator = Indicator.find_by number: indicador[:indicador]
+            @city = City.select("cities.*, upper(name) as name").where(name: fila[0].upcase)
+
+            if @indicator.nil?
+
+            else
+
+              if @city.exists?
+                @city.each do |filagrupo|
+                  ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
+                  @city = filagrupo
+                end
+
+                @indicator_value = IndicatorValue.find_by(indicator_id: indicador[:indicador],
+                                                          date_from: fila[2],city_id:@city.id)
+                score=nil
+                if !fila[indicador[:columna]].nil? && !fila[indicador[:columna]].empty?
+                  score=fila[indicador[:columna]].gsub! ',', '.'
+
+                else
+
+                end
+
+                if @indicator_value.nil?
+
+                  IndicatorValue.create([{score: score, date_from: fila[2],date_to:fila[2],
+                                          indicator_id: @indicator.id,city_id:@city.id}])
+                else
+                  @indicador_value=IndicatorValue.new
+                  @indicador_value.score = score
+                  @indicador_value.date_from = fila[2]
+                  @indicador_value.date_to = fila[2]
+                  @indicador_value.indicator_id = @indicator.id
+                  @indicador_value.city_id = @city.id
+                  @indicator.save
+                end
+
+
+              end
+
 
             end
 
           end
-          contadordespues=contadordespues+1
+          contadordespues = contadordespues + 1
         end
 
       end

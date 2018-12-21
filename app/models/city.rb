@@ -92,9 +92,7 @@ class City < ApplicationRecord
           @city.dnp_category = fila[14]
           @city.ddt_typology = fila[15]
           @city.department_id = @departamento.id
-          @city.description = nil
-          @city.rural_population = fila[8]
-          @city.rural_population = nil
+          @city.urban_population = fila[8]
           @city.total_area = fila[10]
           @city.foundation_year = fila[4]
           @city.cod_dane = fila[1]

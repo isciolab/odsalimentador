@@ -119,7 +119,6 @@ class IndicatorValue < ApplicationRecord
                   else
                     meta=fila[indicador[:columna]-1].to_f
                   end
-
                 else
 
                   if  !fila[indicador[:columna]+2].nil? && !fila[indicador[:columna]+2].empty? &&
@@ -129,20 +128,21 @@ class IndicatorValue < ApplicationRecord
 
                 end
 
-                if !meta.nil?
-
-                  @indicator.year_national_goal=2030
-                  @indicator.national_goal=meta
-                  @indicator.save
-                end
-
-
                 if !score.nil?
+
                   if @indicator_value.nil?
 
                     IndicatorValue.create([{score: score, date_from: fila[2], date_to: fila[2],
                                             indicator_id: @indicator.id, city_id: @city.id}])
                   else
+
+                    if !meta.nil?
+
+                      @indicator.year_national_goal=2030
+                      @indicator.national_goal=meta
+                      @indicator.save
+                    end
+
                     @indicador_value = IndicatorValue.new
                     @indicador_value.score = score
                     @indicador_value.date_from = fila[2]
@@ -163,7 +163,5 @@ class IndicatorValue < ApplicationRecord
       i = i + 1
     end
 
-    ##aqui guardo los arreglos, usando esta gema  "activerecord-import"
-    #City.import columnsdataprincipal, @dataprincipal, validate: false
   end
 end

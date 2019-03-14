@@ -66,6 +66,7 @@ Rails.application.routes.draw do
     get 'updatefechatoyear', on: :collection
     get 'tblindicatorvalue', on: :collection
     collection { post 'importar_indicator_value'}
+    collection { post 'importar_value_tres_ref'}
 
   end
 

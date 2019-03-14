@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181221212438) do
+ActiveRecord::Schema.define(version: 20190313232942) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20181221212438) do
     t.datetime "updated_at", null: false
     t.bigint "country_id"
     t.datetime "delete_at"
+    t.string "folder_avatar", default: "logos/departments/"
+    t.string "avatar"
     t.index ["country_id"], name: "index_departments_on_country_id"
   end
 
@@ -233,6 +235,17 @@ ActiveRecord::Schema.define(version: 20181221212438) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ref_indicator_values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.float "referenceone", limit: 24
+    t.float "referencetwo", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "indicator_id"
+    t.bigint "group_city_id"
+    t.index ["group_city_id"], name: "index_ref_indicator_values_on_group_city_id"
+    t.index ["indicator_id"], name: "index_ref_indicator_values_on_indicator_id"
+  end
+
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.boolean "available"
@@ -323,6 +336,8 @@ ActiveRecord::Schema.define(version: 20181221212438) do
   add_foreign_key "indicators", "targets"
   add_foreign_key "person_has_questions", "people", column: "people_id"
   add_foreign_key "person_has_questions", "questions"
+  add_foreign_key "ref_indicator_values", "group_cities"
+  add_foreign_key "ref_indicator_values", "indicators"
   add_foreign_key "targets", "goals"
   add_foreign_key "university_cities", "dict_univ_cities"
   add_foreign_key "user_by_cities", "cities"

@@ -115,7 +115,16 @@ class IndicatorValuesController < ApplicationController
 
   def importar_indicator_value
     if params[:file]
-      IndicatorValue.importar(params[:file])
+      IndicatorValue.importarConDosReferen(params[:file])
+      redirect_to configs_path, :flash => {:notice => "Datos guardados éxito!"}
+    else
+      redirect_to configs_path, :flash => {:error => "Por favor seleccionar un archivo CSV"}
+    end
+  end
+
+  def importar_value_tres_ref
+    if params[:file]
+      IndicatorValue.importarConTresReferen(params[:file])
       redirect_to configs_path, :flash => {:notice => "Datos guardados éxito!"}
     else
       redirect_to configs_path, :flash => {:error => "Por favor seleccionar un archivo CSV"}

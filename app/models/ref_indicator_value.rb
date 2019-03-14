@@ -1,0 +1,3 @@
+class RefIndicatorValue < ApplicationRecord
+
+end

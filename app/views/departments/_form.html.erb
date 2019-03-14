@@ -5,7 +5,8 @@
         <h4 class="modal-title"><%= title %></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-      <%= form_for @department, remote: true do |f| %>
+
+        <%= form_for @department,html: { multipart: true,remote: true  } do |f| %>
         <div class="modal-body">
           <div class="card-body card-block">
             <%= render 'layouts/viewerror', object: @department %>
@@ -13,6 +14,17 @@
             <label for="company" class=" form-control-label">Nombre</label>
             <%= f.text_field :name, class: "form-control input-lg", placeholder: "Nombre",autofocus:true %>
           </div>
+
+            <div class="form-group">
+              <%= f.hidden_field(:avatar) %>
+              <%= f.file_field(:avatar) %>
+            </div>
+
+            <div class="form-group">
+              <label for="company" class=" form-control-label">Logo</label>
+              <!--Con lo siguiente mando a buscar la url completa de la imagen, con lo queviene de BD -->
+              <%= image_tag(@department.avatar) %>
+            </div>
         </div>
         </div>
         <div class="modal-footer">

@@ -220,6 +220,7 @@ class IndicatorValue < ApplicationRecord
       else
         ##aqui entra en la tercera fila en adelante
 
+        contadorcolumna=0
         #recorro la fila por la que estoy pasando
         fila.each do |primerasdosfilas|
           indicador = ""
@@ -288,47 +289,62 @@ class IndicatorValue < ApplicationRecord
                 referencetwo = 0
                 meta = nil
 
+
                 if proximoindicador != ""
 
+                  puts "entra aqui cuando exista un proximo indicador"
+                  puts "referenceone"
+                  puts referenceone
+                  puts "referencetwo"
+                  puts referencetwo
 
-                  ##entra aqui cuando el proximo indicador no exista
-                  if !fila[indicador[:columna] + 3].nil? && !fila[indicador[:columna] + 3].empty?
-                    meta = fila[indicador[:columna] + 3].to_f
-                    referenceone = fila[indicador[:columna] + 3].gsub! ',', '.'
-                    referencetwo = fila[indicador[:columna] + 2].gsub! ',', '.'
-                  else
-                    if !fila[indicador[:columna] + 2].nil? && !fila[indicador[:columna] + 2].empty? &&
-                        fila[indicador[:columna] + 2].to_f >= 0
-
-                      referenceone = fila[indicador[:columna] + 2].gsub! ',', '.'
-                      referencetwo = fila[indicador[:columna] + 1].gsub! ',', '.'
+                  if !fila[indicador[:columna] + 5].nil? && !fila[indicador[:columna] + 5].empty?
+                    if !fila[indicador[:columna] + 5].index(",").nil?
+                      referenceone = fila[indicador[:columna] + 5].gsub! ',', '.'
                     else
-                      meta = fila[indicador[:columna] + 1].to_f
-
+                      referenceone=fila[indicador[:columna] + 5]
                     end
                   end
 
+                  if !fila[indicador[:columna] + 4].nil? && !fila[indicador[:columna] + 4].empty?
+
+                    if !fila[indicador[:columna] + 4].index(",").nil?
+                      referencetwo = fila[indicador[:columna] + 4].gsub! ',', '.'
+                    else
+                      referencetwo=fila[indicador[:columna] + 4]
+                    end
+                  end
                 else
-##entra aqui si existe un proximo indicador en la fila
 
-#fila[indicador[:columna] - 1].nil es igual a la referencia3
-##pregunto entonces si referencia3 != null, guardo la referencia 2 como refere 1 y la ref 3 como la 2
-                  if !fila[indicador[:columna] - 1].nil? && !fila[indicador[:columna] - 1].empty? &&
+
+                  puts "proximoindicador"
+                  puts proximoindicador
+                  puts "fila[indicador[:columna] - 1]"
+                  puts fila[indicador[:columna] - 1]
+                  puts "fila[indicador[:columna] - 2]"
+                  puts fila[indicador[:columna] - 2]
+                  puts fila[indicador[:columna]]
+
+                  ##entra aqui si existe un proximo indicador en la fila
+
+                  #fila[indicador[:columna] - 1].nil es igual a la referencia3
+                  ##pregunto entonces si referencia3 != null, guardo la referencia 2 como refere 1 y la ref 3 como la 2
+                  if !fila[indicador[:columna] - 1].nil? && fila[indicador[:columna] - 1] != "" &&
                       fila[indicador[:columna] - 1].to_f >= 0
-
+                    puts "paso en la primera"
                     referenceone = fila[indicador[:columna] - 2].gsub! ',', '.'
                     referencetwo = fila[indicador[:columna] - 1].gsub! ',', '.'
                     meta = fila[indicador[:columna] - 2].to_f
 
                   else
                     meta = fila[indicador[:columna] - 2].to_f
-
+                    puts "paso en la segunda"
                     #fila[indicador[:columna] - 3] = a la columna referencia 1.
-                    if !fila[indicador[:columna] - 2].nil? && !fila[indicador[:columna] - 2].empty?
+                    if !fila[indicador[:columna] - 2].nil? && fila[indicador[:columna] - 2] != ""
                       referencetwo = fila[indicador[:columna] - 2].gsub! ',', '.'
                     end
                     ##en este caso, la referencia 2 siempre es la columa referencia 2 = fila[indicador[:columna] - 2]
-                    if !fila[indicador[:columna] - 3].nil? && !fila[indicador[:columna] - 3].empty? &&
+                    if !fila[indicador[:columna] - 3].nil? && fila[indicador[:columna] - 3] != "" &&
                         fila[indicador[:columna] - 3].to_f >= 0
 
                       referenceone = fila[indicador[:columna] - 3].gsub! ',', '.'
@@ -336,26 +352,36 @@ class IndicatorValue < ApplicationRecord
                     end
 
                   end
-
-
                 end
 
-                if !@ref_indicator_values.nil?
-                  @ref_indicator_values.referenceone = referenceone
-                  @ref_indicator_values.referencetwo = referencetwo
-                  @ref_indicator_values.save
-                  puts "hay referencia"
-                  puts @ref_indicator_values.inspect
-                else
-                  puts "no tiene referenciasssssssssssss"
-                  puts @indicator.id
-                  puts @groupcity.id
+                puts 'contadorcolumna'
+                puts contadorcolumna
+                puts "fila[indicador[:columna]]"
+                puts indicador[:columna]
+                if contadorcolumna == indicador[:columna]
+                  puts "proximoindicador"
+                  puts proximoindicador
+                  puts "fila[indicador[:columna] - 1]"
+                  puts fila[indicador[:columna] - 1]
+                  puts "fila[indicador[:columna] - 2]"
+                  puts fila[indicador[:columna] - 2]
+                  puts fila[indicador[:columna]]
                   puts referenceone
                   puts referencetwo
-                  puts RefIndicatorValue.create([{indicator_id: @indicator.id,
-                                                  group_city_id: @groupcity.id, referenceone: referenceone,
-                                                  referencetwo: referencetwo}])
 
+                  if !@ref_indicator_values.nil?
+                    @ref_indicator_values.referenceone = referenceone
+                    @ref_indicator_values.referencetwo = referencetwo
+                    @ref_indicator_values.save
+
+                  else
+
+
+                     RefIndicatorValue.create([{indicator_id: @indicator.id,
+                                                    group_city_id: @groupcity.id, referenceone: referenceone,
+                                                    referencetwo: referencetwo}])
+
+                  end
                 end
 
                 if !score.nil?
@@ -379,11 +405,12 @@ class IndicatorValue < ApplicationRecord
             end
           end
           contadordespues = contadordespues + 1
+          contadorcolumna=contadorcolumna+1
         end
 
       end
       i = i + 1
-    end
+    end #end foreach
 
-  end
-end
+  end #end metodo
+end #end clase

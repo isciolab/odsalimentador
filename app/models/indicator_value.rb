@@ -181,201 +181,209 @@ class IndicatorValue < ApplicationRecord
       contadordespues = 0
 
 
+      if i == 0
+        #si entra aqui, entra con las dos primeras filas, por lo tanto las recorro debajo
 
-        if i == 0
-          #si entra aqui, entra con las dos primeras filas, por lo tanto las recorro debajo
+        controwdosfilas = 0
+        contprimerasdos = 0
+        fila.each do |primerasdosfilas|
 
           controwdosfilas = 0
-          contprimerasdos = 0
-          fila.each do |primerasdosfilas|
+          primerasdosfilas.each do |rowdosfilas|
 
-            controwdosfilas = 0
-            primerasdosfilas.each do |rowdosfilas|
+            ##solo entro en el segundo item, que es la segunda fila
+            if controwdosfilas == 1
 
-              ##solo entro en el segundo item, que es la segunda fila
-              if controwdosfilas == 1
-
-                if rowdosfilas.nil?
-
-                else
-                  ##aqui verifico si el string que tiene el numero del indicador, tenga al menos 2 puntos
-                  # para poder determinar que sea un indicador
-                  cantidadpuntos = contarlength(rowdosfilas, ".")
-                  if cantidadpuntos > 1
-
-                    @cabecera = @cabecera << {
-                        :indicador => rowdosfilas,
-                        :columna => contprimerasdos,
-                    }
-                  end
-                end
-              end
-
-              controwdosfilas = controwdosfilas + 1
-
-            end
-
-
-            contprimerasdos = contprimerasdos + 1
-          end
-        else
-          ##aqui entra en la tercera fila en adelante
-
-          #recorro la fila por la que estoy pasando
-          fila.each do |primerasdosfilas|
-            indicador = ""
-            proximoindicador = ""
-
-            contadorcabecera = 0;
-            @cabecera.each do |row|
-              ##aqui recorro la cabecera, para buscar el indice donde se almaceno algun idicador,
-              # y tener el indicador sobre el cual voy a insertar
-              if row[:columna] == contadordespues
-                indicador = row
-              end
-
-              if @cabecera[contadorcabecera + 1]
-                proximoindicador = @cabecera[contadorcabecera + 1]
-              end
-
-              contadorcabecera = contadorcabecera + 1
-            end
-
-            if indicador != ""
-
-              ##busco el indicador que ya encontre arriba
-              @indicator = Indicator.find_by number: indicador[:indicador]
-              @city = City.select("cities.*, upper(name) as name").where(name: fila[0].upcase)
-
-              if @indicator.nil?
+              if rowdosfilas.nil?
 
               else
+                ##aqui verifico si el string que tiene el numero del indicador, tenga al menos 2 puntos
+                # para poder determinar que sea un indicador
+                cantidadpuntos = contarlength(rowdosfilas, ".")
+                if cantidadpuntos > 1
 
-                if @city.exists?
-                  @city.each do |filagrupo|
-                    ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
-                    @city = filagrupo
-                  end
+                  @cabecera = @cabecera << {
+                      :indicador => rowdosfilas,
+                      :columna => contprimerasdos,
+                  }
+                end
+              end
+            end
 
-                  @indicator_value = IndicatorValue.find_by(indicator_id: @indicator.id,
-                                                            date_from: fila[3], city_id: @city.id)
+            controwdosfilas = controwdosfilas + 1
 
-                  @groupcity = GroupCity.select("group_cities.*, upper(name) as name").where(name: fila[2].upcase)
+          end
+
+
+          contprimerasdos = contprimerasdos + 1
+        end
+      else
+        ##aqui entra en la tercera fila en adelante
+
+        #recorro la fila por la que estoy pasando
+        fila.each do |primerasdosfilas|
+          indicador = ""
+          proximoindicador = ""
+
+          contadorcabecera = 0;
+          @cabecera.each do |row|
+            ##aqui recorro la cabecera, para buscar el indice donde se almaceno algun idicador,
+            # y tener el indicador sobre el cual voy a insertar
+            if row[:columna] == contadordespues
+              indicador = row
+            end
+
+            if @cabecera[contadorcabecera + 1]
+              proximoindicador = @cabecera[contadorcabecera + 1]
+            end
+
+            contadorcabecera = contadorcabecera + 1
+          end
+
+          if indicador != ""
+
+            ##busco el indicador que ya encontre arriba
+            @indicator = Indicator.find_by number: indicador[:indicador]
+            @city = City.select("cities.*, upper(name) as name").where(name: fila[0].upcase)
+
+            if @indicator.nil?
+
+            else
+
+              if @city.exists?
+                @city.each do |filagrupo|
+                  ##pregunto si la pregunta que estoy recorriendo == a la pregunta de la cabecera
+                  @city = filagrupo
+                end
+
+                @indicator_value = IndicatorValue.find_by(indicator_id: @indicator.id,
+                                                          date_from: fila[3], city_id: @city.id)
+
+                @groupcity = GroupCity.select("group_cities.*, upper(name) as name").where(name: fila[2].upcase)
+                if @groupcity.exists?
+
+                else
+
+                  @groupcity = GroupCity.select("group_cities.*").where(name: fila[2])
                   if @groupcity.exists?
-
                   else
+                    puts "no existe grupo"
+                    GroupCity.create([{name: fila[2].upcase}])
+                  end
+                end
 
-                    @groupcity = GroupCity.select("group_cities.*").where(name: fila[2])
-                    if @groupcity.exists?
+                @groupcity = GroupCity.find_by(name: fila[2].upcase)
+
+
+                @ref_indicator_values = RefIndicatorValue.find_by(indicator_id: @indicator.id,
+                                                                  group_city_id: @groupcity.id)
+
+                score = nil
+                if !fila[indicador[:columna]].nil? && !fila[indicador[:columna]].empty?
+                  score = fila[indicador[:columna]].gsub! ',', '.'
+
+                end
+
+                referenceone = 0
+                referencetwo = 0
+                meta = nil
+
+                if proximoindicador != ""
+
+
+                  ##entra aqui cuando el proximo indicador no exista
+                  if !fila[indicador[:columna] + 3].nil? && !fila[indicador[:columna] + 3].empty?
+                    meta = fila[indicador[:columna] + 3].to_f
+                    referenceone = fila[indicador[:columna] + 3].gsub! ',', '.'
+                    referencetwo = fila[indicador[:columna] + 2].gsub! ',', '.'
+                  else
+                    if !fila[indicador[:columna] + 2].nil? && !fila[indicador[:columna] + 2].empty? &&
+                        fila[indicador[:columna] + 2].to_f >= 0
+
+                      referenceone = fila[indicador[:columna] + 2].gsub! ',', '.'
+                      referencetwo = fila[indicador[:columna] + 1].gsub! ',', '.'
                     else
-                      puts "no existe grupo"
-                      GroupCity.create([{name: fila[2].upcase}])
+                      meta = fila[indicador[:columna] + 1].to_f
+
                     end
                   end
 
-                  @groupcity = GroupCity.find_by(name: fila[2].upcase)
+                else
+##entra aqui si existe un proximo indicador en la fila
 
+#fila[indicador[:columna] - 1].nil es igual a la referencia3
+##pregunto entonces si referencia3 != null, guardo la referencia 2 como refere 1 y la ref 3 como la 2
+                  if !fila[indicador[:columna] - 1].nil? && !fila[indicador[:columna] - 1].empty? &&
+                      fila[indicador[:columna] - 1].to_f >= 0
 
-                  @ref_indicator_values = RefIndicatorValue.find_by(indicator_id: @indicator.id,
-                                                                    group_city_id: @groupcity.id)
+                    referenceone = fila[indicador[:columna] - 2].gsub! ',', '.'
+                    referencetwo = fila[indicador[:columna] - 1].gsub! ',', '.'
+                    meta = fila[indicador[:columna] - 2].to_f
 
-                  score = nil
-                  if !fila[indicador[:columna]].nil? && !fila[indicador[:columna]].empty?
-                    score = fila[indicador[:columna]].gsub! ',', '.'
+                  else
+                    meta = fila[indicador[:columna] - 2].to_f
 
-                  end
-
-                  referenceone = nil
-                  referencetwo = nil
-                  meta = nil
-
-                  if proximoindicador != ""
-
-
-                    if !fila[indicador[:columna] - 1].nil? && !fila[indicador[:columna] - 1].empty? &&
-                        fila[indicador[:columna] - 1].to_f >= 0
-
-                      referenceone = fila[indicador[:columna] - 1].gsub! ',', '.'
+                    #fila[indicador[:columna] - 3] = a la columna referencia 1.
+                    if !fila[indicador[:columna] - 2].nil? && !fila[indicador[:columna] - 2].empty?
                       referencetwo = fila[indicador[:columna] - 2].gsub! ',', '.'
-                      meta = fila[indicador[:columna] - 2].to_f
-
-                    else
-                      meta = fila[indicador[:columna] - 2].to_f
-
-                      if !fila[indicador[:columna] - 2].nil? && !fila[indicador[:columna] - 2].empty? &&
-                          fila[indicador[:columna] - 2].to_f >= 0
-
-                        referenceone = fila[indicador[:columna] - 2].gsub! ',', '.'
-                        referencetwo = fila[indicador[:columna] - 3].gsub! ',', '.'
-                      else
-                        meta = fila[indicador[:columna] - 1].to_f
-
-                      end
                     end
-                  else
+                    ##en este caso, la referencia 2 siempre es la columa referencia 2 = fila[indicador[:columna] - 2]
+                    if !fila[indicador[:columna] - 3].nil? && !fila[indicador[:columna] - 3].empty? &&
+                        fila[indicador[:columna] - 3].to_f >= 0
 
-                    if !fila[indicador[:columna] + 3].nil? && !fila[indicador[:columna] + 3].empty?
-                      meta = fila[indicador[:columna] + 3].to_f
-                      referenceone = fila[indicador[:columna] + 3].gsub! ',', '.'
-                      referencetwo = fila[indicador[:columna] + 2].gsub! ',', '.'
-                    else
-                      if !fila[indicador[:columna] + 2].nil? && !fila[indicador[:columna] + 2].empty? &&
-                          fila[indicador[:columna] + 2].to_f >= 0
+                      referenceone = fila[indicador[:columna] - 3].gsub! ',', '.'
 
-                        referenceone = fila[indicador[:columna] + 2].gsub! ',', '.'
-                        referencetwo = fila[indicador[:columna] + 1].gsub! ',', '.'
-                      else
-                        meta = fila[indicador[:columna] + 1].to_f
-
-                      end
                     end
 
                   end
 
-                  if !@ref_indicator_values.nil?
-                    @ref_indicator_values.referenceone = referenceone
-                    @ref_indicator_values.referencetwo = referencetwo
-                    @ref_indicator_values.save
-                    puts "hay referencia"
-                    puts @ref_indicator_values.inspect
+
+                end
+
+                if !@ref_indicator_values.nil?
+                  @ref_indicator_values.referenceone = referenceone
+                  @ref_indicator_values.referencetwo = referencetwo
+                  @ref_indicator_values.save
+                  puts "hay referencia"
+                  puts @ref_indicator_values.inspect
+                else
+                  puts "no tiene referenciasssssssssssss"
+                  puts @indicator.id
+                  puts @groupcity.id
+                  puts referenceone
+                  puts referencetwo
+                  puts RefIndicatorValue.create([{indicator_id: @indicator.id,
+                                                  group_city_id: @groupcity.id, referenceone: referenceone,
+                                                  referencetwo: referencetwo}])
+
+                end
+
+                if !score.nil?
+
+                  if @indicator_value.nil?
+
+                    IndicatorValue.create([{score: score, date_from: fila[3], date_to: fila[3],
+                                            indicator_id: @indicator.id, city_id: @city.id}])
                   else
-                    puts "no tiene referenciasssssssssssss"
-                    puts @indicator.id
-                    puts @groupcity.id
-                    puts referenceone
-                    puts referencetwo
-                    puts RefIndicatorValue.create([{indicator_id: @indicator.id,
-                                               group_city_id: @groupcity.id, referenceone: referenceone,
-                                               referencetwo: referencetwo}])
-
-                  end
-
-                  if !score.nil?
-
-                    if @indicator_value.nil?
-
-                      IndicatorValue.create([{score: score, date_from: fila[3], date_to: fila[3],
-                                              indicator_id: @indicator.id, city_id: @city.id}])
-                    else
 
 
-                      @indicator_value.score = score
-                      @indicator_value.date_from = fila[3]
-                      @indicator_value.date_to = fila[3]
-                      @indicator_value.indicator_id = @indicator.id
-                      @indicator_value.city_id = @city.id
-                      @indicator_value.save
-                    end
+                    @indicator_value.score = score
+                    @indicator_value.date_from = fila[3]
+                    @indicator_value.date_to = fila[3]
+                    @indicator_value.indicator_id = @indicator.id
+                    @indicator_value.city_id = @city.id
+                    @indicator_value.save
                   end
                 end
               end
             end
-            contadordespues = contadordespues + 1
           end
-
+          contadordespues = contadordespues + 1
         end
-      i = i + 1
+
       end
+      i = i + 1
+    end
 
   end
 end

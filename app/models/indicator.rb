@@ -26,8 +26,20 @@ class Indicator < ApplicationRecord
             measure=@measure.id
           end
 
-          Indicator.create([{number: row[2], name: row[3], available: 1,
-                             target_id: target.id,measure_id:measure}])
+          @indicator = Indicator.find_by number: row[2]
+          trazador_goal= row[4]=="X"?1:0
+
+          if @indicator.nil?
+            Indicator.create([{number: row[2], name: row[3], available: 1,
+                               target_id: target.id,measure_id:measure,trazador_goal:trazador_goal}])
+          else
+            @indicator.name = row[3]
+            @indicator.measure_id = measure
+            @indicator.trazador_goal=trazador_goal
+            @indicator.save
+          end
+
+
         end
       end
     end

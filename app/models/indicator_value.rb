@@ -226,7 +226,7 @@ class IndicatorValue < ApplicationRecord
           indicador = ""
           proximoindicador = ""
 
-          contadorcabecera = 0;
+          contadorcabecera = 0
           @cabecera.each do |row|
             ##aqui recorro la cabecera, para buscar el indice donde se almaceno algun idicador,
             # y tener el indicador sobre el cual voy a insertar
@@ -274,8 +274,9 @@ class IndicatorValue < ApplicationRecord
                 end
 
                 @groupcity = GroupCity.find_by(name: fila[2].upcase)
-
-
+                ##actualizo el grupo de ciudad a la ciudad
+                @city.group_cities_id=@groupcity.id
+                @city.save
                 @ref_indicator_values = RefIndicatorValue.find_by(indicator_id: @indicator.id,
                                                                   group_city_id: @groupcity.id)
 

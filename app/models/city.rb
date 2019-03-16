@@ -53,9 +53,9 @@ class City < ApplicationRecord
           @groupods.name = fila[18].strip
           @groupods.save!
         end
-        departamento=fila[19].upcase
+        departamento=fila[19].capitalize
         departamento=departamento.strip
-        @city = City.select("cities.*, upper(name) as name").where(name: fila[3].upcase)
+        @city = City.select("cities.*, upper(name) as name").where(name: fila[3].upcase )
         @departamento = Department.select("departments.*, upper(name) as name").where(name: departamento)
 
 
@@ -72,7 +72,7 @@ class City < ApplicationRecord
           @departamento.save
         end
         puts "departamento"
-        puts fila[19].upcase
+        puts fila[19].capitalize
         puts @departamento
         if @city.exists?
 
@@ -82,7 +82,7 @@ class City < ApplicationRecord
           end
 
 
-          @city.name = fila[3]
+          @city.name = fila[3].mb_chars.capitalize.to_s
           @city.is_capital = fila[17] == "Capital" ? 1 : 0
           @city.group_cities_id = @groupods.id
           @city.rccv_program = fila[2]
@@ -101,7 +101,7 @@ class City < ApplicationRecord
           puts @city.id
         else
           @dataprincipal << {
-              :name => fila[3].upcase,
+              :name => fila[3].mb_chars.capitalize.to_s,
               :is_capital => fila[17] == "Capital" ? 1 : 0,
               :group_cities_id => @groupods.id,
               :rccv_program => fila[2],
@@ -153,7 +153,7 @@ class City < ApplicationRecord
           fila[0].strip != "" && fila[0].strip != "NA" && fila[0].strip != "na" &&
           fila[0].strip != "N/A" && fila[0].strip != "No Disponible"
 
-        @city = City.select("cities.*, upper(name) as name").where(name: fila[0].upcase)
+        @city = City.select("cities.*, upper(name) as name").where(name: fila[0].capitalize)
         if @city.exists?
 
           @city.each do |filacity|

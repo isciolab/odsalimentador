@@ -41,7 +41,8 @@ class City < ApplicationRecord
         #almaceno la respuesta
 
         ##@groupcity = GroupCity.where(name: fila[18])
-        @groupods = GroupCity.where(name: fila[18])
+        @groupods = GoalGroup.select("goal_groups.*, upper(name) as name").where(name: fila[18].upcase )
+
 
         if @groupods.exists?
           @groupods.each do |filagrupo|
@@ -50,7 +51,7 @@ class City < ApplicationRecord
           end
         else
           @groupods = GroupCity.new
-          @groupods.name = fila[18].strip
+          @groupods.name = fila[18].mb_chars.capitalize.to_s
           @groupods.save!
         end
         departamento=fila[19].capitalize
@@ -84,7 +85,7 @@ class City < ApplicationRecord
 
           @city.name = fila[3].mb_chars.capitalize.to_s
           @city.is_capital = fila[17] == "Capital" ? 1 : 0
-          @city.group_cities_id = @groupods.id
+          @city.goal_group_id = @groupods.id
           @city.rccv_program = fila[2]
           @city.total_population = fila[6]
           @city.metropolitan_area = fila[12]
@@ -103,7 +104,7 @@ class City < ApplicationRecord
           @dataprincipal << {
               :name => fila[3].mb_chars.capitalize.to_s,
               :is_capital => fila[17] == "Capital" ? 1 : 0,
-              :group_cities_id => @groupods.id,
+              :goal_group_id => @groupods.id,
               :rccv_program => fila[2],
               :total_population => fila[6],
               :metropolitan_area => fila[12],

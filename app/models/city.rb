@@ -51,7 +51,7 @@ class City < ApplicationRecord
           end
         else
           @groupods = GroupCity.new
-          @groupods.name = fila[18].mb_chars.capitalize.to_s
+          @groupods.name = fila[18].upcase
           @groupods.save!
         end
         departamento=fila[19].capitalize

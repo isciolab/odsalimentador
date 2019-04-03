@@ -93,6 +93,16 @@
               <%= image_tag(@city.avatar) %>
             </div>
 
+            <div class="form-group">
+              <%= f.hidden_field(:image_mapa) %>
+              <%= f.file_field(:image_mapa) %>
+            </div>
+
+            <div class="form-group">
+              <label for="company" class=" form-control-label">Imagen Mapa</label>
+              <!--Con lo siguiente mando a buscar la url completa de la imagen, con lo queviene de BD -->
+              <%= image_tag(@city.image_mapa) %>
+            </div>
 
           </div>
         </div>

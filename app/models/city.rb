@@ -7,7 +7,7 @@ class City < ApplicationRecord
   has_many :users
 
   mount_uploader :avatar, AvatarUploader ##esto subira la imagen
-
+  mount_uploader :image_mapa, ImageMapaUploader ##esto subira la imagen del mapa
 
   def self.importar(file)
 

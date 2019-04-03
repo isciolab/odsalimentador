@@ -76,7 +76,7 @@ class CitiesController < ApplicationController
     ##parametros permitidos
     params.require(:city).permit(:name, :group_cities_id, :is_capital, :goal_group_id, :rccv_program, :total_population,
                                  :metropolitan_area, :city_system_dnp, :dnp_category, :ddt_typology, :department_id,
-                                 :description, :avatar)
+                                 :description, :avatar,:image_mapa)
   end
 
 end

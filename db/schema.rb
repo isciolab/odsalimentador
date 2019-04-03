@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190313232942) do
+ActiveRecord::Schema.define(version: 20190403135401) do
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(version: 20190313232942) do
     t.string "folder_avatar", default: "logos/cities/"
     t.text "cod_dane"
     t.text "web_page"
+    t.string "folder_img_mapa", default: "images/maps/cities/"
+    t.string "image_mapa"
     t.index ["department_id"], name: "index_cities_on_department_id"
     t.index ["goal_group_id"], name: "index_cities_on_goal_group_id"
     t.index ["group_cities_id"], name: "index_cities_on_group_cities_id"

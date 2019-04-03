@@ -16,7 +16,8 @@ class PersonHasQuestion < ApplicationRecord
     columnspersonhasq = [:answer, :people_id, :question_id] #columnas de la tabla person_has_questions
     lastpeople=People.last() #busco el ultimo registro en la tabla people
 
-    ##el parametro col_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
+    ##el parametro co
+    # l_sep de la siguiente linea, lo que hace es decirle como va a separar las filas y es como si
     # hace el explode en php
     CSV.foreach(file.path, col_sep: ';', headers: false, encoding: 'iso-8859-1:utf-8') do |row|
 
